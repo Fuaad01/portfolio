@@ -8,7 +8,7 @@ import { setProgress } from "./utils/loadingUtils";
 import { useLoading } from "../context/LoadingContext";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { ScrollSmoother } from "gsap-trial/ScrollSmoother";
+import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/CaseStudy.css";
 import BackgroundGlows from "./utils/BackgroundGlows";
 
