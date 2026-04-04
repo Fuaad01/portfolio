@@ -1,0 +1,134 @@
+.about-section {
+  /* display: flex; */
+  flex-direction: column;
+  position: relative;
+  opacity: 1;
+  height: auto;
+  padding: 80px 0;
+}
+
+.about-box {
+  position: relative;
+  width: 100%;
+  background: var(--card-bg);
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  border-radius: 24px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-sizing: border-box;
+  overflow: hidden;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Border sweep for the box */
+.about-box::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 24px;
+  padding: 1.5px;
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(26, 79, 255, 0.2) 25%,
+      rgba(26, 79, 255, 0.5) 50%,
+      rgba(26, 79, 255, 0.2) 75%,
+      transparent 100%);
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+}
+
+.about-content-wrapper {
+  display: flex;
+  flex-direction: column-reverse;
+  width: 100%;
+  gap: 60px;
+  position: relative;
+  z-index: 1;
+}
+
+
+
+.about-me {
+  padding-bottom: 0;
+  /* width: 500px; */
+  /* max-width: calc(100% - 15px); */
+}
+
+.about-me h3 {
+  font-size: 25px;
+  text-transform: uppercase;
+  letter-spacing: 7px;
+  font-weight: 400;
+  color: var(--accentColor);
+}
+
+.about-me p {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 1px;
+  margin: 0px 0px 40px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.about-btn {
+  margin-top: 20px;
+}
+
+@media only screen and (min-width: 600px) {
+  .about-section {
+    justify-content: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .about-section {
+    padding: 20px 0;
+  }
+
+  .about-me p {
+    font-size: 16px;
+    line-height: 24px;
+    margin: 30px 0;
+  }
+
+  .about-me h3 {
+    font-size: 22px;
+  }
+
+  .about-box {
+    padding: 30px 20px;
+    border-radius: 30px;
+  }
+
+  .about-box::before {
+    border-radius: 30px;
+  }
+
+  .about-content-wrapper {
+    gap: 30px;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .about-me {
+    transform: translateY(0%);
+    width: 100%;
+  }
+
+  .about-section {
+    opacity: 1;
+  }
+
+  .about-content-wrapper {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

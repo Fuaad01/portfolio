@@ -1,0 +1,179 @@
+.glass-tag {
+  position: absolute;
+  padding: 10px 16px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow:
+    0 8px 32px 0 rgba(0, 0, 0, 0.3),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+  pointer-events: auto;
+  z-index: 5;
+  user-select: none;
+  white-space: nowrap;
+  transition: transform 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Glass Shine/Glossy Overlay */
+.glass-tag::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.08) 0%,
+      rgba(255, 255, 255, 0) 100%);
+  border-radius: 12px 12px 0 0;
+  pointer-events: none;
+}
+
+
+
+.glass-tag:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05) !important;
+  cursor: default;
+}
+
+/* Position Classes for Landing Section */
+.tag-ux-design {
+  top: 70px;
+  left: 12%;
+}
+
+.tag-ui-design {
+  top: 30%;
+  right: 11%;
+}
+
+.tag-ux-research {
+  top: 65%;
+  left: -12%;
+}
+
+.tag-wireframing {
+  top: 70%;
+  right: -12%;
+}
+
+@media screen and (max-width: 1024px) {
+  .glass-tag {
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+
+  .tag-ux-design {
+    top: 14%;
+    left: 14%;
+  }
+
+  .tag-ui-design {
+    top: 36%;
+    right: 16%;
+  }
+
+  .tag-ux-research {
+    top: 50%;
+    left: -5%;
+  }
+
+  .tag-wireframing {
+    top: 70%;
+    right: -9%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .glass-tag {
+    padding: 6px 10px;
+    font-size: 10px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    z-index: 5;
+  }
+
+  /* Compact positioning for mobile */
+  .tag-ux-design {
+    top: 18%;
+    left: 14%;
+  }
+
+  .tag-ui-design {
+    top: 36%;
+    right: 15%;
+  }
+
+  .tag-ux-research {
+    top: 46%;
+    left: -2%;
+  }
+
+  .tag-wireframing {
+    top: 70%;
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+
+  .tag-ux-design {
+    top: 20%;
+    left: 11%;
+  }
+
+  .tag-ux-research {
+    top: 44%;
+    left: -2%;
+  }
+
+  .tag-wireframing {
+    top: 66%;
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 500px) {
+
+  .tag-ux-design {
+    top: 20%;
+    left: 10%;
+  }
+
+  .tag-ui-design {
+    top: 36%;
+    right: 15%;
+  }
+
+  .tag-wireframing {
+    top: 64%;
+    right: 5%;
+  }
+}
+
+@media screen and (max-width: 380px) {
+
+  .tag-ux-design {
+    top: 20%;
+    left: 10%;
+  }
+
+  .tag-ui-design {
+    top: 36%;
+    right: 15%;
+  }
+
+  .tag-wireframing {
+    top: 62%;
+    right: 5%;
+  }
+}

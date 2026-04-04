@@ -1,0 +1,167 @@
+.experience-section {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: auto;
+  padding: 80px 0;
+}
+
+.experience-section .section-title {
+  text-align: left;
+  margin-bottom: 32px;
+}
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  width: 100%;
+}
+
+.experience-item {
+  display: flex;
+  flex-direction: column;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 24px 28px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.experience-header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+@media screen and (max-width: 768px) {
+  /* .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  } */
+}
+
+.experience-logo {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: #ffffff;
+  background-color: transparent;
+  flex-shrink: 0;
+}
+
+.experience-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex-grow: 1;
+}
+
+.role-date-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.experience-role {
+  font-size: 16px;
+  font-weight: 400;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.experience-date {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.4);
+  white-space: nowrap;
+}
+
+.company-name {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 0;
+  color: #ffffff;
+  letter-spacing: 0.5px;
+}
+
+/* Removed .role-date in favor of .experience-role and .experience-date */
+
+.experience-desc {
+  margin-top: 16px;
+  margin-left: 0;
+}
+
+.experience-desc p {
+  font-size: 18px;
+  line-height: 24px;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .experience-section {
+    padding: 20px 0;
+  }
+
+  .experience-info {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .experience-item {
+    padding: 30px 24px;
+  }
+
+  .company-name {
+    font-size: 24px;
+    margin-top: 10px;
+  }
+
+  .experience-role {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .experience-date {
+    font-size: 15px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-top: 10px;
+    display: block;
+  }
+
+  .experience-logo {
+    width: 56px;
+    height: 56px;
+    font-size: 22px;
+  }
+
+  .experience-desc {
+    margin-top: 16px;
+  }
+
+  .role-date-container {
+    display: block;
+  }
+
+}
+
+@media screen and (max-width: 500px) {
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
+  }
+
+}
