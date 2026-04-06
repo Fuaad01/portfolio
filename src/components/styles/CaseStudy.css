@@ -9,7 +9,7 @@
 
 .cs-container {
   max-width: 1100px;
-  margin: 0px auto 0px;
+  margin: 130px auto 0px;
   padding: 0 16px;
 }
 
@@ -334,6 +334,7 @@
 
 @media (max-width: 600px) {
   .cs-container {
+    margin: 0px auto 0px;
     padding: 0 16px;
   }
 
