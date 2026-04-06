@@ -44,6 +44,7 @@ export default function setSplitText() {
         ease: "power3.out",
         y: 0,
         stagger: 0.02,
+        clearProps: "all"
       }
     );
   });
@@ -71,6 +72,7 @@ export default function setSplitText() {
         y: 0,
         rotate: 0,
         stagger: 0.03,
+        clearProps: "all"
       }
     );
   });

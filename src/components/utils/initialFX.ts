@@ -40,6 +40,7 @@ export function initialFX() {
         y: 0,
         stagger: 0.025,
         delay: 0.3,
+        clearProps: "all"
       }
     );
 
@@ -59,6 +60,7 @@ export function initialFX() {
           y: 0,
           stagger: 0.025,
           delay: 0.3,
+          clearProps: "all"
         }
       );
 
@@ -78,6 +80,7 @@ export function initialFX() {
         ease: "power1.inOut",
         y: 0,
         delay: 0.8,
+        clearProps: "all"
       }
     );
 
@@ -97,6 +100,7 @@ export function initialFX() {
       duration: 1.2,
       ease: "power1.inOut",
       delay: 0.1,
+      clearProps: "opacity"
     }
   );
 }

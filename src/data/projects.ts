@@ -26,12 +26,12 @@ export interface Project {
 const projects: Project[] = [
   {
     id: "lingscar-redesign",
-    title: "LingsCars Website Redesign Casestudy",
+    title: "LINGsCARS Website Redesign Casestudy",
     description: "LINGsCARS is a UK-based car leasing broker offering thousands of personal and business vehicle lease deals. Despite its strong market presence, the website experience creates usability friction due to visual clutter and lack of structured navigation. This project focuses on redesigning the Homepage and Browse Deals experience to improve clarity, discovery, and conversion.",
     longDescription:
-      "A comprehensive UX and UI redesign of the LingsCars website — one of the UK's most distinctive car leasing platforms. The goal was to modernise the visual language while improving usability, information hierarchy, and conversion on the Homepage and Browse Deals page.",
+      "A comprehensive UX and UI redesign of the LINGsCARS website — one of the UK's most distinctive car leasing platforms. The goal was to modernise the visual language while improving usability, information hierarchy, and conversion on the Homepage and Browse Deals page.",
     tags: ["UX Design", "UI Design", "Landing Page"],
-    image: "/images/lingscars-main.png",
+    image: "/images/lingscars-main-1.png",
     tools: "Figma",
     link: "#",
     projectGoal: "The goal of the redesign was to create a clearer and more structured browsing experience that helps users quickly find and evaluate car leasing deals.",

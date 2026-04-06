@@ -133,7 +133,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-  margin-bottom: 4px;
+  margin-bottom: 12px;
 }
 
 .work-card-tag {
@@ -149,18 +149,19 @@
 
 /* ── Card Title & Desc ── */
 .work-card-title {
-  font-size: 18px;
+  font-size: 24px;
   font-weight: 600;
   color: #ffffff;
   margin: 0;
-  line-height: 1.3;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
 }
 
 .work-card-desc {
-  font-size: 13px;
+  font-size: 14px;
   color: rgba(255, 255, 255, 0.5);
   margin: 0 0 16px;
-  line-height: 24px;
+  line-height: 20px;
   letter-spacing: 1px;
   display: -webkit-box;
   -webkit-line-clamp: 2;
@@ -301,10 +302,11 @@
 
 @media only screen and (max-width: 600px) {
   .work-card-title {
-    font-size: 16px;
+    font-size: 20px;
+    line-height: 1.3;
   }
 
   .work-card-info {
-    padding: 16px;
+    padding: 20px 16px;
   }
 }

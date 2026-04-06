@@ -280,7 +280,6 @@ main {
   z-index: -1;
   overflow: hidden;
   pointer-events: none;
-  background-color: var(--page-bg);
 }
 
 .glow-orb {
@@ -327,6 +326,22 @@ main {
   bottom: 20%;
   left: 10%;
   opacity: 0.05;
+  animation: float-glow 22s infinite alternate-reverse ease-in-out;
+}
+
+@media screen and (max-width: 768px) {
+  .glow-orb {
+    opacity: 0.3;
+    filter: blur(80px);
+  }
+
+  .glow-orb-3 {
+    opacity: 0.25;
+  }
+
+  .glow-orb-4 {
+    opacity: 0.15;
+  }
 }
 
 @keyframes float-glow {

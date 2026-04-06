@@ -48,19 +48,17 @@ const MainContainer = () => {
 
   return (
     <div className="container-main">
-      <BackgroundGlows />
-      <Navbar />
       <div id="smooth-wrapper">
+        <Navbar />
+        <BackgroundGlows />
         <div id="smooth-content">
-          <div className="container-main">
-            <Landing />
-            <Marquee />
-            <About />
-            <WhatIDo />
-            <Career />
-            <Work />
-            <Contact />
-          </div>
+          <Landing />
+          <Marquee />
+          <About />
+          <WhatIDo />
+          <Career />
+          <Work />
+          <Contact />
         </div>
       </div>
     </div>

@@ -5,19 +5,25 @@
   gap: 30px;
   padding: 20px 32px;
   position: fixed;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   top: 20px;
   z-index: 9999;
   box-sizing: border-box;
 
-  background: rgba(30, 35, 50, 70%);
-  backdrop-filter: blur(30px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 100px;
   width: 70vw;
   max-width: 700px;
+  background: var(--card-bg);
+
+  /* Glassmorphism Configuration Native to Chrome */
+  /* background: rgba(30, 35, 50); */
+  /* backdrop-filter: blur(30px) saturate(150%);
+  -webkit-backdrop-filter: blur(30px) saturate(150%); */
+  transform: translate3d(0, 0, 0);
+  will-change: transform, backdrop-filter;
 }
 
 /* Hamburger button */
@@ -60,12 +66,10 @@
 .mobile-menu {
   position: fixed;
   top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 0;
+  right: 0;
+  margin: 0 auto;
   z-index: 9998;
-  background: rgba(30, 35, 50, 0.55);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 40px 40px 20px 20px;
   display: flex;
@@ -80,19 +84,25 @@
   /* animation controlled by .mobile-menu-open / .mobile-menu-close */
   opacity: 0;
   max-height: 0;
-  transform: translateX(-50%) scaleY(0.92);
-  transform-origin: top center;
   transition:
     opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1),
-    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1),
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.mobile-menu-glass-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(30, 35, 50, 0.75);
+  backdrop-filter: blur(30px);
+  -webkit-backdrop-filter: blur(30px);
   pointer-events: none;
 }
 
 .mobile-menu.open {
   opacity: 1;
   max-height: 400px;
-  transform: translateX(-50%) scaleY(1);
   pointer-events: auto;
 }
 
