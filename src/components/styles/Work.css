@@ -36,12 +36,17 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: border-color 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
+              border-color 0.4s ease, 
+              box-shadow 0.4s ease;
   cursor: default;
 }
 
-.work-card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
+.work-card:hover,
+.work-card-coming-soon:hover {
+  transform: translateY(-8px);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   color: inherit;
 }
 
@@ -59,7 +64,12 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  transition: transform 0.4s ease;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.work-card:hover .work-card-image img,
+.work-card-coming-soon:hover .work-card-image img {
+  transform: scale(1.05);
 }
 
 /* ── Coming Soon Placeholder ── */
@@ -110,11 +120,6 @@
 
 .work-card-coming-soon {
   cursor: default;
-}
-
-.work-card-coming-soon:hover {
-  transform: none;
-  border-color: rgba(255, 255, 255, 0.08);
 }
 
 /* ── Card Info ── */
@@ -180,12 +185,23 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   margin-top: auto;
   transition: all 0.3s ease;
+  /* Normalize between <a> and <button> elements */
+  box-sizing: border-box;
+  display: inline-block;
+  text-align: center;
+  line-height: 1.5;
 }
 
 
 .work-btn:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+}
+
+.work-btn:disabled:hover {
+  transform: none;
+  box-shadow: none;
+  background: linear-gradient(180deg, #1a4fff 0%, #0d2ee6 100%);
 }
 
 .work-btn::before {

@@ -31,7 +31,14 @@ const Landing = () => {
                 UX/UI <span className="hero-pill pill-long"></span>
               </span>
               <span className="hero-title-row">
-                <span className="hero-pill pill-short"></span> DESIGNER
+                <span className="hero-pill pill-short">
+                  <div className="pill-character-base">
+                    <img src="/images/3d-character.png" alt="" />
+                  </div>
+                  <div className="pill-character-pop">
+                    <img src="/images/3d-character.png" alt="" />
+                  </div>
+                </span> DESIGNER
               </span>
             </h1>
             <p className="hero-desc">
