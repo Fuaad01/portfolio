@@ -195,7 +195,7 @@
 .hero-title {
   font-size: clamp(64px, 12vw, 120px);
   font-weight: 800;
-  line-height: 1;
+  line-height: 1.1;
   margin: 0;
   font-family: inherit;
   text-transform: uppercase;
@@ -273,11 +273,11 @@
 .pill-character-base img,
 .pill-character-pop img {
   position: absolute;
-  bottom: -10px;
+  bottom: -12px;
   /* Adjusting the physical base height of the avatar inside the pill bounds */
   left: 50%;
   transform: translateX(-50%);
-  height: 165%;
+  height: 200%;
   /* The avatar scales out gracefully upwards */
   width: auto;
   pointer-events: none;
