@@ -90,6 +90,10 @@
 }
 
 @media only screen and (max-width: 900px) {
+  .footer {
+    margin-top: 40px;
+  }
+
   .footer-content {
     display: flex;
     flex-wrap: wrap;
