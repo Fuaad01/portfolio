@@ -180,7 +180,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
 .hero-intro {
@@ -188,16 +188,20 @@
   font-weight: 500;
   color: #fff;
   margin-bottom: 16px;
-  font-family: inherit;
+  font-family: "Bricolage Grotesque", sans-serif;
   letter-spacing: 1px;
 }
 
+.text-grey {
+  color: rgba(255, 255, 255, 0.5);
+}
+
 .hero-title {
-  font-size: clamp(64px, 12vw, 120px);
+  font-size: clamp(48px, 8vw, 84px);
   font-weight: 800;
   line-height: 1.1;
   margin: 0;
-  font-family: inherit;
+  font-family: "Bricolage Grotesque", sans-serif;
   text-transform: uppercase;
   letter-spacing: -0.04em;
   color: #fff;
@@ -219,7 +223,7 @@
 
 .hero-pill {
   display: inline-block;
-  height: 0.75em;
+  height: 1.2em;
   border-radius: 999px;
   background-size: cover, 400% 400%;
   background-position: center, center;
@@ -239,6 +243,27 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
+}
+
+.profile-pill {
+  width: 2.4em;
+  background-color: #333;
+  overflow: hidden;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.profile-pill img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+  /* adjust this percentage to move the image up/down inside the pill */
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 /* ── 3D Avatar Pop-Out Effect ── */
@@ -431,7 +456,7 @@
   }
 
   .hero-title {
-    font-size: clamp(48px, 14vw, 84px);
+    font-size: clamp(32px, 10vw, 56px);
     line-height: 1.1;
     letter-spacing: -0.02em;
   }

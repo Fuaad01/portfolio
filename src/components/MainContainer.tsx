@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import About from "./About";
 import Career from "./Career";
-import Contact from "./Contact";
+import Footer from "./Footer";
+import ContactBanner from "./ContactBanner";
 import Landing from "./Landing";
 import Marquee from "./Marquee";
 import Navbar from "./Navbar";
@@ -58,7 +59,8 @@ const MainContainer = () => {
           <WhatIDo />
           <Career />
           <Work />
-          <Contact />
+          <ContactBanner />
+          <Footer />
         </div>
       </div>
     </div>

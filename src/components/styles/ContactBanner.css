@@ -1,0 +1,123 @@
+.contact-banner {
+  padding: 80px 0 60px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-banner-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+/* Big emoji top-right */
+.contact-banner-emoji {
+  position: absolute;
+  top: -10px;
+  right: 0;
+  font-size: clamp(60px, 8vw, 110px);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  filter: drop-shadow(0 4px 24px rgba(255, 255, 255, 0.08));
+}
+
+.contact-banner-heading {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(36px, 7vw, 90px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.03em;
+  line-height: 1.05;
+  color: #ffffff;
+  margin: 0 0 32px;
+}
+
+.contact-banner-email-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+
+.contact-banner-label {
+  font-size: 15px;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: rgba(255, 255, 255, 0.45);
+  font-family: "Geist", sans-serif;
+}
+
+.contact-banner-email {
+  font-size: clamp(18px, 2.5vw, 26px);
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  letter-spacing: 0.02em;
+  font-family: "Geist", sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.contact-banner-email::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0%;
+  height: 1px;
+  background: var(--accentColor);
+  transition: width 0.4s ease;
+}
+
+.contact-banner-email:hover {
+  color: #ffffff;
+}
+
+.contact-banner-email:hover::after {
+  width: 100%;
+}
+
+.contact-banner-cursor {
+  font-size: 1.1em;
+  transition: transform 0.3s ease;
+}
+
+.contact-banner-email:hover .contact-banner-cursor {
+  transform: translate(3px, -3px);
+}
+
+/* Divider line between banner and contact section */
+.contact-banner::after {
+  content: "";
+  display: block;
+  width: 100%;
+}
+
+@media only screen and (max-width: 768px) {
+  .contact-banner {
+    padding: 40px 0;
+  }
+
+  .contact-banner-emoji {
+    font-size: clamp(40px, 12vw, 70px);
+    top: -5px;
+    right: 0;
+  }
+
+  .contact-banner-heading {
+    font-size: clamp(28px, 8vw, 48px);
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .contact-banner-heading {
+    font-size: clamp(22px, 7vw, 32px);
+  }
+}

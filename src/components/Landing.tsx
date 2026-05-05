@@ -23,22 +23,14 @@ const Landing = () => {
         {/* Centered Hero Content */}
         <div className="landing-container section-container hero-center">
           <div className="hero-content" style={{ position: "relative" }}>
-            <h4 className="hero-intro">
-              Hi 👋, I'm Mohammed Fuaaduddin
-            </h4>
             <h1 className="hero-title">
-              <span className="hero-title-row">
-                UX/UI <span className="hero-pill pill-long"></span>
+              <span className="hero-title-row" style={{ textTransform: "none" }}>
+                <span><span className="text-grey">Hi </span>I'm Fuaad</span> <span className="hero-pill profile-pill">
+                  <img src="/images/my-profile.png" alt="Fuaad" />
+                </span>
               </span>
-              <span className="hero-title-row">
-                <span className="hero-pill pill-short">
-                  <div className="pill-character-base">
-                    <img src="/images/3d-character.png" alt="" />
-                  </div>
-                  <div className="pill-character-pop">
-                    <img src="/images/3d-character.png" alt="" />
-                  </div>
-                </span> DESIGNER
+              <span className="hero-title-row" style={{ textTransform: "none" }}>
+                <span><span className="text-grey">a </span>UX/UI<span className="text-grey"> Designer</span></span>
               </span>
             </h1>
             <p className="hero-desc">

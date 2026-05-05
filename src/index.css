@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&display=swap");
+
 
 :root {
   font-family: "Geist", sans-serif;
@@ -15,12 +17,10 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  user-select: none;
-  -webkit-user-select: none;
-  -moz-user-select: none;
   --accentColor: #1a4fff;
   --page-bg: #050810;
-  --card-bg: #0d172c; /* Updated from #0a0e17 */
+  --card-bg: #0d172c;
+  /* Updated from #0a0e17 */
   --text-main: #eae5ec;
   --text-heading: #ffffff;
   --text-muted: rgba(255, 255, 255, 0.7);
@@ -28,7 +28,7 @@
   --border-hover: rgba(26, 79, 255, 0.3);
   --vh: 100vh;
   --vh: 100svh;
-  --cWidth: calc(100% - 32px);
+  --cWidth: calc(100% - 48px);
   --cMaxWidth: 1920px;
   --contentMaxWidth: 1100px;
 }
@@ -39,7 +39,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Geist", sans-serif;
+  font-family: "Bricolage Grotesque", sans-serif;
 }
 
 p {
@@ -70,9 +70,9 @@ a:hover {
 
 /* Global Section Title Styles */
 .section-title {
+  font-family: "Bricolage Grotesque", sans-serif;
   font-size: clamp(28px, 3vw, 40px);
   font-weight: 800;
-  letter-spacing: -1px;
   line-height: 1;
   margin: 0 0 24px 0;
   color: var(--text-heading);
@@ -223,7 +223,7 @@ main {
 
 .section-container {
   width: var(--cWidth);
-  max-width: var(--contentMaxWidth);
+  /* max-width: var(--contentMaxWidth); */
   margin: 0 auto;
 }
 
@@ -261,7 +261,7 @@ main {
 
 @media screen and (min-width: 768px) {
   :root {
-    --cWidth: 94%;
+    --cWidth: calc(100% - 140px);
   }
 }
 

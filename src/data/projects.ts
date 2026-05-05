@@ -7,6 +7,8 @@ export interface Project {
   image: string;
   tools: string;
   link?: string;
+  prototypeLink?: string;
+  mobilePrototypeLink?: string;
   projectGoal: string;
   problemStatement: string;
   craftedSolution: {
@@ -34,6 +36,8 @@ const projects: Project[] = [
     image: "/images/lingscars-main-1.png",
     tools: "Figma",
     link: "#",
+    prototypeLink: "https://www.figma.com/proto/YD9W776boihYEh4X54Q0Zo/LINGsCARS-Redesign?node-id=386-24121&viewport=-96%2C64%2C0.06&t=JdeSYa3UDiM0ebuK-8&scaling=scale-down-width&content-scaling=fixed&starting-point-node-id=386%3A24121&page-id=8%3A247&hide-ui=1",
+    mobilePrototypeLink: "https://www.figma.com/proto/YD9W776boihYEh4X54Q0Zo/LINGsCARS-Redesign?node-id=476-12464&viewport=-96%2C64%2C0.06&t=JdeSYa3UDiM0ebuK-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=476%3A20897&page-id=8%3A247&hide-ui=1",
     projectGoal: "The goal of the redesign was to create a clearer and more structured browsing experience that helps users quickly find and evaluate car leasing deals.",
     problemStatement: "The current LINGsCARS homepage and browse deals pages make it difficult for users to quickly discover and compare car leasing offers. The interface contains visual clutter, unclear hierarchy, and limited filtering options, which increases cognitive load and slows down the browsing experience.",
     craftedSolution: {

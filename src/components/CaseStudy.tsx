@@ -3,7 +3,7 @@ import { useParams, Link } from "react-router-dom";
 import projects from "../data/projects";
 import Navbar from "./Navbar";
 import { smoother } from "./utils/smoother";
-import Contact from "./Contact";
+import Footer from "./Footer";
 import { setProgress } from "./utils/loadingUtils";
 import { useLoading } from "../context/LoadingContext";
 import { gsap } from "gsap";
@@ -55,7 +55,7 @@ const CaseStudy = () => {
 
       <div id="smooth-wrapper">
         <div id="smooth-content">
-          <div className="cs-container">
+          <div className="cs-container section-container">
             {/* Hero image - now contained */}
             <div className="cs-hero">
               <img src={project.image} alt={project.title} className="cs-hero-img" />
@@ -166,19 +166,30 @@ const CaseStudy = () => {
                 <p className="cs-body">{project.outcome}</p>
               </section>
 
-              {/* CTA if available */}
-              {project.link && project.link !== "#" && (
-                <div className="cs-cta-wrapper">
-                  <a href={project.link} target="_blank" rel="noopener noreferrer" className="cs-cta">
-                    View Live Project ↗
-                  </a>
-                </div>
+              {/* 9. Prototype Link (Optional) */}
+              {(project.prototypeLink || project.mobilePrototypeLink) && (
+                <section className="cs-section">
+                  <h2 className="section-title">Prototypes</h2>
+                  <p className="cs-body">Explore the prototypes to see the full experience across different devices.</p>
+                  <div className="cs-prototype-grid">
+                    {project.prototypeLink && (
+                      <a href={project.prototypeLink} target="_blank" rel="noopener noreferrer" className="cs-cta">
+                        View Website Prototype <span className="cs-cta-icon">↗</span>
+                      </a>
+                    )}
+                    {project.mobilePrototypeLink && (
+                      <a href={project.mobilePrototypeLink} target="_blank" rel="noopener noreferrer" className="cs-cta">
+                        View Mobile Prototype <span className="cs-cta-icon">↗</span>
+                      </a>
+                    )}
+                  </div>
+                </section>
               )}
 
-              {/* 9. Thank You */}
+              {/* 10. Thank You */}
               <section className="cs-section">
                 <footer className="cs-footer">
-                  <h2 className="section-title">Thank You</h2>
+                  <h2 className="section-title cs-thank-you-title">Thank You</h2>
                   <p className="cs-footer-body">{project.thankYou}</p>
                   <a href="mailto:fuaaduddin15@gmail.com" className="btn-primary cs-footer-btn">
                     Let's Connect
@@ -188,7 +199,7 @@ const CaseStudy = () => {
             </div>
           </div>
           <div className="cs-footer-contact">
-            <Contact />
+            <Footer />
           </div>
         </div>
       </div>

@@ -8,9 +8,7 @@
 }
 
 .cs-container {
-  max-width: 1100px;
-  margin: 130px auto 0px;
-  padding: 0 16px;
+  margin-top: 130px;
 }
 
 /* ── Hero ── */
@@ -65,6 +63,7 @@
 }
 
 .cs-title {
+  font-family: "Bricolage Grotesque", sans-serif;
   font-size: clamp(32px, 5vw, 56px);
   font-weight: 800;
   line-height: 1.1;
@@ -138,6 +137,7 @@
 }
 
 .cs-summary-title {
+  font-family: "Bricolage Grotesque", sans-serif;
   font-size: 32px;
   font-weight: 700;
   margin-top: 0;
@@ -287,6 +287,11 @@
   margin-top: 32px;
 }
 
+.cs-thank-you-title {
+  font-size: clamp(40px, 8vw, 80px) !important;
+  margin-bottom: 24px !important;
+}
+
 .cs-back-home-link {
   display: inline-block;
   font-weight: 500;
@@ -302,7 +307,43 @@
 
 /* ── CTA ── */
 .cs-cta-wrapper {
-  margin-bottom: 100px;
+  margin-bottom: 60px;
+}
+
+.cs-prototype-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+  margin-bottom: 60px;
+}
+
+.cs-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: linear-gradient(180deg, #1a4fff 0%, #0d2ee6 100%);
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 100px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.cs-cta:hover {
+  background: linear-gradient(180deg, #2b61ff 0%, #1236f0 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(26, 79, 255, 0.3);
+  color: #fff;
+}
+
+.cs-cta-icon {
+  font-size: 20px;
+  font-weight: 600;
+  margin-left: 4px;
 }
 
 .cs-footer-contact {

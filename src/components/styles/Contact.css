@@ -11,6 +11,17 @@
   margin: 0;
 }
 
+.contact-section .section-title {
+  text-align: center;
+  font-size: clamp(50px, 12vw, 150px);
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 255, 255, 0.15) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  margin-bottom: 60px;
+  line-height: 1.1;
+}
+
 .contact-flex {
   display: flex;
   justify-content: space-between;
@@ -123,5 +134,12 @@ a.contact-social svg {
 
   .contact-flex p {
     margin-bottom: 0px;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .contact-section .section-title {
+    font-size: clamp(40px, 12vw, 150px);
+    margin-bottom: 32px;
   }
 }

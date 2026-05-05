@@ -53,7 +53,7 @@
 }
 
 .what-content h3 {
-  font-size: 34px;
+  font-size: 30px;
   letter-spacing: 1px;
   margin: 0;
 }
@@ -162,7 +162,7 @@
   font-weight: 500;
   font-size: 18px;
   letter-spacing: 1px;
-  font-family: "Geist", sans-serif;
+  font-family: "Bricolage Grotesque", sans-serif;
   margin-bottom: 18px;
   color: rgba(255, 255, 255, 0.7);
 }
@@ -170,8 +170,8 @@
 /* Skills Grid with Star Ratings */
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px 40px;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px 32px;
   margin-top: 10px;
 }
 
@@ -239,14 +239,15 @@
   }
 
   .skills-grid {
-    gap: 15px 25px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px 20px;
   }
 }
 
 @media only screen and (max-width: 900px) {
   .whatIDO {
     height: auto;
-    padding: 20px 0;
+    padding: 40px 0;
   }
 
   .what-box-in {
@@ -266,7 +267,7 @@
 @media only screen and (max-width: 550px) {
   .whatIDO {
     align-items: flex-start;
-    padding: 50px 0;
+    padding: 40px 0;
   }
 
   .what-box {

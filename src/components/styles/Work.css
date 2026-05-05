@@ -303,7 +303,7 @@
 /* ── Responsive ── */
 @media only screen and (max-width: 900px) {
   .work-section {
-    padding: 20px 0;
+    padding: 40px 0;
   }
 
   /* Hide desktop grid, show carousel */
