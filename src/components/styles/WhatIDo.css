@@ -59,11 +59,11 @@
 }
 
 .what-content p {
-  font-size: 18px;
+  font-size: 16px;
   line-height: 24px;
-  font-weight: 200;
+  font-weight: 400;
   letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .what-content-in {
@@ -164,7 +164,7 @@
   letter-spacing: 1px;
   font-family: "Bricolage Grotesque", sans-serif;
   margin-bottom: 18px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 /* Skills Grid with Star Ratings */

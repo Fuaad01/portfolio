@@ -4,15 +4,7 @@ import "./styles/Work.css";
 import projects from "../data/projects";
 
 
-const COMING_SOON = {
-  id: "coming-soon",
-  title: "Next Case Study",
-  description: "Something new is in the works. Stay tuned.",
-  tags: ["Coming Soon"],
-  image: "",
-};
-
-const allSlides = [...projects, COMING_SOON];
+const allSlides = projects;
 
 const Work = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -81,7 +73,17 @@ const Work = () => {
               className="work-card"
             >
               <div className="work-card-image">
-                <img src={project.image} alt={project.title} />
+                {project.video ? (
+                  <video
+                    src={project.video}
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                ) : (
+                  <img src={project.image} alt={project.title} />
+                )}
               </div>
               <div className="work-card-info">
                 <div className="work-card-tags">
@@ -100,29 +102,7 @@ const Work = () => {
             </div>
           ))}
 
-          {/* Coming soon */}
-          <div className="work-card work-card-coming-soon">
-            <div className="work-card-image">
-              <img src="/images/work-under-progress.png" alt="Coming Soon" />
-              <div className="lock-overlay">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="lock-icon">
-                  <rect x="4" y="11" width="16" height="11" rx="2" ry="2"></rect>
-                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                </svg>
-              </div>
-            </div>
 
-            <div className="work-card-info">
-              <div className="work-card-tags">
-                {/* <span className="work-card-tag">Coming Soon</span> */}
-              </div>
-              <h3 className="work-card-title">Coming Soon</h3>
-              <p className="work-card-desc">Something new is in the works. Stay tuned.</p>
-
-              <button className="btn-primary work-btn" disabled>View Now</button>
-
-            </div>
-          </div>
         </div>
 
         {/* ── Mobile: drag carousel ── */}
@@ -139,41 +119,25 @@ const Work = () => {
             onPointerCancel={handleDragEnd}
             onPointerLeave={handleDragEnd}
           >
-            {allSlides.map((slide) =>
-              slide.id === "coming-soon" ? (
-                <div className="work-carousel-slide" key="coming-soon">
-                  <div className="work-card work-card-coming-soon">
-                    <div className="work-card-image">
-                      <img src="/images/work-under-progress.png" alt="Coming Soon" />
-                      <div className="lock-overlay">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="rgba(255, 255, 255, 0.8)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className="lock-icon">
-                          <rect x="4" y="11" width="16" height="11" rx="2" ry="2"></rect>
-                          <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-                        </svg>
-                      </div>
-                    </div>
-
-                    <div className="work-card-info">
-                      {/* <div className="work-card-tags">
-                        <span className="work-card-tag">Coming Soon</span>
-                      </div> */}
-                      <h3 className="work-card-title">Coming Soon</h3>
-                      <p className="work-card-desc">Something new is in the works. Stay tuned.</p>
-
-                      <button className="btn-primary work-btn" disabled>View Now</button>
-
-                    </div>
-                  </div>
-                </div>
-              ) : (
+            {allSlides.map((slide) => (
                 <div className="work-carousel-slide" key={slide.id}>
                   <div className="work-card">
                     <div className="work-card-image">
-                      <img src={slide.image} alt={slide.title} />
+                      {slide.video ? (
+                        <video
+                          src={slide.video}
+                          autoPlay
+                          loop
+                          muted
+                          playsInline
+                        />
+                      ) : (
+                        <img src={slide.image} alt={slide.title} />
+                      )}
                     </div>
                     <div className="work-card-info">
                       <div className="work-card-tags">
-                        {slide.tags.map((tag) => (
+                        {slide.tags.map((tag: string) => (
                           <span key={tag} className="work-card-tag">{tag}</span>
                         ))}
                       </div>
@@ -187,8 +151,7 @@ const Work = () => {
                     </div>
                   </div>
                 </div>
-              )
-            )}
+              ))}
           </div>
 
           {/* Dots */}

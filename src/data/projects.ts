@@ -5,15 +5,29 @@ export interface Project {
   longDescription: string;
   tags: string[];
   image: string;
+  video?: string;
   tools: string;
   link?: string;
   prototypeLink?: string;
   mobilePrototypeLink?: string;
   projectGoal: string;
   problemStatement: string;
+  problemStatementPoints?: { heading: string; points: string[] }[];
+  problemStatementScreens?: {
+    images: string[];
+    problems: { heading: string; points: string[] }[];
+  }[];
   craftedSolution: {
     content: string;
+    features?: {
+      title: string;
+      solution: string[];
+      image?: string;
+      images?: string[];
+      imagePosition?: 'left' | 'right';
+    }[];
     images: string[];
+    sideImage?: string;
   };
   summary: string;
   duration: string;
@@ -63,8 +77,152 @@ const projects: Project[] = [
       "/images/before-after.png"
     ],
     outcome: "The redesign created a clearer and more intuitive browsing experience for users searching car leasing deals. Improved navigation, advanced filters, and redesigned vehicle cards help users discover and evaluate deals more quickly. The cleaner layout and stronger visual hierarchy reduce cognitive load and make the platform easier to use and more trustworthy.",
-    thankYou: "I focus on creating user-centered designs that align with both user needs and business goals."
+    thankYou: "Need help with your product? Let's build it better!"
   },
+  {
+    id: "mdoc-redesign",
+    title: "Mdoc Mobile App Redesign Case Study",
+    description: "mDoc is a healthcare platform that allows users to book doctor appointments from home with ease. It reduces time, travel, and cost, especially for patients in rural areas facing accessibility challenges. With a simple 4-step process, it makes healthcare access faster, convenient, and user-friendly.",
+    longDescription:
+      "mDoc is a healthcare platform that allows users to book doctor appointments from home with ease. It reduces time, travel, and cost, especially for patients in rural areas facing accessibility challenges. With a simple 4-step process, it makes healthcare access faster, convenient, and user-friendly.",
+    tags: ["UX Design", "UI Design", "Mobile App"],
+    image: "/images/mdoc-mockup-1.gif",
+    video: "/images/mdoc-mockup.webm",
+    tools: "Figma",
+    link: "#",
+    prototypeLink: "https://www.figma.com/proto/YD9W776boihYEh4X54Q0Zo/LINGsCARS-Redesign?node-id=905-9459&viewport=-733%2C-4948%2C0.25&t=FSBojaKcJRugjXpy-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=386%3A20993&page-id=8%3A247&hide-ui=1",
+    projectGoal: "The goal of this project was to redesign the app to improve usability, simplify navigation, and enhance the overall booking experience. It also introduces an AI-powered assistant to provide instant guidance and support to users. The aim was to create a faster, more accessible, and user-friendly healthcare journey.",
+    problemStatement: "The existing mDoc application faced multiple usability challenges that made it difficult for users to efficiently book doctor appointments and navigate the app.",
+    problemStatementScreens: [
+      {
+        images: ["/images/mdoc-previous-home-screen.png", "/images/mdoc-previous-home-screen-1.png"],
+        problems: [
+          {
+            heading: "Complex Navigation",
+            points: [
+              "Over-dependence on hamburger menu",
+              "Important features hidden under multiple layers"
+            ]
+          },
+          {
+            heading: "Inefficient User Flow",
+            points: [
+              "Increased steps to complete simple actions",
+              "Slower appointment booking experience"
+            ]
+          }
+        ]
+      },
+      {
+        images: ["/images/mdoc-previous-doctor-listing-screen.png"],
+        problems: [
+          {
+            heading: "Cluttered Interface",
+            points: [
+              "Text-heavy layouts with minimal spacing",
+              "Difficult to quickly scan doctor information"
+            ]
+          },
+          {
+            heading: "Poor Visual Hierarchy",
+            points: [
+              "No clear distinction between primary and secondary actions",
+              "Important CTAs like \"Book Now\" lacked visibility"
+            ]
+          },
+          {
+            heading: "Lack of Trust Indicators",
+            points: [
+              "Missing ratings, badges, and highlights",
+              "Users couldn't easily evaluate doctors"
+            ]
+          }
+        ]
+      },
+      {
+        images: ["/images/mdoc-previous-profile-screen.png"],
+        problems: [
+          {
+            heading: "Profile Layout",
+            points: [
+              "Options were unorganized and visually dense",
+              "Important account settings were hard to locate"
+            ]
+          }
+        ]
+      }
+    ],
+    craftedSolution: {
+      content: "",
+      features: [
+        {
+          title: "Home Screen",
+          solution: [
+            "Introduced a contextual header with location and greeting to personalize the user experience",
+            "Added a prominent search bar for quick access to doctors, hospitals, and tests",
+            "Highlighted upcoming appointments with a strong visual card and quick call action",
+            "Improved service shortcuts and doctor categories for faster navigation and discovery",
+            "Structured health plans with pricing, benefits, and strong CTAs to improve conversions",
+            "Replaced hamburger menu with bottom navigation including core sections to reduce steps and improve",
+          ],
+          images: ["/images/mdoc-home.png", "/images/mdoc-home-1.png"],
+          imagePosition: "right"
+        },
+        {
+          title: "Doctor Listing Screen",
+          solution: [
+            "Improved search experience with advanced filtering options for more refined results",
+            "Transformed doctor listings into a clean card-based layout for better scanability",
+            "Structured doctor details (specialization, experience, fees) for quick understanding",
+            "Added ratings, verification badges, and recommendation tags to build trust",
+            "Highlighted consultation fees and strong “Book Now” CTA to support faster decisions and conversions",
+            "Maintained consistent spacing and added clinic info with direction action for better readability and accessibility",
+          ],
+          image: "/images/mdoc-dr-listing.png",
+          imagePosition: "left"
+        },
+        {
+          title: "Ask AI Screen",
+          solution: [
+            "Introduced a dedicated AI assistant interface for instant user support",
+            "Designed a chat-based UI for natural and conversational interaction",
+            "Enabled users to describe symptoms and receive quick guidance",
+            "Provided recommended next steps to help users take action",
+            "Reduced dependency on immediate doctor booking through pre-consultation support",
+            "Maintained clean chat layout with clear message hierarchy",
+            "Positioned AI as a core feature to assist users throughout their journey"
+          ],
+          images: ["/images/mdoc-ai.png", "/images/mdoc-ai-chat.png"],
+          imagePosition: "right"
+        },
+        {
+          title: "Profile Screen",
+          solution: [
+            "Designed a personalized profile header with user image, name, and email",
+            "Organized features into clear sections like Activity, Services and Help",
+            "Replaced simple lists with card-based options for better structure",
+            "Added icons and short descriptions for better feature understanding",
+            "Improved navigation within profile through logical grouping",
+            "Maintained consistent UI design with overall app theme",
+            "Enhanced visibility of key actions like appointments, bookings, and subscriptions"
+          ],
+          image: "/images/mdoc-profile.png",
+          imagePosition: "left"
+        },
+      ],
+      images: []
+    },
+    summary: "The redesign simplified key healthcare journeys, boosting booking conversion and daily vitals logging engagement.",
+    duration: "2 Weeks",
+    role: "UX/UI Designer",
+    wireframes: [],
+    finalScreens: [
+      { url: "/images/mdoc-final-screens.png", title: "Home Screen" },
+    ],
+    beforeAfter: [],
+    outcome: "The redesign improved usability by simplifying navigation and making key actions like booking appointments faster and easier. Enhanced layouts, filters, and AI assistance helped users find relevant information quickly and make better decisions. Overall, the app became more user-friendly, efficient, and accessible, especially for users in rural areas.",
+    thankYou: "Thank you for reviewing the Mdoc Case Study. Let's create more impactful designs together!"
+  }
 ];
 
 export default projects;

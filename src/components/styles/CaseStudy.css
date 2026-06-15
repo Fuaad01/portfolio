@@ -54,7 +54,7 @@
 .cs-tag {
   font-size: 13px;
   font-weight: 500;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 100px;
@@ -73,8 +73,8 @@
 }
 
 .cs-subtitle {
-  font-size: 20px;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 0px;
   line-height: 24px;
   letter-spacing: 1px;
@@ -122,9 +122,90 @@
   font-size: 18px;
   line-height: 24px;
   letter-spacing: 1px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   margin-bottom: 0px;
   white-space: pre-wrap;
+}
+
+/* ── Problem Statement Points ── */
+.cs-problem-list {
+  list-style: decimal;
+  padding-left: 20px;
+  margin: 28px 0 0;
+  column-count: 2;
+  column-gap: 40px;
+}
+
+.cs-problem-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  break-inside: avoid;
+  page-break-inside: avoid;
+  margin-bottom: 20px;
+}
+
+.cs-problem-heading {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.cs-problem-sub-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cs-problem-sub-item {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+/* ── Problem Statement Screens Unified ── */
+.cs-problem-screens-unified {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.cs-problem-screens-images {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.cs-problem-screens-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-problem-screen-thumb {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.cs-problem-screen-thumb img {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  object-fit: contain;
+}
+
+.cs-problem-list-single {
+  column-count: 2;
+  column-gap: 40px;
+  margin-top: 0;
 }
 
 /* ── Summary Box ── */
@@ -168,6 +249,125 @@
   font-weight: 600;
 }
 
+/* ── Crafted Solution 2-Column ── */
+.cs-crafted-2col,
+.cs-crafted-2col-reverse {
+  display: grid;
+  gap: 40px;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 40px;
+}
+
+.cs-crafted-2col {
+  grid-template-columns: 1.2fr 1fr;
+}
+
+.cs-crafted-2col-reverse {
+  grid-template-columns: 1fr 1.2fr;
+}
+
+.cs-crafted-left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cs-crafted-right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cs-crafted-right img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+}
+
+/* Multiple images side-by-side (e.g. Ask AI Screen) */
+.cs-crafted-multi-img {
+  display: flex;
+  flex-direction: row;
+  gap: 16px;
+  justify-content: center;
+  align-items: flex-end;
+  width: 100%;
+}
+
+.cs-crafted-multi-img img {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+  height: auto;
+}
+
+.cs-feature {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cs-feature-title {
+  font-size: 16px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-feature-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cs-feature-label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.cs-feature-list {
+  list-style: disc;
+  padding-left: 20px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cs-feature-list li {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 24px;
+  letter-spacing: 1px;
+}
+
+@media (max-width: 900px) {
+
+  .cs-crafted-2col,
+  .cs-crafted-2col-reverse {
+    grid-template-columns: 1fr;
+  }
+
+  .cs-crafted-left {
+    order: 1;
+  }
+
+  .cs-crafted-right {
+    order: 2;
+  }
+}
+
 /* ── Collage ── */
 .cs-collage {
   display: grid;
@@ -179,9 +379,9 @@
 .cs-collage-item img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  /* object-fit: cover;
   border-radius: 20px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1); */
 }
 
 .item-1 {
@@ -275,7 +475,7 @@
 
 .cs-footer-body {
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.8);
   max-width: 600px;
   margin: 0 auto;
   line-height: 24px;
@@ -354,8 +554,20 @@
 
 /* ── Responsive ── */
 @media (max-width: 900px) {
+  .cs-problem-list {
+    column-count: 1;
+  }
+
   .cs-hero {
     border-radius: 24px;
+  }
+
+  .cs-problem-list-single {
+    column-count: 1;
+  }
+
+  .cs-problem-screens-images {
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .cs-collage {
@@ -381,6 +593,14 @@
 
   .cs-page {
     padding-top: 120px;
+  }
+
+  .cs-problem-screens-unified {
+    padding: 20px;
+  }
+
+  .cs-problem-screens-images {
+    grid-template-columns: 1fr;
   }
 
   /* .cs-hero {
