@@ -259,7 +259,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 28%;
   /* adjust this percentage to move the image up/down inside the pill */
   position: absolute;
   top: 0;

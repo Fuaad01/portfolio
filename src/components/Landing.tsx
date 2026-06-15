@@ -26,7 +26,7 @@ const Landing = () => {
             <h1 className="hero-title">
               <span className="hero-title-row" style={{ textTransform: "none" }}>
                 <span><span className="text-grey">Hi </span>I'm Fuaad</span> <span className="hero-pill profile-pill">
-                  <img src="/images/my-profile.png" alt="Fuaad" />
+                  <img src="/images/my-profile-1.png" alt="Fuaad" />
                 </span>
               </span>
               <span className="hero-title-row" style={{ textTransform: "none" }}>

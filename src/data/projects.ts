@@ -33,7 +33,7 @@ export interface Project {
   duration: string;
   role: string;
   wireframes: { url: string; title: string }[];
-  finalScreens: { url: string; title: string }[];
+  finalScreens: { url: string; mobileUrl?: string; title: string }[];
   beforeAfter: string[];
   outcome: string;
   thankYou: string;
@@ -217,7 +217,7 @@ const projects: Project[] = [
     role: "UX/UI Designer",
     wireframes: [],
     finalScreens: [
-      { url: "/images/mdoc-final-screens.png", title: "Home Screen" },
+      { url: "/images/mdoc-final-screens.png", mobileUrl: "/images/mdoc-final-screens-responsive.png", title: "Home Screen" },
     ],
     beforeAfter: [],
     outcome: "The redesign improved usability by simplifying navigation and making key actions like booking appointments faster and easier. Enhanced layouts, filters, and AI assistance helped users find relevant information quickly and make better decisions. Overall, the app became more user-friendly, efficient, and accessible, especially for users in rural areas.",

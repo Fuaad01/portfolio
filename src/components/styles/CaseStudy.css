@@ -600,7 +600,7 @@
   }
 
   .cs-problem-screens-images {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   /* .cs-hero {

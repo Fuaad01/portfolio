@@ -250,7 +250,10 @@ const CaseStudy = () => {
                   <div>
                     {project.finalScreens.map((item, i) => (
                       <div key={i} style={{ background: "var(--card-bg)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: "20px", padding: "30px" }}>
-                        <img src={item.url} alt={item.title} style={{ width: "100%" }} />
+                        <picture>
+                          {item.mobileUrl && <source media="(max-width: 768px)" srcSet={item.mobileUrl} />}
+                          <img src={item.url} alt={item.title} style={{ width: "100%", height: "auto" }} />
+                        </picture>
                       </div>
                     ))}
                   </div>
