@@ -130,7 +130,7 @@
 /* ── Problem Statement Points ── */
 .cs-problem-list {
   list-style: decimal;
-  padding-left: 20px;
+  padding-left: 0px !important;
   margin: 28px 0 0;
   column-count: 2;
   column-gap: 40px;
@@ -171,11 +171,11 @@
   margin-top: 40px;
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: 30px;
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 40px;
+  padding: 30px;
 }
 
 .cs-problem-screens-images {
@@ -213,7 +213,7 @@
   background-color: #0000ff;
   /* Vibrant blue from screenshot */
   border-radius: 24px;
-  padding: 24px;
+  padding: 30px;
   color: #ffffff;
 }
 
@@ -260,7 +260,7 @@
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 40px;
+  padding: 30px;
 }
 
 .cs-crafted-2col {
@@ -357,6 +357,7 @@
   .cs-crafted-2col,
   .cs-crafted-2col-reverse {
     grid-template-columns: 1fr;
+    gap: 24px;
   }
 
   .cs-crafted-left {
@@ -462,6 +463,19 @@
 .cs-comparison-single img {
   width: 100%;
   border-radius: 12px;
+}
+
+.cs-final-screen-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 30px;
+}
+
+.cs-final-screen-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
 
 /* ── Footer ── */
@@ -597,6 +611,7 @@
 
   .cs-problem-screens-unified {
     padding: 20px;
+    gap: 24px;
   }
 
   .cs-problem-screens-images {
@@ -624,7 +639,7 @@
   }
 
   .cs-summary-box {
-    padding: 20px 16px;
+    padding: 20px;
     border-radius: 16px;
   }
 
@@ -659,8 +674,16 @@
     padding: 40px 20px;
   }
 
-  .cs-grid-item {
+  .cs-grid-item,
+  .cs-crafted-2col,
+  .cs-crafted-2col-reverse,
+  .cs-comparison-single,
+  .cs-final-screen-card {
     padding: 20px;
+  }
+
+  .cs-final-screen-grid {
+    gap: 20px;
   }
 }
 
