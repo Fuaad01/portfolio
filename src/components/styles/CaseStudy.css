@@ -175,7 +175,7 @@
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 30px;
+  padding: 32px;
 }
 
 .cs-problem-screens-images {
@@ -213,7 +213,7 @@
   background-color: #0000ff;
   /* Vibrant blue from screenshot */
   border-radius: 24px;
-  padding: 30px;
+  padding: 32px;
   color: #ffffff;
 }
 
@@ -260,7 +260,7 @@
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 30px;
+  padding: 32px;
 }
 
 .cs-crafted-2col {
@@ -407,10 +407,10 @@
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 30px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 16px;
 }
 
 .cs-grid-item-title {
@@ -457,7 +457,7 @@
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  padding: 30px;
+  padding: 32px;
 }
 
 .cs-comparison-single img {
@@ -469,7 +469,7 @@
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 20px;
-  padding: 30px;
+  padding: 32px;
 }
 
 .cs-final-screen-grid {
@@ -484,7 +484,7 @@
   background: var(--card-bg);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 24px;
-  padding: 60px 40px;
+  padding: 40px;
 }
 
 .cs-footer-body {
@@ -610,7 +610,7 @@
   }
 
   .cs-problem-screens-unified {
-    padding: 20px;
+    padding: 16px;
     gap: 24px;
   }
 
@@ -639,7 +639,7 @@
   }
 
   .cs-summary-box {
-    padding: 20px;
+    padding: 16px;
     border-radius: 16px;
   }
 
@@ -671,7 +671,7 @@
   }
 
   .cs-footer {
-    padding: 40px 20px;
+    padding: 24px;
   }
 
   .cs-grid-item,
@@ -679,7 +679,7 @@
   .cs-crafted-2col-reverse,
   .cs-comparison-single,
   .cs-final-screen-card {
-    padding: 20px;
+    padding: 16px;
   }
 
   .cs-final-screen-grid {

@@ -36,9 +36,9 @@
   display: flex;
   flex-direction: column;
   height: 100%;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), 
-              border-color 0.4s ease, 
-              box-shadow 0.4s ease;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    border-color 0.4s ease,
+    box-shadow 0.4s ease;
   cursor: default;
 }
 
@@ -127,7 +127,7 @@
 
 /* ── Card Info ── */
 .work-card-info {
-  padding: 16px;
+  padding: 24px;
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -327,6 +327,6 @@
   }
 
   .work-card-info {
-    padding: 20px 16px;
+    padding: 16px;
   }
 }
