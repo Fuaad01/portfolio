@@ -692,3 +692,258 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* ── Research Insights ── */
+.cs-research-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-research-intro {
+  margin: 0;
+  /* Let the container handle the top margin */
+}
+
+.cs-insights-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 40px;
+}
+
+.cs-insight-card {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 32px;
+}
+
+.cs-insight-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-insight-num {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 800;
+  color: var(--accentColor);
+  line-height: 1;
+  opacity: 0.9;
+  white-space: nowrap;
+}
+
+.cs-insight-content {
+  flex: 1;
+}
+
+.cs-insight-text {
+  font-size: 16px;
+  line-height: 24px;
+  letter-spacing: 1px;
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+
+.cs-insight-bold {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(20px, 2vw, 26px);
+  font-weight: 800;
+  color: var(--accentColor);
+  line-height: 1.2;
+  opacity: 0.9;
+}
+
+@media (max-width: 768px) {
+  .cs-insights-container {
+    margin-top: 30px;
+    gap: 16px;
+    padding: 8px 0;
+  }
+
+  .cs-insight-card {
+    width: auto;
+    box-sizing: border-box;
+    gap: 12px;
+    padding: 24px;
+    border-radius: 20px;
+  }
+
+  .cs-insight-text {
+    font-size: 16px;
+    line-height: 22px;
+  }
+}
+
+/* ── What I Changed & Why (Table) ── */
+.cs-comparison-table-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-table-intro {
+  margin: 0;
+}
+
+.cs-table-wrapper {
+  margin-top: 40px;
+  width: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+  background: var(--card-bg);
+}
+
+.cs-comparison-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+}
+
+.cs-comparison-table th {
+  background: rgba(26, 79, 255, 0.06);
+  /* Subtle theme accent background */
+  font-family: "Geist", sans-serif;
+  font-size: 13px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.6);
+  padding: 20px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.cs-comparison-table td {
+  padding: 24px;
+  font-size: 16px;
+  line-height: 1.6;
+  vertical-align: top;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.cs-comparison-table tr:last-child td {
+  border-bottom: none;
+}
+
+.cs-table-feature {
+  font-weight: 700;
+  color: #ffffff;
+  width: 25%;
+}
+
+.cs-table-change {
+  color: rgba(255, 255, 255, 0.85);
+  width: 40%;
+}
+
+.cs-table-why {
+  color: rgba(255, 255, 255, 0.65);
+  width: 35%;
+}
+
+/* Responsive Table (transforms into cards on mobile) */
+@media (max-width: 900px) {
+  .cs-table-wrapper {
+    background: transparent;
+    border: none;
+    border-radius: 0;
+    overflow: visible;
+    margin-top: 30px;
+  }
+
+  .cs-comparison-table,
+  .cs-comparison-table thead,
+  .cs-comparison-table tbody,
+  .cs-comparison-table th,
+  .cs-comparison-table td,
+  .cs-comparison-table tr {
+    display: block;
+    width: 100%;
+  }
+
+  .cs-comparison-table thead {
+    display: none;
+    /* Hide table headers on mobile */
+  }
+
+  .cs-comparison-table tbody {
+    display: flex;
+    flex-direction: row;
+    gap: 16px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    padding: 8px 4px;
+    scrollbar-width: none;
+    /* Hide scrollbar Firefox */
+    -ms-overflow-style: none;
+    /* Hide scrollbar IE/Edge */
+  }
+
+  .cs-comparison-table tbody::-webkit-scrollbar {
+    display: none;
+    /* Hide scrollbar Chrome/Safari/Opera */
+  }
+
+  .cs-comparison-table tr {
+    background: var(--card-bg);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    padding: 24px;
+    box-sizing: border-box;
+    flex-shrink: 0;
+    width: 85%;
+    max-width: 320px;
+    scroll-snap-align: start;
+    margin-bottom: 0;
+  }
+
+  .cs-comparison-table td {
+    padding: 0;
+    width: 100% !important;
+    border-bottom: none;
+    margin-bottom: 16px;
+  }
+
+  .cs-comparison-table td:last-child {
+    margin-bottom: 0;
+  }
+
+  /* Style mobile labels and content */
+  .cs-table-feature {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--accentColor);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding-bottom: 12px !important;
+    margin-bottom: 16px;
+  }
+
+  .cs-table-change::before {
+    content: "WHAT CHANGED";
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 4px;
+  }
+
+  .cs-table-why::before {
+    content: "WHY";
+    display: block;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 4px;
+  }
+}

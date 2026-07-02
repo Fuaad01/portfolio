@@ -88,15 +88,43 @@ const CaseStudy = () => {
 
               </header>
 
+
+              {/* Summary */}
+              <section className="cs-section">
+                <div className="cs-summary-box">
+                  <h2 className="cs-summary-title">Summary</h2>
+                  <div className="cs-summary-grid">
+                    <div className="cs-summary-item">
+                      <span className="cs-summary-label">Duration</span>
+                      <span className="cs-summary-value">{project.duration}</span>
+                    </div>
+                    <div className="cs-summary-item">
+                      <span className="cs-summary-label">Role</span>
+                      <span className="cs-summary-value">{project.role}</span>
+                    </div>
+                    <div className="cs-summary-item">
+                      <span className="cs-summary-label">Tools</span>
+                      <span className="cs-summary-value">{project.tools}</span>
+                    </div>
+                    {project.platform && (
+                      <div className="cs-summary-item">
+                        <span className="cs-summary-label">Platform</span>
+                        <span className="cs-summary-value">{project.platform}</span>
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </section>
+
               {/* 1. Project Goal */}
               <section className="cs-section">
-                <h2 className="section-title">Project Goal</h2>
+                <h2 className="section-title">The Challenge</h2>
                 <p className="cs-body">{project.projectGoal}</p>
               </section>
 
               {/* 2. Problem Statement */}
               <section className="cs-section">
-                <h2 className="section-title">Problem Statement</h2>
+                <h2 className="section-title">What Was Broken</h2>
                 <p className="cs-body">{project.problemStatement}</p>
                 {project.problemStatementPoints && project.problemStatementPoints.length > 0 && (
                   <ul className="cs-problem-list">
@@ -141,61 +169,109 @@ const CaseStudy = () => {
                 )}
               </section>
 
+              {/* Research Insights */}
+              {project.researchInsights && (
+                <section className="cs-section cs-research-section">
+                  <h2 className="section-title">{project.researchInsights.title}</h2>
+                  <p className="cs-body cs-research-intro">{project.researchInsights.description}</p>
+                  <div className="cs-insights-container">
+                    {project.researchInsights.insights.map((insight, index) => (
+                      <div key={index} className="cs-insight-card">
+                        <div className="cs-insight-header">
+                          <div className="cs-insight-num">{insight.number}</div>
+                          <strong className="cs-insight-bold">{insight.title}</strong>
+                        </div>
+                        <p className="cs-insight-text">{insight.description}</p>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* What I Changed & Why */}
+              {project.whatIChanged && (
+                <section className="cs-section cs-comparison-table-section">
+                  <h2 className="section-title">{project.whatIChanged.title}</h2>
+                  <p className="cs-body cs-table-intro">{project.whatIChanged.description}</p>
+                  
+                  <div className="cs-table-wrapper">
+                    <table className="cs-comparison-table">
+                      <thead>
+                        <tr>
+                          {project.whatIChanged.headers.map((header, i) => (
+                            <th key={i}>{header}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {project.whatIChanged.rows.map((row, i) => (
+                          <tr key={i}>
+                            <td className="cs-table-feature">{row.feature}</td>
+                            <td className="cs-table-change">{row.whatChanged}</td>
+                            <td className="cs-table-why">{row.why}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </section>
+              )}
+
               {/* 3. Crafted Solution */}
               <section className="cs-section">
                 <h2 className="section-title">Crafted Solution</h2>
                 {project.craftedSolution.content && <p className="cs-body">{project.craftedSolution.content}</p>}
-                    {project.craftedSolution.features && project.craftedSolution.features.map((feature, idx) => {
-                      const hasImage = feature.image || (feature.images && feature.images.length > 0);
-                      const textContent = (
-                        <div className={hasImage ? "cs-crafted-left" : ""} key={hasImage ? undefined : idx}>
-                          <div className="cs-feature">
-                            <h3 className="cs-feature-title">{feature.title}</h3>
-                            <div className="cs-feature-section">
-                              <ul className="cs-feature-list">
-                                {feature.solution.map((pt, i) => (
-                                  <li key={i}>{pt}</li>
-                                ))}
-                              </ul>
-                            </div>
-                          </div>
+                {project.craftedSolution.features && project.craftedSolution.features.map((feature, idx) => {
+                  const hasImage = feature.image || (feature.images && feature.images.length > 0);
+                  const textContent = (
+                    <div className={hasImage ? "cs-crafted-left" : ""} key={hasImage ? undefined : idx}>
+                      <div className="cs-feature">
+                        <h3 className="cs-feature-title">{feature.title}</h3>
+                        <div className="cs-feature-section">
+                          <ul className="cs-feature-list">
+                            {feature.solution.map((pt, i) => (
+                              <li key={i}>{pt}</li>
+                            ))}
+                          </ul>
                         </div>
-                      );
+                      </div>
+                    </div>
+                  );
 
-                      const imageContent = feature.images && feature.images.length > 0 ? (
-                        <div className="cs-crafted-right cs-crafted-multi-img">
-                          {feature.images.map((imgSrc, i) => (
-                            <img key={i} src={imgSrc} alt={`${feature.title} ${i + 1}`} />
-                          ))}
-                        </div>
-                      ) : feature.image ? (
-                        <div className="cs-crafted-right">
-                          <img src={feature.image} alt={feature.title} />
-                        </div>
-                      ) : null;
+                  const imageContent = feature.images && feature.images.length > 0 ? (
+                    <div className="cs-crafted-right cs-crafted-multi-img">
+                      {feature.images.map((imgSrc, i) => (
+                        <img key={i} src={imgSrc} alt={`${feature.title} ${i + 1}`} />
+                      ))}
+                    </div>
+                  ) : feature.image ? (
+                    <div className="cs-crafted-right">
+                      <img src={feature.image} alt={feature.title} />
+                    </div>
+                  ) : null;
 
-                      if (hasImage) {
-                        const isLeft = feature.imagePosition === 'left';
-                        const colClass = isLeft ? "cs-crafted-2col-reverse" : "cs-crafted-2col";
-                        return (
-                          <div key={idx} className={colClass}>
-                            {isLeft ? (
-                              <>
-                                {imageContent}
-                                {textContent}
-                              </>
-                            ) : (
-                              <>
-                                {textContent}
-                                {imageContent}
-                              </>
-                            )}
-                          </div>
-                        );
-                      }
+                  if (hasImage) {
+                    const isLeft = feature.imagePosition === 'left';
+                    const colClass = isLeft ? "cs-crafted-2col-reverse" : "cs-crafted-2col";
+                    return (
+                      <div key={idx} className={colClass}>
+                        {isLeft ? (
+                          <>
+                            {imageContent}
+                            {textContent}
+                          </>
+                        ) : (
+                          <>
+                            {textContent}
+                            {imageContent}
+                          </>
+                        )}
+                      </div>
+                    );
+                  }
 
-                      return textContent;
-                    })}
+                  return textContent;
+                })}
                 {project.craftedSolution.images && project.craftedSolution.images.length > 0 && (
                   <div className="cs-collage">
                     {project.craftedSolution.images.map((img, i) => (
@@ -207,26 +283,6 @@ const CaseStudy = () => {
                 )}
               </section>
 
-              {/* 4. Summary */}
-              <section className="cs-section">
-                <div className="cs-summary-box">
-                  <h2 className="cs-summary-title">Summary</h2>
-                  <div className="cs-summary-grid">
-                    <div className="cs-summary-item">
-                      <span className="cs-summary-label">Duration</span>
-                      <span className="cs-summary-value">{project.duration}</span>
-                    </div>
-                    <div className="cs-summary-item">
-                      <span className="cs-summary-label">Role</span>
-                      <span className="cs-summary-value">{project.role}</span>
-                    </div>
-                    <div className="cs-summary-item">
-                      <span className="cs-summary-label">Tools</span>
-                      <span className="cs-summary-value">{project.tools}</span>
-                    </div>
-                  </div>
-                </div>
-              </section>
 
               {/* 5. Wireframes */}
               {project.wireframes && project.wireframes.length > 0 && (
