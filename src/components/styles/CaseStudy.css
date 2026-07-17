@@ -284,9 +284,10 @@
 }
 
 .cs-crafted-right img {
-  width: 100%;
-  max-width: 350px;
-  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
 }
 
 /* Multiple images side-by-side (e.g. Ask AI Screen) */
@@ -300,10 +301,12 @@
 }
 
 .cs-crafted-multi-img img {
-  flex: 1;
+  flex: 0 1 auto;
   min-width: 0;
-  width: 100%;
-  height: auto;
+  width: auto;
+  max-width: 100%;
+  max-height: 400px;
+  object-fit: contain;
 }
 
 .cs-feature {
@@ -387,6 +390,32 @@
 
 .item-1 {
   grid-column: 1 / 13;
+}
+
+/* ── User Flow Diagram ── */
+.cs-user-flow-section {
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-user-flow-img-wrapper {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  overflow: hidden;
+}
+
+.cs-user-flow-img {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .cs-user-flow-img-wrapper {
+    border-radius: 0px;
+  }
 }
 
 /* ── Grids ── */

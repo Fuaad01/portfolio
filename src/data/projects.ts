@@ -29,6 +29,7 @@ export interface Project {
     images: string[];
     sideImage?: string;
   };
+  userFlowDiagram?: string;
   researchInsights?: {
     title: string;
     description: string;
@@ -71,8 +72,7 @@ const projects: Project[] = [
     video: "/images/mdoc-mockup.webm",
     tools: "Figma",
     link: "#",
-    prototypeLink: "https://www.figma.com/proto/YD9W776boihYEh4X54Q0Zo/LINGsCARS-Redesign?node-id=905-9459&viewport=-733%2C-4948%2C0.25&t=FSBojaKcJRugjXpy-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=386%3A20993&page-id=8%3A247&hide-ui=1",
-    mobilePrototypeLink: "https://www.figma.com/proto/YD9W776boihYEh4X54Q0Zo/LINGsCARS-Redesign?node-id=476-12464&viewport=-96%2C64%2C0.06&t=JdeSYa3UDiM0ebuK-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=476%3A20897&page-id=8%3A247&hide-ui=1",
+    mobilePrototypeLink: "https://www.figma.com/proto/LZTpVciIofPQvGvRbvFUHP/mDoc-Redesign-Case-Study?node-id=66-4717&viewport=-1976%2C-1512%2C0.2&t=jQgvymOKhuRQBPvA-8&scaling=scale-down&content-scaling=fixed&starting-point-node-id=66%3A4025&page-id=57%3A3075&hide-ui=1",
     projectGoal: "The goal of this project was to redesign the app to improve usability, simplify navigation, and enhance the overall booking experience. It also introduces an AI-powered assistant to provide instant guidance and support to users. The aim was to create a faster, more accessible, and user-friendly healthcare journey.",
     problemStatement: "The existing mDoc application faced multiple usability challenges that made it difficult for users to efficiently book doctor appointments and navigate the app.",
     problemStatementScreens: [
@@ -267,6 +267,7 @@ const projects: Project[] = [
       ],
       images: []
     },
+    userFlowDiagram: "/images/mdoc-user-flow-diagram.png",
     summary: "The redesign simplified key healthcare journeys, boosting booking conversion and daily vitals logging engagement.",
     duration: "2 Weeks",
     role: "UX/UI Designer",

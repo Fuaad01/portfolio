@@ -3,22 +3,31 @@ import { Link } from "react-router-dom";
 import "./styles/Work.css";
 import projects from "../data/projects";
 
-
 const allSlides = projects;
 
 const Work = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState<"next" | "prev">("next");
   const [isAnimating, setIsAnimating] = useState(false);
-  const [dragOffset, setDragOffset] = useState(0);
   const dragStartX = useRef<number>(0);
   const dragStartY = useRef<number>(0);
   const isDragging = useRef(false);
+  const [dragOffset, setDragOffset] = useState(0);
 
-  const goToSlide = useCallback(
-    (index: number) => {
+  const goTo = useCallback(
+    (dir: "next" | "prev") => {
       if (isAnimating) return;
+      setDirection(dir);
       setIsAnimating(true);
-      setCurrentIndex(index);
+      setCurrentIndex((prev) =>
+        dir === "next"
+          ? prev === allSlides.length - 1
+            ? 0
+            : prev + 1
+          : prev === 0
+          ? allSlides.length - 1
+          : prev - 1
+      );
       setTimeout(() => setIsAnimating(false), 500);
     },
     [isAnimating]
@@ -37,14 +46,11 @@ const Work = () => {
     if (!isDragging.current) return;
     const deltaX = e.clientX - dragStartX.current;
     const deltaY = e.clientY - dragStartY.current;
-
-    // If vertical scrolling dominates, cancel the horizontal drag
     if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 5) {
       isDragging.current = false;
       setDragOffset(0);
       return;
     }
-
     setDragOffset(deltaX);
   };
 
@@ -53,117 +59,97 @@ const Work = () => {
     isDragging.current = false;
     const delta = e.clientX - dragStartX.current;
     setDragOffset(0);
-    if (delta < -50) {
-      goToSlide(currentIndex === allSlides.length - 1 ? 0 : currentIndex + 1);
-    } else if (delta > 50) {
-      goToSlide(currentIndex === 0 ? allSlides.length - 1 : currentIndex - 1);
-    }
+    if (delta < -50) goTo("next");
+    else if (delta > 50) goTo("prev");
   };
+
+  const current = allSlides[currentIndex];
+  const nextIndex = (currentIndex + 1) % allSlides.length;
+  const next = allSlides[nextIndex];
 
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
         <h2 className="section-title">MY WORK</h2>
 
-        {/* ── Desktop: 2-column card grid ── */}
-        <div className="work-cards-grid">
-          {projects.map((project) => (
-            <div
-              key={project.id}
-              className="work-card"
-            >
-              <div className="work-card-image">
-                {project.video ? (
-                  <video
-                    src={project.video}
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                ) : (
-                  <img src={project.image} alt={project.title} />
-                )}
-              </div>
-              <div className="work-card-info">
-                <div className="work-card-tags">
-                  {project.tags.map((tag) => (
-                    <span key={tag} className="work-card-tag">{tag}</span>
-                  ))}
-                </div>
-                <h3 className="work-card-title">{project.title}</h3>
-                <p className="work-card-desc">{project.description}</p>
-
-                <Link to={`/casestudy/${project.id}`} className="btn-primary work-btn">
-                  View Now
-                </Link>
-
-              </div>
-            </div>
-          ))}
-
-
-        </div>
-
-        {/* ── Mobile: drag carousel ── */}
-        <div className="work-carousel">
+        <div className="work-stack-layout">
+          {/* ── Stacked Card Area ── */}
           <div
-            className="work-carousel-track"
-            style={{
-              transform: `translateX(calc(-${currentIndex * 100}% + ${dragOffset}px - ${currentIndex * 16}px))`,
-              transition: isDragging.current ? "none" : "transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)"
-            }}
+            className="work-stack-cards"
             onPointerDown={handleDragStart}
             onPointerMove={handleDragMove}
             onPointerUp={handleDragEnd}
             onPointerCancel={handleDragEnd}
             onPointerLeave={handleDragEnd}
+            style={{
+              transform: dragOffset ? `translateX(${dragOffset * 0.08}px)` : undefined,
+            }}
           >
-            {allSlides.map((slide) => (
-                <div className="work-carousel-slide" key={slide.id}>
-                  <div className="work-card">
-                    <div className="work-card-image">
-                      {slide.video ? (
-                        <video
-                          src={slide.video}
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                        />
-                      ) : (
-                        <img src={slide.image} alt={slide.title} />
-                      )}
-                    </div>
-                    <div className="work-card-info">
-                      <div className="work-card-tags">
-                        {slide.tags.map((tag: string) => (
-                          <span key={tag} className="work-card-tag">{tag}</span>
-                        ))}
-                      </div>
-                      <h3 className="work-card-title">{slide.title}</h3>
-                      <p className="work-card-desc">{slide.description}</p>
+            {/* Back card (peek) */}
+            <div
+              className={`work-stack-card work-stack-card--back ${isAnimating ? `animating-${direction}` : ""}`}
+            >
+              <div className="work-card-image">
+                {next.video ? (
+                  <video src={next.video} autoPlay loop muted playsInline />
+                ) : (
+                  <img src={next.image} alt={next.title} />
+                )}
+              </div>
+            </div>
 
-                      <Link to={`/casestudy/${slide.id}`} className="btn-primary work-btn">
-                        View Now
-                      </Link>
-
-                    </div>
-                  </div>
-                </div>
-              ))}
+            {/* Front card (active) */}
+            <div
+              className={`work-stack-card work-stack-card--front ${isAnimating ? `animating-${direction}` : ""}`}
+            >
+              <div className="work-card-image">
+                {current.video ? (
+                  <video src={current.video} autoPlay loop muted playsInline />
+                ) : (
+                  <img src={current.image} alt={current.title} />
+                )}
+              </div>
+            </div>
           </div>
 
-          {/* Dots */}
-          <div className="work-carousel-dots">
-            {allSlides.map((_, i) => (
+          {/* ── Info Panel ── */}
+          <div className="work-stack-info">
+            <div className="work-stack-counter">
+              <span className="counter-current">{String(currentIndex + 1).padStart(1, "0")}</span>
+              <span className="counter-sep"> / </span>
+              <span className="counter-total">{allSlides.length}</span>
+            </div>
+
+            <div className={`work-stack-text ${isAnimating ? "fading" : ""}`}>
+              <h3 className="work-stack-title">{current.title}</h3>
+              <p className="work-stack-desc">{current.description}</p>
+              <Link
+                to={`/casestudy/${current.id}`}
+                className="work-stack-link"
+              >
+                View Case Study →
+              </Link>
+            </div>
+
+            {/* Arrow Buttons */}
+            <div className="work-stack-nav">
               <button
-                key={i}
-                className={`work-carousel-dot ${i === currentIndex ? "active" : ""}`}
-                onClick={() => goToSlide(i)}
-                aria-label={`Slide ${i + 1}`}
-              />
-            ))}
+                className="work-nav-btn"
+                onClick={() => goTo("prev")}
+                aria-label="Previous project"
+                disabled={isAnimating}
+              >
+                ←
+              </button>
+              <button
+                className="work-nav-btn"
+                onClick={() => goTo("next")}
+                aria-label="Next project"
+                disabled={isAnimating}
+              >
+                →
+              </button>
+            </div>
           </div>
         </div>
       </div>

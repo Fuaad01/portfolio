@@ -5,8 +5,9 @@ const About = () => {
     <div className="about-section section-container" id="about">
       <div className="about-box">
         <div className="about-content-wrapper">
-          <div className="about-me">
-            <p className="about-inline-text">
+          <div className="about-right">
+            <div className="about-me">
+              <p className="about-inline-text">
               A <span className="about-white">UX/UI Designer</span>{" "}
               <span className="about-emoji">🎨</span>{" "}
               with <span className="about-year-pill">3+ Years</span>{" "}
@@ -31,6 +32,7 @@ const About = () => {
                 Let's Connect
               </a>
             </div>
+          </div>
           </div>
         </div>
       </div>

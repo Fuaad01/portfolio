@@ -283,6 +283,15 @@ const CaseStudy = () => {
                 )}
               </section>
 
+              {/* User Flow Diagram */}
+              {project.userFlowDiagram && (
+                <section className="cs-section cs-user-flow-section">
+                  <h2 className="section-title">User Flow Diagram</h2>
+                  <div className="cs-user-flow-img-wrapper">
+                    <img src={project.userFlowDiagram} alt="User Flow Diagram" className="cs-user-flow-img" />
+                  </div>
+                </section>
+              )}
 
               {/* 5. Wireframes */}
               {project.wireframes && project.wireframes.length > 0 && (

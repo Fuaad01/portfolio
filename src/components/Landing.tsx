@@ -63,7 +63,7 @@ const Landing = () => {
 
           {/* Right: Circular Rotating Resume */}
           <div className="hero-resume-circular">
-            <a href="/resume/Fuaaduddin_UXUI_Designer_Resume.pdf" download="Fuaaduddin_UXUI_Designer_Resume.pdf" className="circular-resume-link">
+            <a href="/resume/Fuaaduddin_UXUI_Designer_Resume.pdf?v=updated" download="Fuaaduddin_UXUI_Designer_Resume.pdf" className="circular-resume-link">
               <svg viewBox="0 0 100 100" className="rotating-text-svg">
                 <defs>
                   <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0" />
