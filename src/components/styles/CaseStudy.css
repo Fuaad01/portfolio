@@ -548,6 +548,40 @@
   opacity: 0.8;
 }
 
+/* ── Scope of Improvements ── */
+.cs-improvements-list {
+  list-style-type: disc;
+  padding-left: 20px;
+  margin: 24px 0 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.cs-improvements-item {
+  padding-left: 4px;
+}
+
+.cs-improvements-item::marker {
+  color: #ffffff;
+}
+
+.cs-improvements-heading {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.cs-improvements-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
 /* ── CTA ── */
 .cs-cta-wrapper {
   margin-bottom: 60px;
@@ -761,7 +795,7 @@
   font-family: "Bricolage Grotesque", sans-serif;
   font-size: clamp(20px, 2vw, 26px);
   font-weight: 800;
-  color: var(--accentColor);
+  color: #ffffff;
   line-height: 1;
   opacity: 0.9;
   white-space: nowrap;
@@ -783,7 +817,7 @@
   font-family: "Bricolage Grotesque", sans-serif;
   font-size: clamp(20px, 2vw, 26px);
   font-weight: 800;
-  color: var(--accentColor);
+  color: #ffffff;
   line-height: 1.2;
   opacity: 0.9;
 }

@@ -179,11 +179,6 @@
   margin: 0;
   line-height: 1.7;
   letter-spacing: 0.3px;
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  -webkit-box-orient: vertical;
-  line-clamp: 4;
-  overflow: hidden;
 }
 
 /* View Case Study link */
@@ -261,14 +256,6 @@
   .work-stack-info {
     width: 100%;
     align-items: flex-start;
-  }
-
-  /* Show full paragraph — no truncation on mobile */
-  .work-stack-desc {
-    -webkit-line-clamp: unset;
-    line-clamp: unset;
-    display: block;
-    overflow: visible;
   }
 }
 

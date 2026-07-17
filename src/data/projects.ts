@@ -57,6 +57,10 @@ export interface Project {
   finalScreens: { url: string; mobileUrl?: string; title: string }[];
   beforeAfter: string[];
   outcome: string;
+  scopeOfImprovements?: {
+    heading: string;
+    description: string;
+  }[];
   thankYou: string;
 }
 
@@ -141,12 +145,12 @@ const projects: Project[] = [
         {
           number: "01",
           title: "Trust First",
-          description: "Users won't book a doctor they can't quickly evaluate. Without visible ratings, credentials, and verification badges, the decision to book feels like a risk â€” especially for first-time users."
+          description: "Users won't book a doctor they can't quickly evaluate. Without visible ratings, credentials, and verification badges, the decision to book feels like a risk, especially for first-time users."
         },
         {
           number: "02",
           title: "Faster Decisions",
-          description: "In a healthcare context, users are often anxious or time-pressured. They don't read â€” they scan. Card-based layouts with clear information hierarchy reduce cognitive load and help users decide faster."
+          description: "In a healthcare context, users are often anxious or time-pressured. They don't read, they scan. Card-based layouts with clear information hierarchy reduce cognitive load and help users decide faster."
         },
         {
           number: "03",
@@ -215,7 +219,7 @@ const projects: Project[] = [
           solution: [
             "Introduced a contextual header with location and greeting to personalize the user experience",
             "Added a prominent search bar for quick access to doctors, hospitals, and tests",
-            "Highlighted upcoming appointments with a strong visual card and quick call action",
+            "Displayed upcoming appointments with a clean visual card to remind users about upcoming appointments",
             "Improved service shortcuts and doctor categories for faster navigation and discovery",
             "Structured health plans with pricing, benefits, and strong CTAs to improve conversions",
             "Replaced hamburger menu with bottom navigation including core sections to reduce steps and improve",
@@ -230,8 +234,8 @@ const projects: Project[] = [
             "Transformed doctor listings into a clean card-based layout for better scanability",
             "Structured doctor details (specialization, experience, fees) for quick understanding",
             "Added ratings, verification badges, and recommendation tags to build trust",
-            "Highlighted consultation fees and strong â€œBook Nowâ€ CTA to support faster decisions and conversions",
-            "Maintained consistent spacing and added clinic info with direction action for better readability and accessibility",
+            "Highlighted consultation fees and strong Book Now CTA to support faster decisions and conversions",
+            "Maintained consistent spacing and improved clinic info with direction action for better readability and accessibility",
           ],
           image: "/images/mdoc-dr-listing.png",
           imagePosition: "left"
@@ -278,6 +282,20 @@ const projects: Project[] = [
     ],
     beforeAfter: [],
     outcome: "The redesign improved usability by simplifying navigation and making key actions like booking appointments faster and easier. Enhanced layouts, filters, and AI assistance helped users find relevant information quickly and make better decisions. Overall, the app became more user-friendly, efficient, and accessible, especially for users in rural areas.",
+    scopeOfImprovements: [
+      {
+        heading: "Smart Doctor Suggestions",
+        description: "Recommend relevant doctors based on symptoms, location, preferences, and consultation history."
+      },
+      {
+        heading: "Advanced Filtering Experience",
+        description: "Introduced contextual filters such as availability, consultation type, fees, ratings, and experience for faster discovery."
+      },
+      {
+        heading: "Appointment Timeline Tracking",
+        description: "Added appointment status tracking from booking to consultation completion to improve transparency and reduce uncertainty."
+      }
+    ],
     thankYou: "Thank you for reviewing the Mdoc Case Study. Let's create more impactful designs together!"
   },
   {

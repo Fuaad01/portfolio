@@ -345,6 +345,21 @@ const CaseStudy = () => {
                 <p className="cs-body">{project.outcome}</p>
               </section>
 
+              {/* Scope of Improvements */}
+              {project.scopeOfImprovements && project.scopeOfImprovements.length > 0 && (
+                <section className="cs-section">
+                  <h2 className="section-title">Scope of Improvements</h2>
+                  <ul className="cs-improvements-list">
+                    {project.scopeOfImprovements.map((item, i) => (
+                      <li key={i} className="cs-improvements-item">
+                        <strong className="cs-improvements-heading">{item.heading}</strong>
+                        <p className="cs-improvements-desc">{item.description}</p>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
+
               {/* 9. Prototype Link (Optional) */}
               {(project.prototypeLink || project.mobilePrototypeLink) && (
                 <section className="cs-section">

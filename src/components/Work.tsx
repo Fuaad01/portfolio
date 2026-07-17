@@ -91,9 +91,9 @@ const Work = () => {
             >
               <div className="work-card-image">
                 {next.video ? (
-                  <video src={next.video} autoPlay loop muted playsInline />
+                  <video src={next.video} autoPlay loop muted playsInline draggable={false} style={{ pointerEvents: 'none' }} />
                 ) : (
-                  <img src={next.image} alt={next.title} />
+                  <img src={next.image} alt={next.title} draggable={false} style={{ pointerEvents: 'none' }} />
                 )}
               </div>
             </div>
@@ -104,9 +104,9 @@ const Work = () => {
             >
               <div className="work-card-image">
                 {current.video ? (
-                  <video src={current.video} autoPlay loop muted playsInline />
+                  <video src={current.video} autoPlay loop muted playsInline draggable={false} style={{ pointerEvents: 'none' }} />
                 ) : (
-                  <img src={current.image} alt={current.title} />
+                  <img src={current.image} alt={current.title} draggable={false} style={{ pointerEvents: 'none' }} />
                 )}
               </div>
             </div>
