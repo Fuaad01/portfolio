@@ -8,7 +8,6 @@ const ContactBanner = () => {
           INTERESTED IN<br />WORKING TOGETHER?
         </h2>
         <div className="contact-banner-email-block">
-          <span className="contact-banner-label">Contact me:</span>
           <a
             href="mailto:fuaaduddin15@gmail.com"
             className="contact-banner-email"

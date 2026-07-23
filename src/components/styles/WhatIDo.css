@@ -199,11 +199,11 @@
 }
 
 .row-left .carousel-track {
-  animation: scroll-left 35s linear infinite;
+  animation: scroll-left 20s linear infinite;
 }
 
 .row-right .carousel-track {
-  animation: scroll-right 35s linear infinite;
+  animation: scroll-right 20s linear infinite;
 }
 
 .carousel-item {
