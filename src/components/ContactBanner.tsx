@@ -2,7 +2,7 @@ import "./styles/ContactBanner.css";
 
 const ContactBanner = () => {
   return (
-    <div className="contact-banner section-container">
+    <div id="contact" className="contact-banner section-container">
       <div className="contact-banner-inner">
         <h2 className="contact-banner-heading">
           INTERESTED IN<br />WORKING TOGETHER?

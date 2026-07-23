@@ -6,7 +6,7 @@
 
 .footer-content {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr auto 1fr;
   align-items: center;
   width: 100%;
 }
@@ -132,5 +132,18 @@
   .footer-pill {
     padding: 10px 22px;
     font-size: 12px;
+  }
+
+  .footer-left p {
+    font-size: 12px;
+    line-height: 16px;
+  }
+
+  .back-to-top {
+    font-size: 12px;
+  }
+
+  .footer-content {
+    gap: 24px 8px; /* reduce gap between left and right elements to help them stay side-by-side */
   }
 }

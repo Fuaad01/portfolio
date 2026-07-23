@@ -35,6 +35,14 @@ const Navbar = () => {
     }
     ScrollSmoother.refresh(true);
 
+    const resizeObserver = new ResizeObserver(() => {
+      ScrollTrigger.refresh();
+    });
+    const smoothContent = document.getElementById("smooth-content");
+    if (smoothContent) {
+      resizeObserver.observe(smoothContent);
+    }
+
     const handleLinkClick = (e: Event) => {
       const element = e.currentTarget as HTMLAnchorElement;
       const sectionId = element.getAttribute("data-href");
@@ -69,9 +77,11 @@ const Navbar = () => {
     });
 
     return () => {
-      // Cleanup event listeners
-      links.forEach((elem) => {
-        elem.removeEventListener("click", handleLinkClick);
+      if (smoothContent) {
+        resizeObserver.unobserve(smoothContent);
+      }
+      links.forEach((link) => {
+        link.removeEventListener("click", handleLinkClick);
       });
     };
   }, [location.pathname, navigate]);

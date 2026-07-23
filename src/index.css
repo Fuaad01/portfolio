@@ -28,7 +28,7 @@
   --border-hover: rgba(26, 79, 255, 0.3);
   --vh: 100vh;
   --vh: 100svh;
-  --cWidth: calc(100% - 48px);
+  --cWidth: calc(100% - 32px);
   --cMaxWidth: 1920px;
   --contentMaxWidth: 1100px;
 }

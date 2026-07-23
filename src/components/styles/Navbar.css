@@ -226,7 +226,7 @@
 /* Responsive: mobile hamburger menu */
 @media only screen and (max-width: 600px) {
   .header {
-    width: calc(100% - 48px);
+    width: calc(100% - 32px);
     top: 15px;
     max-width: none;
     padding: 16px 24px;
@@ -241,7 +241,7 @@
   }
 
   .mobile-menu {
-    width: calc(100% - 48px);
+    width: calc(100% - 32px);
     top: 15px;
     max-width: none;
     padding: 62px 0px 0;
@@ -251,10 +251,10 @@
 /* Small mobile — inset from hero container: 20px side = 40px total */
 @media only screen and (max-width: 480px) {
   .header {
-    width: calc(100% - 60px);
+    width: calc(100% - 32px);
   }
 
   .mobile-menu {
-    width: calc(100% - 60px);
+    width: calc(100% - 32px);
   }
 }

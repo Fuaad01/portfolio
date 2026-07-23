@@ -2,45 +2,27 @@ import { useEffect, useRef } from "react";
 import "./styles/WhatIDo.css";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-interface Skill {
-  name: string;
-  rating: number;
-}
-
-const skills: Skill[] = [
-  { name: "Figma", rating: 5 },
-  { name: "User Research", rating: 4.5 },
-  { name: "User Flows", rating: 4.5 },
-  { name: "User Journey Mapping", rating: 4.5 },
-  { name: "Wireframing", rating: 5 },
-  { name: "Prototyping", rating: 5 },
-  { name: "Usability Testing", rating: 4 },
-  { name: "Information Architecture", rating: 4 },
-  { name: "Responsive Design", rating: 5 },
-  { name: "Design Systems", rating: 4.5 },
-  { name: "Visual Hierarchy", rating: 4.5 },
-  { name: "Interaction Design", rating: 4 },
+const row1Skills = [
+  { name: "Figma", image: "/images/figma.png" },
+  { name: "User Research", image: "/images/user-research.png" },
+  { name: "User Flows", image: "/images/user-flows.png" },
+  { name: "User Journey Mapping", image: "/images/user-journey-mapping.png" },
+  { name: "Wireframing", image: "/images/wireframing.png" },
+  { name: "Prototyping", image: "/images/prototyping.png" },
+  { name: "Usability Testing", image: "/images/usability-testing.png" },
+  { name: "Information Architecture", image: "/images/information-architecture.png" },
 ];
 
-const StarRating = ({ rating }: { rating: number }) => {
-  const stars = [];
-  for (let i = 1; i <= 5; i++) {
-    if (i <= Math.floor(rating)) {
-      stars.push(<span key={i} className="star filled">★</span>);
-    } else if (i === Math.ceil(rating) && rating % 1 !== 0) {
-      // Half star: empty star base + filled star clipped to left half
-      stars.push(
-        <span key={i} className="star half-star-wrapper">
-          <span className="half-star-empty">☆</span>
-          <span className="half-star-filled">★</span>
-        </span>
-      );
-    } else {
-      stars.push(<span key={i} className="star empty">☆</span>);
-    }
-  }
-  return <div className="star-rating">{stars}</div>;
-};
+const row2Skills = [
+  { name: "Responsive Design", image: "/images/responsive-design.png" },
+  { name: "Design Systems", image: "/images/design-system.png" },
+  { name: "Visual Hierarchy", image: "/images/visual-hirarchhy.png" },
+  { name: "Interaction Design", image: "/images/interaction-design.png" },
+  { name: "Design Thinking", image: "/images/design-thinking.png" },
+  { name: "Color Theory", image: "/images/color-theory.png" },
+  { name: "Typography", image: "/images/typograph.png" },
+  { name: "UI Design", image: "/images/ui-design.png" },
+];
 
 const WhatIDo = () => {
   const containerRef = useRef<(HTMLDivElement | null)[]>([]);
@@ -66,6 +48,10 @@ const WhatIDo = () => {
       });
     };
   }, []);
+
+  // Double items for infinite marquee scrolling effect
+  const doubleRow1 = [...row1Skills, ...row1Skills];
+  const doubleRow2 = [...row2Skills, ...row2Skills];
 
   return (
     <div className="whatIDO section-container" id="whatIDo">
@@ -131,15 +117,32 @@ const WhatIDo = () => {
                 functionality with modern design, ensuring smooth and engaging
                 digital experiences across platforms.
               </p>
-              <h5>Skillset & tools</h5>
-              <div className="skills-grid">
-                {skills.map((skill) => (
-                  <div key={skill.name} className="skill-item">
-                    <span className="skill-name">{skill.name}</span>
-                    <StarRating rating={skill.rating} />
+              <h5>Skillset &amp; tools</h5>
+
+              <div className="skills-carousel-container">
+                {/* Row 1: Scrolls Left */}
+                <div className="carousel-row row-left">
+                  <div className="carousel-track">
+                    {doubleRow1.map((skill, index) => (
+                      <div key={`row1-${index}`} className="carousel-item">
+                        <img src={skill.image} alt={skill.name} className="skill-image" />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+
+                {/* Row 2: Scrolls Right */}
+                <div className="carousel-row row-right">
+                  <div className="carousel-track">
+                    {doubleRow2.map((skill, index) => (
+                      <div key={`row2-${index}`} className="carousel-item">
+                        <img src={skill.image} alt={skill.name} className="skill-image" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
+
             </div>
           </div>
         </div>

@@ -19,6 +19,7 @@ export interface Project {
   }[];
   craftedSolution: {
     content: string;
+    video?: string;
     features?: {
       title: string;
       solution: string[];
@@ -213,6 +214,7 @@ const projects: Project[] = [
     },
     craftedSolution: {
       content: "",
+      video: "/images/mdoc-casestudy-mockup.webm",
       features: [
         {
           title: "Home Screen",
@@ -284,19 +286,15 @@ const projects: Project[] = [
     outcome: "The redesign improved usability by simplifying navigation and making key actions like booking appointments faster and easier. Enhanced layouts, filters, and AI assistance helped users find relevant information quickly and make better decisions. Overall, the app became more user-friendly, efficient, and accessible, especially for users in rural areas.",
     scopeOfImprovements: [
       {
-        heading: "Smart Doctor Suggestions",
-        description: "Recommend relevant doctors based on symptoms, location, preferences, and consultation history."
-      },
-      {
-        heading: "Advanced Filtering Experience",
-        description: "Introduced contextual filters such as availability, consultation type, fees, ratings, and experience for faster discovery."
+        heading: "AI-Powered Doctor Recommendations",
+        description: "AI-powered doctor recommendations could be introduced based on symptoms, location, consultation history, and user preferences to simplify doctor discovery."
       },
       {
         heading: "Appointment Timeline Tracking",
-        description: "Added appointment status tracking from booking to consultation completion to improve transparency and reduce uncertainty."
+        description: "A real-time appointment timeline could be implemented to keep users informed throughout the booking journey, from confirmation to consultation completion."
       }
     ],
-    thankYou: "Thank you for reviewing the Mdoc Case Study. Let's create more impactful designs together!"
+    thankYou: "Thank you for reviewing the mDoc Case Study. Let's create more impactful designs together!"
   },
   {
     id: "lingscar-redesign",
@@ -313,7 +311,7 @@ const projects: Project[] = [
     projectGoal: "The goal of the redesign was to create a clearer and more structured browsing experience that helps users quickly find and evaluate car leasing deals.",
     problemStatement: "The current LINGsCARS homepage and browse deals pages make it difficult for users to quickly discover and compare car leasing offers. The interface contains visual clutter, unclear hierarchy, and limited filtering options, which increases cognitive load and slows down the browsing experience.",
     craftedSolution: {
-      content: "To improve usability and help users quickly discover relevant leasing deals, the platform was redesigned with a clearer information structure, simplified browsing, and more informative vehicle listings.\n\nâ€¢ Created a clear entry point on the homepage to guide users toward browsing lease deals without confusion.\nâ€¢ Improved vehicle cards to include key information such as price, fuel type, transmission, and lease terms for faster comparison.\nâ€¢ Introduced search and advanced filtering to help users quickly narrow down deals based on budget, brand, fuel type, and other preferences.\nâ€¢ Reduced visual clutter and cognitive load by improving layout hierarchy, spacing, and content prioritization.\nâ€¢ Enhanced trust and credibility by adding real customer testimonials",
+      content: "To improve usability and help users quickly discover relevant leasing deals, the platform was redesigned with a clearer information structure, simplified browsing, and more informative vehicle listings.\n\n• Created a clear entry point on the homepage to guide users toward browsing lease deals without confusion.\n• Improved vehicle cards to include key information such as price, fuel type, transmission, and lease terms for faster comparison.\n• Introduced search and advanced filtering to help users quickly narrow down deals based on budget, brand, fuel type, and other preferences.\n• Reduced visual clutter and cognitive load by improving layout hierarchy, spacing, and content prioritization.\n• Enhanced trust and credibility by adding real customer testimonials",
       images: [
         "/images/crafted-solution-collage.png"
       ]

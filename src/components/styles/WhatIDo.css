@@ -7,7 +7,8 @@
   margin: auto;
   z-index: 9;
   padding: 80px 0;
-  will-change: transform;
+  overflow: hidden;
+  /* prevent border decorations leaking outside viewport */
 }
 
 .what-box-outer {
@@ -40,8 +41,8 @@
   width: 100%;
   position: relative;
   display: flex;
+  /* forced visibility */
   justify-content: center;
-  will-change: opacity, transform;
 }
 
 .what-content {
@@ -65,6 +66,8 @@
   font-weight: 400;
   letter-spacing: 1px;
   color: rgba(255, 255, 255, 0.8);
+  word-break: break-word;
+  overflow-wrap: break-word;
 }
 
 .what-content-in {
@@ -164,84 +167,97 @@
   font-size: 18px;
   letter-spacing: 1px;
   font-family: "Bricolage Grotesque", sans-serif;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
   color: rgba(255, 255, 255, 0.8);
 }
 
-/* Skills Grid with Star Ratings */
-.skills-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 20px 32px;
-  margin-top: 10px;
-}
-
-.skill-item {
+/* Skills Carousel Styling */
+.skills-carousel-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 24px;
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 20px;
+  padding: 10px 0;
+  /* CSS mask fade effect that preserves background color and glow orbs */
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, #000 15%, #000 85%, transparent 100%);
 }
 
-.skill-name {
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-}
-
-.star-rating {
+.carousel-row {
   display: flex;
-  gap: 2px;
-}
-
-.star {
-  font-size: 16px;
-  line-height: 1;
-}
-
-.star.filled {
-  color: #d4a24e;
-}
-
-/* Empty star: outline character */
-.star.empty {
-  color: rgba(255, 255, 255, 0.2);
-}
-
-/* Half star: wrapper with two overlapping characters */
-.half-star-wrapper {
-  position: relative;
-  display: inline-block;
-  font-size: 16px;
-  line-height: 1;
-}
-
-.half-star-empty {
-  color: rgba(255, 255, 255, 0.2);
-}
-
-.half-star-filled {
-  position: absolute;
-  left: 0;
-  top: 0;
-  color: #d4a24e;
+  width: 100%;
   overflow: hidden;
-  width: 50%;
-  display: block;
+}
+
+.carousel-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+}
+
+.row-left .carousel-track {
+  animation: scroll-left 35s linear infinite;
+}
+
+.row-right .carousel-track {
+  animation: scroll-right 35s linear infinite;
+}
+
+.carousel-item {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 120px;
+  /* Increased from 110px */
+  background: transparent;
+  border: none;
+  padding: 0;
+  margin-right: 32px;
+  /* Balanced spacing */
+}
+
+.carousel-item:hover {
+  background: transparent;
+}
+
+.skill-image {
+  height: 100%;
+  max-width: 180px;
+  object-fit: contain;
+  transition: filter 0.3s, transform 0.3s;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
 
 @media only screen and (max-width: 1400px) {
-
   .what-content h3 {
     font-size: 28px;
   }
 
   .what-content {
     padding: 30px;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 15px 20px;
   }
 }
 
@@ -256,31 +272,135 @@
     width: 100%;
   }
 
-  .skills-grid {
-    grid-template-columns: repeat(2, 1fr);
+  .what-content {
+    padding: 24px 16px;
+    /* reduce horizontal padding on tablet */
   }
 
   .what-content h3 {
     font-size: 24px;
   }
+
+  .carousel-item {
+    height: 100px;
+    padding: 0;
+    margin-right: 20px;
+  }
 }
 
-@media only screen and (max-width: 550px) {
+/*
+ * MOBILE: Switch from section-container's --cWidth margin approach to
+ * full-width + own horizontal padding. This prevents margin + inner-padding
+ * stacking that causes text overflow on narrow screens.
+ */
+@media only screen and (max-width: 540px) {
   .whatIDO {
-    align-items: flex-start;
-    padding: 40px 0;
+    /* Override section-container width: use full viewport width */
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    /* Outer horizontal padding replaces section-container's side margins */
+    padding: 30px 16px;
+    overflow: hidden;
   }
 
-  .what-box {
-    justify-content: flex-start;
+  .what-box,
+  .what-box-in {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
-  .what-box h2 {
-    text-align: left;
-    font-size: 45px;
+  .what-content {
+    padding: 28px 16px;
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
   }
 
-  .skills-grid {
-    grid-template-columns: repeat(1, 1fr);
+  .what-content h3 {
+    font-size: 20px;
+    letter-spacing: 0.5px;
+  }
+
+  .what-content-in h5 {
+    font-size: 15px;
+    margin-bottom: 14px;
+  }
+
+  .what-content p {
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    line-height: 22px;
+  }
+
+  .carousel-item {
+    height: 80px;
+    margin-right: 14px;
+  }
+
+  .skills-carousel-container {
+    gap: 14px;
+    margin-top: 14px;
+  }
+}
+
+/* Small phones: iPhone 14 / large Android (≤ 430px) */
+@media only screen and (max-width: 430px) {
+  .whatIDO {
+    padding: 24px 12px;
+  }
+
+  .what-content {
+    padding: 24px 16px;
+  }
+
+  .what-content h3 {
+    font-size: 18px;
+  }
+
+  .what-content p {
+    font-size: 13px;
+    line-height: 20px;
+  }
+
+  .what-content-in h5 {
+    font-size: 14px;
+    margin-bottom: 12px;
+  }
+
+  .carousel-item {
+    height: 70px;
+    margin-right: 12px;
+  }
+
+  .skills-carousel-container {
+    gap: 12px;
+    margin-top: 12px;
+  }
+}
+
+/* Very small phones: iPhone SE / Galaxy S (≤ 380px) */
+@media only screen and (max-width: 380px) {
+  .whatIDO {
+    padding: 20px 16px;
+  }
+
+  .what-content {
+    padding: 20px 16px;
+  }
+
+  .what-content h3 {
+    font-size: 16px;
+  }
+
+  .carousel-item {
+    height: 62px;
+    margin-right: 10px;
+  }
+
+  .skills-carousel-container {
+    gap: 10px;
   }
 }

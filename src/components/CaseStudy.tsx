@@ -35,7 +35,19 @@ const CaseStudy = () => {
       ScrollTrigger.refresh();
     }, 500);
 
-    return () => clearTimeout(timeoutId);
+    // Refresh scroll boundaries when images load or content resizes
+    const resizeObserver = new ResizeObserver(() => {
+      ScrollTrigger.refresh();
+    });
+    const smoothContent = document.getElementById("smooth-content");
+    if (smoothContent) {
+      resizeObserver.observe(smoothContent);
+    }
+
+    return () => {
+      clearTimeout(timeoutId);
+      if (smoothContent) resizeObserver.unobserve(smoothContent);
+    };
   }, [setLoading]);
 
   if (!project) {
@@ -221,6 +233,19 @@ const CaseStudy = () => {
               <section className="cs-section">
                 <h2 className="section-title">Crafted Solution</h2>
                 {project.craftedSolution.content && <p className="cs-body">{project.craftedSolution.content}</p>}
+                
+                {project.craftedSolution.video && (
+                  <div className="cs-crafted-video-card">
+                    <video
+                      src={project.craftedSolution.video}
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
+                      className="cs-crafted-video"
+                    />
+                  </div>
+                )}
                 {project.craftedSolution.features && project.craftedSolution.features.map((feature, idx) => {
                   const hasImage = feature.image || (feature.images && feature.images.length > 0);
                   const textContent = (
@@ -392,9 +417,7 @@ const CaseStudy = () => {
               </section>
             </div>
           </div>
-          <div className="cs-footer-contact">
-            <Footer />
-          </div>
+          <Footer />
         </div>
       </div>
     </div>

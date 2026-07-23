@@ -3,12 +3,19 @@
   background-color: transparent;
   color: #eae5ec;
   font-family: "Geist", sans-serif;
+}
+
+.cs-page #smooth-wrapper {
+  top: 0 !important;
+  height: 100vh !important;
+}
+
+.cs-page #smooth-content {
   padding-top: 160px;
-  padding-bottom: 50px;
 }
 
 .cs-container {
-  margin-top: 130px;
+  /* Removed margin-top to avoid double spacing with #smooth-content padding */
 }
 
 /* ── Hero ── */
@@ -247,6 +254,26 @@
 .cs-summary-value {
   font-size: 20px;
   font-weight: 600;
+}
+
+/* ── Crafted Solution Video ── */
+.cs-crafted-video-card {
+  margin-top: 20px;
+  margin-bottom: 40px;
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+  overflow: hidden;
+}
+
+.cs-crafted-video {
+  width: 100%;
+  border-radius: 0; /* Inherits from parent overflow hidden */
+  display: block;
 }
 
 /* ── Crafted Solution 2-Column ── */
@@ -668,7 +695,7 @@
     padding: 0 16px;
   }
 
-  .cs-page {
+  .cs-page #smooth-content {
     padding-top: 120px;
   }
 
@@ -982,7 +1009,7 @@
   .cs-table-feature {
     font-size: 18px;
     font-weight: 800;
-    color: var(--accentColor);
+    color: #ffffff;
     border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
     padding-bottom: 12px !important;
     margin-bottom: 16px;
