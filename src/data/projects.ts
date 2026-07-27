@@ -50,6 +50,28 @@ export interface Project {
       why: string;
     }[];
   };
+  competitorAnalysis?: {
+    title: string;
+    headers: string[];
+    rows: {
+      criteria: string;
+      values: ('yes' | 'no' | 'partial')[];
+    }[];
+  };
+  userPersonas?: {
+    name: string;
+    age: number;
+    occupation: string;
+    location: string;
+    techComfort: string;
+    healthcareNeed: string;
+    bio: string;
+    goals: string[];
+    painPoints: string[];
+    needs: string[];
+    quote: string;
+    image?: string;
+  }[];
   summary: string;
   duration: string;
   role: string;
@@ -182,13 +204,13 @@ const projects: Project[] = [
         },
         {
           feature: "Trust Signals",
-          whatChanged: "Added ratings, verification badges, consultation fees, and recommendation tags to every doctor card",
+          whatChanged: "Added ratings, verification badges, consultation fees, and recommendation tags to find better doctors",
           why: "Missing trust indicators were the primary reason users hesitated before booking"
         },
         {
           feature: "Book Now CTA",
           whatChanged: "Introduced a strong, consistently placed Book Now button with clear visual weight",
-          why: "The original CTA was weak and inconsistently positioned, causing users to miss it"
+          why: "The original CTA was having weak visual hirarchy, and users hesitate to click it"
         },
         {
           feature: "AI Assistant",
@@ -212,6 +234,85 @@ const projects: Project[] = [
         }
       ]
     },
+    competitorAnalysis: {
+      title: "Competetive Analysis",
+      headers: ["Criteria", "mDoc (Redesign)", "Practo", "MediBuddy"],
+      rows: [
+        { criteria: "Clean Home Screen", values: ["yes", "no", "partial"] },
+        { criteria: "Simple Information Hierarchy", values: ["yes", "no", "partial"] },
+        { criteria: "Easy-to-Scan Doctor Cards", values: ["yes", "no", "yes"] },
+        { criteria: "Advanced Search & Filters", values: ["yes", "partial", "yes"] },
+        { criteria: "Streamlined Booking Flow", values: ["yes", "no", "yes"] },
+        { criteria: "Clear Call-to-Action", values: ["yes", "partial", "yes"] },
+        { criteria: "Appointment Management", values: ["yes", "yes", "yes"] },
+        { criteria: "Visual Consistency", values: ["yes", "partial", "yes"] },
+        { criteria: "Low Cognitive Load", values: ["yes", "no", "partial"] },
+        { criteria: "Modern UI", values: ["yes", "partial", "yes"] },
+        { criteria: "Doctor Ratings & Reviews", values: ["yes", "yes", "yes"] },
+        { criteria: "Online Consultation", values: ["yes", "yes", "yes"] },
+        { criteria: "AI Assistance", values: ["yes", "yes", "no"] }
+      ]
+    },
+    userPersonas: [
+      {
+        name: "Rahul Sharma",
+        age: 29,
+        occupation: "Software Engineer",
+        location: "Hyderabad",
+        techComfort: "High",
+        healthcareNeed: "Books appointments for himself when feeling unwell.",
+        image: "/images/rahul-sharma-persona.png",
+        bio: "Rahul works long hours and prefers booking doctor appointments online rather than visiting hospitals without prior scheduling. He values speed, convenience, and the ability to compare doctors based on ratings, availability, and specialization.",
+        goals: [
+          "Find the right specialist quickly.",
+          "Book an appointment in under 2 minutes.",
+          "View doctor ratings and availability.",
+          "Easily reschedule appointments if needed."
+        ],
+        painPoints: [
+          "Too many options make choosing a doctor difficult.",
+          "Cluttered screens slow down booking.",
+          "Limited filtering wastes time.",
+          "Long booking flows feel frustrating."
+        ],
+        needs: [
+          "Clean interface",
+          "Advanced filters",
+          "Simple booking flow",
+          "Appointment reminders"
+        ],
+        quote: "I just want to find the right doctor and book an appointment quickly without going through unnecessary steps."
+      },
+      {
+        name: "Priya Nair",
+        age: 41,
+        occupation: "Homemaker",
+        location: "Bengaluru",
+        techComfort: "Moderate",
+        healthcareNeed: "Frequently books appointments for her children and elderly parents.",
+        image: "/images/priya-nair-persona.png",
+        bio: "Priya manages healthcare appointments for her family. She prefers an app that clearly displays doctor information, available time slots, and appointment details without requiring multiple steps.",
+        goals: [
+          "Book appointments for family members.",
+          "Compare doctors easily.",
+          "Access appointment history.",
+          "Reschedule or cancel appointments effortlessly."
+        ],
+        painPoints: [
+          "Confusing navigation.",
+          "Too much medical information on one screen.",
+          "Difficulty comparing doctors.",
+          "Fear of booking the wrong time slot."
+        ],
+        needs: [
+          "Clear doctor profiles",
+          "Easy appointment management",
+          "Simple navigation",
+          "Large, readable interface"
+        ],
+        quote: "I need an app that's easy to understand so I can book appointments for my family without confusion."
+      }
+    ],
     craftedSolution: {
       content: "",
       video: "/images/mdoc-casestudy-mockup.webm",
@@ -226,7 +327,7 @@ const projects: Project[] = [
             "Structured health plans with pricing, benefits, and strong CTAs to improve conversions",
             "Replaced hamburger menu with bottom navigation including core sections to reduce steps and improve",
           ],
-          images: ["/images/mdoc-home.png", "/images/mdoc-home-1.png"],
+          images: ["/images/mdoc-home-screen.png", "/images/mdoc-home-screen-1.png"],
           imagePosition: "right"
         },
         {
@@ -239,7 +340,7 @@ const projects: Project[] = [
             "Highlighted consultation fees and strong Book Now CTA to support faster decisions and conversions",
             "Maintained consistent spacing and improved clinic info with direction action for better readability and accessibility",
           ],
-          image: "/images/mdoc-dr-listing.png",
+          image: "/images/mdoc-doctor-listing-screen.png",
           imagePosition: "left"
         },
         {
@@ -253,7 +354,7 @@ const projects: Project[] = [
             "Maintained clean chat layout with clear message hierarchy",
             "Positioned AI as a core feature to assist users throughout their journey"
           ],
-          images: ["/images/mdoc-ai.png", "/images/mdoc-ai-chat.png"],
+          images: ["/images/mdoc-ask-ai-screen.png", "/images/mdoc-ask-ai-chat-screen.png"],
           imagePosition: "right"
         },
         {
@@ -267,7 +368,7 @@ const projects: Project[] = [
             "Maintained consistent UI design with overall app theme",
             "Enhanced visibility of key actions like appointments, bookings, and subscriptions"
           ],
-          image: "/images/mdoc-profile.png",
+          image: "/images/mdoc-profile-screen.png",
           imagePosition: "left"
         },
       ],
@@ -280,7 +381,21 @@ const projects: Project[] = [
     platform: "Mobile App",
     wireframes: [],
     finalScreens: [
-      { url: "/images/mdoc-final-screens.png", mobileUrl: "/images/mdoc-final-screens-responsive.png", title: "Home Screen" },
+      { url: "/images/mdoc-splash-screen.png", title: "Splash Screen" },
+      { url: "/images/mdoc-onboarding-screen.png", title: "Onboarding" },
+      { url: "/images/mdoc-login-screen.png", title: "Login" },
+      { url: "/images/mdoc-otp-screen.png", title: "OTP Verification" },
+      { url: "/images/mdoc-home-screen.png", title: "Home Screen" },
+      { url: "/images/mdoc-home-screen-1.png", title: "Home Screen Alt" },
+      { url: "/images/mdoc-doctor-listing-screen.png", title: "Doctor Listing" },
+      { url: "/images/mdoc-filters-screen.png", title: "Search & Filters" },
+      { url: "/images/mdoc-booking-screen.png", title: "Doctor Booking" },
+      { url: "/images/mdoc-appointment-screen.png", title: "My Appointments" },
+      { url: "/images/mdoc-ask-ai-screen.png", title: "Ask AI" },
+      { url: "/images/mdoc-ask-ai-chat-screen.png", title: "AI Assistant Chat" },
+      { url: "/images/mdoc-profile-screen.png", title: "Profile & Settings" },
+      { url: "/images/mdoc-booking-details-screen.png", title: "Booking Details" },
+      { url: "/images/mdoc-confirmation-screen.png", title: "Appointment Confirmation" },
     ],
     beforeAfter: [],
     outcome: "The redesign improved usability by simplifying navigation and making key actions like booking appointments faster and easier. Enhanced layouts, filters, and AI assistance helped users find relevant information quickly and make better decisions. Overall, the app became more user-friendly, efficient, and accessible, especially for users in rural areas.",
@@ -294,7 +409,7 @@ const projects: Project[] = [
         description: "A real-time appointment timeline could be implemented to keep users informed throughout the booking journey, from confirmation to consultation completion."
       }
     ],
-    thankYou: "Thank you for reviewing the mDoc Case Study. Let's create more impactful designs together!"
+    thankYou: "Need help with your product? Let's build it better!"
   },
   {
     id: "lingscar-redesign",

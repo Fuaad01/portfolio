@@ -35,10 +35,18 @@ const Navbar = () => {
     }
     ScrollSmoother.refresh(true);
 
+    const smoothContent = document.getElementById("smooth-content");
+    let lastHeight = smoothContent?.scrollHeight || 0;
     const resizeObserver = new ResizeObserver(() => {
+      const currentHeight = smoothContent?.scrollHeight || 0;
+      if (currentHeight !== lastHeight) {
+        lastHeight = currentHeight;
+        if (smoother) {
+          ScrollSmoother.refresh(true);
+        }
+      }
       ScrollTrigger.refresh();
     });
-    const smoothContent = document.getElementById("smooth-content");
     if (smoothContent) {
       resizeObserver.observe(smoothContent);
     }
