@@ -25,7 +25,7 @@ const CaseStudy = () => {
   const insightsRef = useRef<HTMLDivElement>(null);
   const [activeInsight, setActiveInsight] = useState(0);
   const isUserInteracting = useRef(false);
-  const interactTimeout = useRef<NodeJS.Timeout | null>(null);
+  const interactTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
   const craftedRef = useRef<HTMLDivElement>(null);
   const [activeCrafted, setActiveCrafted] = useState(0);
   const [selectedScreen, setSelectedScreen] = useState<{ url: string; title: string; mobileUrl?: string } | null>(null);
