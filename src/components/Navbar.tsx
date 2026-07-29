@@ -37,15 +37,19 @@ const Navbar = () => {
 
     const smoothContent = document.getElementById("smooth-content");
     let lastHeight = smoothContent?.scrollHeight || 0;
+    let resizeTimer: ReturnType<typeof setTimeout>;
     const resizeObserver = new ResizeObserver(() => {
-      const currentHeight = smoothContent?.scrollHeight || 0;
-      if (currentHeight !== lastHeight) {
-        lastHeight = currentHeight;
-        if (smoother) {
-          ScrollSmoother.refresh(true);
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const currentHeight = smoothContent?.scrollHeight || 0;
+        if (Math.abs(currentHeight - lastHeight) > 1) {
+          lastHeight = currentHeight;
+          if (smoother) {
+            ScrollSmoother.refresh(true);
+          }
+          ScrollTrigger.refresh();
         }
-      }
-      ScrollTrigger.refresh();
+      }, 150);
     });
     if (smoothContent) {
       resizeObserver.observe(smoothContent);
@@ -85,6 +89,9 @@ const Navbar = () => {
     });
 
     return () => {
+      if (smootherInstance) {
+        smootherInstance.kill();
+      }
       if (smoothContent) {
         resizeObserver.unobserve(smoothContent);
       }

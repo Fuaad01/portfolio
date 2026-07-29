@@ -108,28 +108,10 @@ const CaseStudy = () => {
       ScrollTrigger.refresh();
     }, 3000);
 
-    // Refresh scroll boundaries when images load or content resizes
-    const smoothContent = document.getElementById("smooth-content");
-    let lastHeight = smoothContent?.scrollHeight || 0;
-    const resizeObserver = new ResizeObserver(() => {
-      const currentHeight = smoothContent?.scrollHeight || 0;
-      if (currentHeight !== lastHeight) {
-        lastHeight = currentHeight;
-        if (smoother) {
-          ScrollSmoother.refresh(true);
-        }
-      }
-      ScrollTrigger.refresh();
-    });
-    if (smoothContent) {
-      resizeObserver.observe(smoothContent);
-    }
-
     return () => {
       clearTimeout(timeoutId);
       clearTimeout(timeoutId2);
       clearTimeout(timeoutId3);
-      if (smoothContent) resizeObserver.unobserve(smoothContent);
     };
   }, [setLoading, id]);
 
@@ -206,49 +188,45 @@ const CaseStudy = () => {
     // Safety delay to ensure DOM and images are rendered so widths are accurate before pinning
     const timeout = setTimeout(() => {
       ctx = gsap.context(() => {
-        const section = document.getElementById("final-screens-section");
-        const grid = document.getElementById("final-screens-grid");
-        const track = document.getElementById("final-screens-track");
+        const mm = gsap.matchMedia();
+        mm.add("(min-width: 901px)", () => {
+          const section = document.getElementById("final-screens-section");
+          const grid = document.getElementById("final-screens-grid");
+          const track = document.getElementById("final-screens-track");
 
-        if (section && grid && track) {
-          const getScrollAmount = () => {
-            return -(grid.scrollWidth - track.offsetWidth + 450);
-          };
+          if (section && grid && track) {
+            const getScrollAmount = () => {
+              return -(grid.scrollWidth - track.offsetWidth + 450);
+            };
 
-          gsap.to(grid, {
-            x: getScrollAmount,
-            ease: "none",
-            scrollTrigger: {
-              trigger: section,
-              start: window.innerWidth <= 768 ? "top 70px" : "top 140px",
-              end: () => `+=${Math.abs(getScrollAmount())}`,
-              pin: true,
-              scrub: 1,
-              invalidateOnRefresh: true,
-            }
-          });
+            gsap.to(grid, {
+              x: getScrollAmount,
+              ease: "none",
+              scrollTrigger: {
+                trigger: section,
+                start: "top 140px",
+                end: () => `+=${Math.abs(getScrollAmount())}`,
+                pin: true,
+                scrub: 1,
+                invalidateOnRefresh: true,
+              }
+            });
 
-          const ro = new ResizeObserver(() => {
-            ScrollTrigger.refresh();
-            if (smoother) ScrollSmoother.refresh(true);
-          });
-          ro.observe(grid);
+            const t1 = setTimeout(() => {
+              ScrollTrigger.refresh();
+              if (smoother) ScrollSmoother.refresh(true);
+            }, 1000);
+            const t2 = setTimeout(() => {
+              ScrollTrigger.refresh();
+              if (smoother) ScrollSmoother.refresh(true);
+            }, 2500);
 
-          const t1 = setTimeout(() => {
-            ScrollTrigger.refresh();
-            if (smoother) ScrollSmoother.refresh(true);
-          }, 1000);
-          const t2 = setTimeout(() => {
-            ScrollTrigger.refresh();
-            if (smoother) ScrollSmoother.refresh(true);
-          }, 2500);
-
-          return () => {
-            ro.disconnect();
-            clearTimeout(t1);
-            clearTimeout(t2);
-          };
-        }
+            return () => {
+              clearTimeout(t1);
+              clearTimeout(t2);
+            };
+          }
+        });
       });
     }, 300);
 

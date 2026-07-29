@@ -4,7 +4,6 @@ import Career from "./Career";
 import Footer from "./Footer";
 import ContactBanner from "./ContactBanner";
 import Landing from "./Landing";
-import Marquee from "./Marquee";
 import Navbar from "./Navbar";
 import WhatIDo from "./WhatIDo";
 import Work from "./Work";
@@ -13,6 +12,7 @@ import setSplitText from "./utils/splitText";
 import { setCharTimeline, setAllTimeline } from "./utils/GsapScroll";
 import { setProgress } from "./utils/loadingUtils";
 import { useLoading } from "../context/LoadingContext";
+import gsap from "gsap";
 
 const MainContainer = () => {
   const [isDesktopView, setIsDesktopView] = useState<boolean>(
@@ -40,11 +40,17 @@ const MainContainer = () => {
 
   // Initialize section scroll animations after ScrollSmoother is ready
   useEffect(() => {
+    let ctx: gsap.Context;
     const timeoutId = setTimeout(() => {
-      setCharTimeline();
-      setAllTimeline();
+      ctx = gsap.context(() => {
+        setCharTimeline();
+        setAllTimeline();
+      });
     }, 500);
-    return () => clearTimeout(timeoutId);
+    return () => {
+      clearTimeout(timeoutId);
+      if (ctx) ctx.revert();
+    };
   }, []);
 
   return (
@@ -54,7 +60,6 @@ const MainContainer = () => {
         <BackgroundGlows />
         <div id="smooth-content">
           <Landing />
-          <Marquee />
           <About />
           <WhatIDo />
           <Career />
