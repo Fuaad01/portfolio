@@ -207,7 +207,7 @@ const CaseStudy = () => {
                 start: "top 140px",
                 end: () => `+=${Math.abs(getScrollAmount())}`,
                 pin: true,
-                scrub: 1,
+                scrub: true,
                 invalidateOnRefresh: true,
               }
             });

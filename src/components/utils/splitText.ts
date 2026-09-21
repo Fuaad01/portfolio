@@ -77,5 +77,8 @@ export default function setSplitText() {
     );
   });
 
-  ScrollTrigger.addEventListener("refresh", () => setSplitText());
+  if (!(window as any)._splitTextListenerAdded) {
+    ScrollTrigger.addEventListener("refresh", () => setSplitText());
+    (window as any)._splitTextListenerAdded = true;
+  }
 }

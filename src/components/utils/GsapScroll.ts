@@ -14,7 +14,7 @@ export function setCharTimeline() {
       trigger: ".landing-section",
       start: "top top",
       end: "bottom top",
-      scrub: 1.2,          // lag = smoothing factor (seconds to "catch up")
+      scrub: true,          // lag = smoothing factor (seconds to "catch up")
       invalidateOnRefresh: true,
     },
   }).to(".landing-container", {
@@ -74,7 +74,7 @@ export function setAllTimeline() {
       trigger: ".career-section",
       start: "top 35%",
       end: "80% center",
-      scrub: 1.5,
+      scrub: true,
       invalidateOnRefresh: true,
     },
   });
