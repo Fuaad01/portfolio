@@ -376,7 +376,7 @@ const projects: Project[] = [
     },
     userFlowDiagram: "/images/mdoc-user-flow-diagram.png",
     summary: "The redesign simplified key healthcare journeys, boosting booking conversion and daily vitals logging engagement.",
-    duration: "2 Weeks",
+    duration: "4 Weeks",
     role: "UX/UI Designer",
     platform: "Mobile App",
     wireframes: [],
