@@ -1,50 +1,54 @@
 .landing-section {
   width: 100%;
-  max-width: var(--cMaxWidth);
+  max-width: 100%;
   margin: auto;
   position: relative;
-  height: var(--vh);
+  min-height: 100vh;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
 }
+
 
 /* Animated Resonance Background */
 .hero-animated-bg {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100%;
   z-index: 0;
   pointer-events: none;
   background-position: center top;
-  opacity: 0.6;
-  /* Subdue the entire layer */
+  opacity: 0.85;
 
-  /* Creates the strict, non-stretching 120px wide resonance bars (reduced brightness) */
-  background-image: repeating-linear-gradient(90deg,
-      rgba(26, 79, 255, 0.0) 0px,
+  /* Radial glow and strict non-stretching 120px wide resonance bars together */
+  background-image:
+    radial-gradient(circle at 50% 50%, rgba(26, 79, 255, 0.22) 0%, rgba(10, 16, 36, 0.7) 45%, transparent 75%),
+    repeating-linear-gradient(90deg,
+      rgba(26, 79, 255, 0) 0px,
       rgba(26, 79, 255, 0.01) 80px,
       rgba(26, 79, 255, 0.04) 119px,
       rgba(26, 79, 255, 0.12) 120px);
 
-  /* Smooth, continuous sweeping animation */
-  /* Animation removed as requested to keep bars static */
-
-  /* Fade out at the bottom */
-  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 95%);
+  mask-image: linear-gradient(to bottom, #000 45%, transparent 95%);
 }
 
 /* Sweeping glowing effect from left top to right bottom */
 .hero-animated-bg::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -50%;
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(ellipse at 50% 50%, var(--accentColor) 0%, transparent 50%);
+  background: radial-gradient(ellipse at 50% 50%,
+      var(--accentColor) 0%,
+      transparent 50%);
   opacity: 0;
-  /* Base opacity starting invisible for the dissolve */
   animation: dissolve-sweep 8s infinite ease-in-out;
   filter: blur(30px);
 }
@@ -56,22 +60,20 @@
   }
 
   20% {
-    opacity: 0.5;
-    /* Fade in brighter */
+    opacity: 0.4;
   }
 
   80% {
-    opacity: 0.5;
+    opacity: 0.4;
   }
 
   100% {
     transform: translate(30%, 30%) scale(1.1);
     opacity: 0;
-    /* Fade out / dissolve */
   }
 }
 
-/* ── Hero Blended Portrait/Image ── */
+/* Hero Blended Portrait/Image */
 .hero-bg-image {
   position: absolute;
   top: 0;
@@ -79,462 +81,762 @@
   width: 100%;
   height: 100%;
   z-index: 1;
-  /* Sits above animated background, but below content */
   pointer-events: none;
-  background-image: url('/images/bg.png');
+  background-image: url("/images/bg.png");
   background-size: contain;
   background-position: center bottom;
   background-repeat: no-repeat;
-
-  /* Premium blend to integrate it naturally with the dark colors */
-  opacity: 0.6;
-
-  /* Fades out seamlessly into the dark bottom */
-  -webkit-mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 60%, transparent 100%);
+  opacity: 0.4;
+  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 95%);
+  mask-image: linear-gradient(to bottom, #000 45%, transparent 95%);
 }
 
-
-.landing-container {
-  width: var(--cWidth);
-  margin: auto;
-  height: 100%;
-  position: relative;
-  max-width: var(--cMaxWidth);
-}
-
-.nav-fade {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  height: 150px;
-  background-image: linear-gradient(180deg,
-      var(--backgroundColor) 0%,
-      transparent 100%);
-  pointer-events: none;
-  z-index: 12;
-  opacity: 0.8;
-  left: 0;
-}
-
-@keyframes loadingCircle {
-  0% {
-    transform: translate(-95%, -75%) rotateZ(0deg);
-  }
-
-  100% {
-    transform: translate(-95%, -75%) rotateZ(360deg);
-  }
-}
-
-@keyframes loadingCircle2 {
-  100% {
-    transform: translate(calc(100% - 2px), -50%) rotate(360deg);
-  }
-}
-
-@keyframes text-gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-.landing-video,
-.landing-image {
+/* ── Left-side Floating Social Bar ("FIND ME ON") ── */
+.hero-social-rail {
   position: absolute;
-  bottom: 0;
-  height: 95%;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  z-index: 20;
 }
 
-.landing-image img {
-  height: 100%;
-  z-index: 2;
-  position: relative;
+.hero-social-line {
+  width: 1.5px;
+  height: 48px;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.3));
 }
 
-
-.character-hover {
-  display: none;
+.hero-social-label {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: "Geist", sans-serif;
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: rgba(255, 255, 255, 0.4);
+  margin: 4px 0 6px 0;
+  user-select: none;
 }
 
-.hero-center {
+.hero-social-icons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-social-circle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: rgba(15, 23, 42, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-align: center;
-  height: 100vh;
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 14px;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.hero-social-circle:hover {
+  color: #ffffff;
+  border-color: #3b82f6;
+  background: rgba(37, 99, 235, 0.25);
+  transform: scale(1.12) translateY(-2px);
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.5);
+}
+
+/* ── Main Stage Container ── */
+.landing-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-stage-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 110px 0 60px;
+  box-sizing: border-box;
   position: relative;
 }
 
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 80px;
-}
-
-.hero-intro {
-  font-size: 22px;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 16px;
-  font-family: "Bricolage Grotesque", sans-serif;
-  letter-spacing: 1px;
-}
-
-.text-grey {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-.hero-title {
-  font-size: clamp(48px, 8vw, 84px);
-  font-weight: 800;
-  line-height: 1.1;
-  margin: 0;
-  font-family: "Bricolage Grotesque", sans-serif;
-  text-transform: uppercase;
-  letter-spacing: -0.04em;
-  color: #fff;
+/* ── View Transitions (Profile ↔ Chatbox) ── */
+.hero-view-content {
   width: 100%;
-  max-width: 1200px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-view-content.view-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0px);
+  pointer-events: auto;
+  visibility: visible;
+}
+
+.hero-view-content.view-hidden {
+  opacity: 0;
+  transform: scale(0.94) translateY(-20px);
+  filter: blur(8px);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease, visibility 0.3s;
+}
+
+/* Chatbox view container */
+.hero-view-chatbox {
+  width: 100%;
+  max-width: 1140px;
+  margin: 0 auto;
+  transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    filter 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-view-chatbox.view-active {
+  opacity: 1;
+  transform: scale(1) translateY(0);
+  filter: blur(0px);
+  pointer-events: auto;
+  position: relative;
+  visibility: visible;
+  width: 100%;
+}
+
+.hero-view-chatbox.view-hidden {
+  opacity: 0;
+  transform: scale(0.96) translateY(20px);
+  filter: blur(8px);
+  pointer-events: none;
+  position: absolute;
+  visibility: hidden;
+  transition: opacity 0.3s ease, transform 0.3s ease, filter 0.3s ease, visibility 0.3s;
+}
+
+/* Hide social rail and floating trigger when chatbox transforms full section */
+.landing-section.chat-transformed .hero-social-rail,
+.landing-section.chat-transformed .hero-chat-trigger-pill {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(16px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* ── Full Immersion Chat Mode (No scroll, no other sections, only chatbox) ── */
+body.chat-mode-active {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+body.chat-mode-active #smooth-wrapper,
+body.chat-mode-active #smooth-content {
+  overflow: hidden !important;
+  height: 100vh !important;
+}
+
+/* Hide all other sections when chat is open */
+body.chat-mode-active #smooth-content>*:not(#landingDiv) {
+  display: none !important;
+}
+
+/* Hide navbar, social rail, and trigger pill */
+body.chat-mode-active .header,
+body.chat-mode-active .hero-social-rail,
+body.chat-mode-active .hero-chat-trigger-pill {
+  display: none !important;
+}
+
+/* Fullscreen Stage for Chat */
+body.chat-mode-active .landing-section {
+  min-height: 100vh !important;
+  height: 100vh !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 0 !important;
+  overflow: hidden !important;
+}
+
+body.chat-mode-active .hero-stage-container {
+  min-height: 100vh !important;
+  height: 100vh !important;
+  padding: 24px 0 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  width: 92% !important;
+  max-width: 1240px !important;
+}
+
+body.chat-mode-active .hero-view-chatbox {
+  width: 100% !important;
+  max-width: 1180px !important;
+  height: calc(100vh - 48px) !important;
+  max-height: 720px !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.chat-mode-active .full-hero-chatbox {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.chat-mode-active .full-hero-chatbox .chatbox-outer-card {
+  width: 100% !important;
+  height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+body.chat-mode-active .full-hero-chatbox .chatbox-inner {
+  width: 100% !important;
+  height: 100% !important;
+  flex: 1 !important;
+  min-height: 0 !important;
+  padding: 24px 32px 20px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-start !important;
+  gap: 16px !important;
+}
+
+body.chat-mode-active .full-hero-chatbox .chatbox-messages {
+  flex: 1 !important;
+  min-height: 160px !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+}
+
+@media screen and (max-width: 768px) {
+  body.chat-mode-active .hero-stage-container {
+    padding: 16px 0 !important;
+    width: 95% !important;
+  }
+
+  body.chat-mode-active .hero-view-chatbox {
+    height: calc(100vh - 32px) !important;
+    max-height: none !important;
+  }
+
+  body.chat-mode-active .full-hero-chatbox .chatbox-inner {
+    padding: 18px 16px !important;
+  }
+}
+
+/* ── Hero Typography (Centered) ── */
+.hero-title {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(38px, 5.2vw, 76px);
+  font-weight: 800;
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.035em;
+  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 55%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
 }
 
 .hero-title-row {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.15em;
-  letter-spacing: 0px;
+  gap: 0.28em;
   white-space: nowrap;
 }
 
-.hero-pill {
-  display: inline-block;
-  height: 1.2em;
-  border-radius: 999px;
-  background-size: cover, 400% 400%;
-  background-position: center, center;
-  background-repeat: no-repeat;
-  position: relative;
-  /* Acts as the absolute bounds for the 3D avatar */
-}
-
-.pill-long {
-  width: 2.2em;
-  background-image: url('/images/top-blob.jpg'), linear-gradient(-45deg, #00d2ff, #3a7bd5, #9b51e0, #ff00cc, #00d2ff);
-}
-
-.pill-short {
-  width: 1.1em;
-  background-image: url('/images/bottom-blob.jpg'), linear-gradient(-45deg, #00d2ff, #3a7bd5, #9b51e0, #ff00cc, #00d2ff);
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+.hero-title .text-grey {
+  background: none;
+  -webkit-text-fill-color: #94a3b8;
+  color: #94a3b8;
+  font-weight: 700;
 }
 
 .profile-pill {
-  width: 2.4em;
-  background-color: #333;
-  overflow: hidden;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  width: 2.7em;
+  height: 1.38em;
+  border-radius: 9999px;
+  overflow: hidden;
   position: relative;
+  background-color: #1a2234;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
+  border: 1.5px solid rgba(255, 255, 255, 0.18);
+  vertical-align: middle;
+  -webkit-text-fill-color: initial;
 }
 
 .profile-pill img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 28%;
-  /* adjust this percentage to move the image up/down inside the pill */
-  position: absolute;
-  top: 0;
-  left: 0;
-}
-
-/* ── 3D Avatar Pop-Out Effect ── */
-/* 1. Base Layer: Inside the pill, hugging its rounded corners strictly */
-.pill-character-base {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border-radius: 999px;
-  /* Hugs the pill bounds */
-  overflow: hidden;
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* 2. Pop Layer: Sits exactly over the pill, freely overflowing Top, Left, and Right. Puts a strict invisible 'floor' cutoff near the bottom so it doesn't overlap the pill's lower curved rim */
-.pill-character-pop {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 2;
-  pointer-events: none;
-  /* (top, right, bottom, left) -> cuts off the bottom 25% */
-  clip-path: inset(-200% -200% 25% -200%);
-}
-
-/* Shared image logic so they overlap pixel-perfectly */
-.pill-character-base img,
-.pill-character-pop img {
-  position: absolute;
-  bottom: -12px;
-  /* Adjusting the physical base height of the avatar inside the pill bounds */
-  left: 50%;
-  transform: translateX(-50%);
-  height: 200%;
-  /* The avatar scales out gracefully upwards */
-  width: auto;
-  pointer-events: none;
-}
-
-@keyframes pill-gradient {
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+  object-position: center 25%;
 }
 
 .hero-desc {
+  font-family: "Geist", sans-serif;
   font-size: 18px;
-  color: rgba(255, 255, 255, 0.8);
-  max-width: 600px;
-  margin: 20px 0 0;
+  line-height: 1.58;
+  color: #94a3b8;
+  max-width: 580px;
+  margin: 22px auto 0;
+  text-align: center;
   font-weight: 400;
-  letter-spacing: 1px;
+  letter-spacing: 0.1px;
 }
 
+/* ── Hero CTA Buttons ── */
 .hero-buttons {
   display: flex;
-  gap: 16px;
-  margin-top: 48px;
-}
-
-/* ── Hero Footer Bar (Vertically Centered Corners) ── */
-.hero-footer {
-  position: absolute;
-  bottom: 5vh;
-  left: 0;
-  right: 0;
-  width: auto;
-  display: flex;
   align-items: center;
-  justify-content: space-between;
-  padding: 0 5vw;
-  z-index: 20;
-  box-sizing: border-box;
-  pointer-events: none;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 36px;
+  flex-wrap: wrap;
 }
 
-/* Socials wrapper properties now handled by hero-footer flexbox */
-.hero-socials {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: start;
-  pointer-events: auto;
-}
-
-.social-text {
-  font-size: 16px;
-  font-weight: 500;
-  color: rgba(255, 255, 255, 0.5);
+.btn-hero-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 28px;
+  background: #2563eb;
+  color: #ffffff;
+  border-radius: 9999px;
+  font-family: "Geist", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
   text-decoration: none;
-  letter-spacing: 1px;
-  transition: all 0.3s ease;
-  pointer-events: auto;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow:
+    0 10px 25px -4px rgba(37, 99, 235, 0.6),
+    inset 0 1px 1px rgba(255, 255, 255, 0.25);
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
 }
 
-.social-text:hover {
-  color: #fff;
-  transform: translateY(-3px);
+.btn-hero-primary:hover {
+  background: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(37, 99, 235, 0.75);
+  color: #ffffff;
 }
 
-/* ── Circular Resume Button ── */
-/* Circular Button wrapper properties now handled by hero-footer flexbox */
-.circular-resume-link {
+.btn-icon-arrow {
+  width: 16px;
+  height: 16px;
+  transition: transform 0.2s ease;
+}
+
+.btn-hero-primary:hover .btn-icon-arrow {
+  transform: translateX(3px);
+}
+
+.btn-hero-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 14px 28px;
+  background: rgba(10, 16, 36, 0.7);
+  color: #ffffff;
+  border-radius: 9999px;
+  font-family: "Geist", sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  box-sizing: border-box;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 22px -6px rgba(0, 0, 0, 0.65);
+  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  cursor: pointer;
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(22, 33, 62, 0.85);
+  border-color: rgba(59, 130, 246, 0.5);
+  transform: translateY(-2px);
+  color: #ffffff;
+}
+
+.btn-icon-download {
+  width: 16px;
+  height: 16px;
+}
+
+/* ── Bottom Right Floating Chat Trigger Pill (High-Luminance Electric Blue Fluid) ── */
+.hero-chat-trigger-pill {
+  position: absolute;
+  right: 48px;
+  bottom: 40px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 24px 10px 10px;
+  background: #0055ff; /* High-Luminance Electric Blue */
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 9999px;
+  color: #ffffff;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 15.5px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: none;
+  z-index: 30;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+  isolation: isolate;
+}
+
+.hero-chat-trigger-pill:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: none;
+  border-color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-chat-trigger-pill.pill-chat-open {
+  background: rgba(14, 18, 30, 0.95);
+  border-color: rgba(239, 68, 68, 0.45);
+  box-shadow: 0 10px 28px -4px rgba(239, 68, 68, 0.3);
+}
+
+/* ── Continuous Liquid Fluid Canvas ── */
+.pill-liquid-bg {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  overflow: hidden;
+  z-index: 0;
+  pointer-events: none;
+  background: #004fff;
+}
+
+/* Fluid Wave 1: Flowing Silk Folds / Ribbons in Radiant Electric Blue */
+.liquid-fluid-wave-1 {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    115deg,
+    #0044ff 0%,
+    #0066ff 22%,
+    #2575fc 40%,
+    #0055ff 55%,
+    #003de6 72%,
+    #0066ff 88%,
+    #0044ff 100%
+  );
+  background-size: 200% 200%;
+  animation: fluidWaveFlow 4s ease-in-out infinite;
+  opacity: 1;
+}
+
+@keyframes fluidWaveFlow {
+  0% {
+    transform: rotate(0deg) scale(1);
+    background-position: 0% 50%;
+  }
+  50% {
+    transform: rotate(4deg) scale(1.08);
+    background-position: 100% 50%;
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+    background-position: 0% 50%;
+  }
+}
+
+/* Fluid Wave 2: Silky Highlight Ribbons */
+.liquid-fluid-wave-2 {
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    108deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0) 15%,
+    rgba(255, 255, 255, 0.18) 28%,
+    rgba(255, 255, 255, 0.35) 35%,
+    rgba(255, 255, 255, 0.18) 42%,
+    transparent 55%
+  );
+  background-size: 250% 100%;
+  animation: fluidRippleGlide 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  mix-blend-mode: overlay;
+}
+
+@keyframes fluidRippleGlide {
+  0% {
+    background-position: -120% 0;
+  }
+  100% {
+    background-position: 130% 0;
+  }
+}
+
+/* Fluid Sheen: Subtle Saturation Glow */
+.liquid-fluid-sheen {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse 85% 65% at 50% 40%,
+    rgba(255, 255, 255, 0.25) 0%,
+    transparent 65%
+  );
+  animation: fluidSheenPulse 3.5s ease-in-out infinite alternate;
+  mix-blend-mode: screen;
+}
+
+@keyframes fluidSheenPulse {
+  0% {
+    transform: translate(-20%, -15%) scale(0.9);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translate(20%, 15%) scale(1.2);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translate(-10%, 20%) scale(1);
+    opacity: 0.6;
+  }
+}
+
+/* Fluid Organic Blobs */
+.liquid-fluid-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(8px);
+  will-change: transform;
+}
+
+.liquid-fluid-blob.blob-1 {
+  width: 70px;
+  height: 70px;
+  top: 50%;
+  left: 20%;
+  background: radial-gradient(circle, #38bdf8 0%, #0055ff 60%, transparent 80%);
+  mix-blend-mode: screen;
+  animation: fluidBlobMove1 4.5s ease-in-out infinite;
+}
+
+@keyframes fluidBlobMove1 {
+  0% { transform: translate(-50%, -50%) scale(0.9); }
+  50% { transform: translate(30%, -70%) scale(1.3); }
+  100% { transform: translate(-50%, -50%) scale(0.9); }
+}
+
+.liquid-fluid-blob.blob-2 {
+  width: 60px;
+  height: 60px;
+  top: 50%;
+  left: 75%;
+  background: radial-gradient(circle, #60a5fa 0%, #0047ff 60%, transparent 80%);
+  mix-blend-mode: screen;
+  animation: fluidBlobMove2 5s ease-in-out infinite;
+}
+
+@keyframes fluidBlobMove2 {
+  0% { transform: translate(-50%, -50%) scale(1.1); }
+  50% { transform: translate(-70%, -20%) scale(0.85); }
+  100% { transform: translate(-50%, -50%) scale(1.1); }
+}
+
+.trigger-pill-avatar-wrapper {
   position: relative;
-  width: 130px;
-  height: 130px;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  padding: 1.5px;
+  background: rgba(255, 255, 255, 0.85);
   display: flex;
   align-items: center;
   justify-content: center;
-  text-decoration: none;
-  color: #fff;
-  transition: transform 0.3s ease;
-  pointer-events: auto;
+  flex-shrink: 0;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.25);
+  z-index: 10;
 }
 
-.circular-resume-link:hover {
-  transform: scale(1.05);
-}
-
-.rotating-text-svg {
+.trigger-pill-avatar {
   width: 100%;
   height: 100%;
-  animation: rotateText 12s linear infinite;
-  overflow: visible;
-}
-
-.rotating-text {
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  fill: #fff;
-}
-
-.resume-icon-center {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 50px;
-  height: 50px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--accentColor);
-  transition: all 0.3s ease;
+  object-fit: cover;
+  object-position: center 15%;
 }
 
-.circular-resume-link:hover .resume-icon-center {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: var(--accentColor);
-  box-shadow: 0 0 20px rgba(0, 210, 255, 0.2);
+.trigger-pill-online-dot {
+  position: absolute;
+  bottom: -1px;
+  right: -1px;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: #22c55e;
+  border: 1.5px solid #0047ff;
+  box-shadow: 0 0 8px #22c55e;
+  animation: pulseDot 2s infinite ease-in-out;
 }
 
-.resume-icon-center svg {
-  width: 24px;
-  height: 24px;
+@keyframes pulseDot {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.25);
+    opacity: 0.85;
+  }
 }
 
-@keyframes rotateText {
-  from {
-    transform: rotate(0deg);
+.trigger-pill-text {
+  position: relative;
+  z-index: 10;
+  letter-spacing: 0.35px;
+  white-space: nowrap;
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 15.5px;
+  font-weight: 800;
+  color: #ffffff !important;
+  opacity: 1 !important;
+  text-shadow: 0 1px 3px rgba(0, 15, 50, 0.5);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Responsive Rules ── */
+@media screen and (max-width: 1100px) {
+  .hero-social-rail {
+    left: 24px;
   }
 
-  to {
-    transform: rotate(360deg);
+  .hero-chat-trigger-pill {
+    right: 28px;
+    bottom: 28px;
   }
 }
 
-@media screen and (max-width: 767px) {
-  .hero-intro {
-    font-size: 16px;
+@media screen and (max-width: 860px) {
+  .hero-social-rail {
+    display: none;
+    /* Keep hero clean on tablets & small screens */
+  }
+
+  .hero-stage-container {
+    padding: 100px 0 60px;
   }
 
   .hero-title {
-    font-size: clamp(32px, 10vw, 56px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
+    font-size: clamp(32px, 7vw, 56px);
   }
 
-  .hero-content {
-    transform: translateY(-10px);
+  .hero-desc {
+    font-size: 16px;
+    max-width: 480px;
   }
 
   .hero-buttons {
-    margin-top: 24px;
+    margin-top: 28px;
     gap: 12px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width: 100%;
   }
 
-  .hero-footer {
-    bottom: 3vh;
-    padding: 0 16px;
-    left: 0;
-    right: 0;
-    width: auto;
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    padding: 12px 24px;
+    font-size: 14px;
   }
 
-  .hero-socials {
-    /* flex-direction: row; */
-    gap: 8px;
-  }
-
-  .circular-resume-link {
-    width: 90px;
-    height: 90px;
-  }
-
-  .resume-icon-center {
-    width: 32px;
-    height: 32px;
-  }
-
-  .resume-icon-center svg {
-    width: 18px;
-    height: 18px;
-  }
-
-  /* Enhance background visibility for mobile */
-  .hero-animated-bg {
-    opacity: 0.9 !important;
-    background-image: repeating-linear-gradient(90deg,
-        rgba(26, 79, 255, 0.0) 0px,
-        rgba(26, 79, 255, 0.04) 80px,
-        rgba(26, 79, 255, 0.12) 119px,
-        rgba(26, 79, 255, 0.25) 120px) !important;
-  }
-
-  .hero-bg-image {
-    background-size: cover !important;
-    background-position: center 25% !important;
-    opacity: 0.8 !important;
-  }
-
-  .hero-animated-bg::before {
-    opacity: 0.3;
-    /* Higher base opacity for sweep on mobile */
-    filter: blur(25px);
+  .hero-chat-trigger-pill {
+    right: 20px;
+    bottom: 20px;
+    padding: 7px 16px 7px 8px;
+    font-size: 13.5px;
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 520px) {
+  .hero-stage-container {
+    padding: 90px 0 40px;
+  }
+
+  .hero-title {
+    font-size: clamp(28px, 8.5vw, 42px);
+  }
+
+  .hero-title-row {
+    flex-wrap: wrap;
+  }
+
+  .profile-pill {
+    width: 2.3em;
+    height: 1.2em;
+  }
+
   .hero-desc {
-    font-size: 16px;
-    line-height: 24px;
-    margin-top: 16px;
+    font-size: 14.5px;
+    line-height: 22px;
+    margin-top: 14px;
+    padding: 0 12px;
   }
-}
 
-@media screen and (max-width: 480px) {
-  .hero-content {
-    transform: translateY(-80px);
+  .hero-buttons {
+    flex-direction: column;
+    width: 100%;
+    max-width: 380px;
+    margin: 22px auto 0;
+    gap: 10px;
+    padding: 0 16px;
+    box-sizing: border-box;
+  }
+
+  .btn-hero-primary,
+  .btn-hero-secondary {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+    justify-content: center;
+    padding: 12px 20px;
+    font-size: 13.5px;
+  }
+
+  .hero-chat-trigger-pill {
+    right: 16px;
+    bottom: 16px;
+    padding: 6px 14px 6px 7px;
+    font-size: 13px;
+  }
+
+  .trigger-pill-avatar-wrapper {
+    width: 28px;
+    height: 28px;
   }
 }

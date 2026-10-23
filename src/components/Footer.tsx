@@ -20,6 +20,15 @@ const Footer = () => {
             LINKEDIN
           </a>
           <a
+            href="/resume/Fuaaduddin_UXUI_Designer_Resume.pdf?v=20261022"
+            target="_blank"
+            rel="noopener noreferrer"
+            download="Fuaaduddin_UXUI_Designer_Resume.pdf"
+            className="footer-pill"
+          >
+            RESUME
+          </a>
+          <a
             href="https://www.instagram.com/mohammed_fuaaduddin?igsh=b21lODJ4Z2UwMjVv"
             target="_blank"
             className="footer-pill"

@@ -1,161 +1,557 @@
+/* ═════════════════════════════════════════════════════════════════
+   ABOUT BENTO GRID SECTION
+   Matches exact reference design from Figma mockups
+═════════════════════════════════════════════════════════════════ */
+
 .about-section {
+  display: flex;
   flex-direction: column;
   position: relative;
-  opacity: 1;
   height: auto;
-  padding: 80px 0;
+  padding: 50px 0 80px;
+  margin-top: 0;
+  scroll-margin-top: 80px;
+  box-sizing: border-box;
+  background: transparent;
 }
 
 .about-box {
   position: relative;
   width: 100%;
-  background: var(--card-bg);
-  border-radius: 24px;
-  padding: 32px;
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: transparent;
+  border: none;
+  padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
-  transition: transform 0.3s ease, border-color 0.3s ease;
-  will-change: opacity, transform;
 }
 
-/* Border sweep for the box */
-.about-box::before {
-  content: "";
+.about-bento-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* ── Common Bento Card Styles ── */
+.bento-card {
+  background: var(--card-bg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 24px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.bento-card-tag {
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 20px;
+}
+
+/* ── Common Bento Pill Capsules ── */
+.bento-pill {
+  display: inline-flex;
+  align-items: center;
+  font-family: "Geist", sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.75);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  padding: 6px 16px;
+  white-space: nowrap;
+}
+
+/* ════════════════════ ROW 1 (TOP) ════════════════════ */
+.bento-row-top {
+  display: grid;
+  grid-template-columns: 1.4fr 0.85fr 0.9fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Card 1: WHO I AM */
+.bento-card-whoiam {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.whoiam-headline {
+  font-family: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(20px, 1.85vw, 24px);
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0;
+}
+
+.whoiam-highlight {
+  color: #8da4fb;
+  font-weight: 600;
+}
+
+/* Column: Right Stack — 3+ experience on top, location below */
+.bento-col-right-top {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  align-items: stretch;
+}
+
+/* Card 3: 3+ EXPERIENCE CARD */
+.bento-card-stat-exp {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  border-radius: 20px;
+}
+
+.stat-exp-body {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.stat-exp-number {
+  font-family: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(38px, 3.2vw, 48px);
+  font-weight: 800;
+  line-height: 0.95;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  display: flex;
+  align-items: baseline;
+  flex-shrink: 0;
+}
+
+.stat-exp-plus {
+  color: #3b82f6;
+  font-weight: 700;
+  margin-left: 2px;
+}
+
+.stat-exp-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat-exp-label {
+  font-family: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(14px, 1.15vw, 16px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.stat-exp-subtext {
+  font-family: "Geist", sans-serif;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.55);
+  line-height: 1.35;
+  margin: 0;
+}
+
+/* Card 2: PROFILE PHOTO (Middle column — full-height portrait) */
+.bento-card-photo {
+  position: relative;
+  overflow: hidden;
+  border-radius: 24px;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 340px;
+}
+
+.bento-photo-img {
   position: absolute;
   inset: 0;
-  border-radius: 24px;
-  padding: 1.5px;
-  background: linear-gradient(90deg,
-      transparent 0%,
-      rgba(26, 79, 255, 0.2) 25%,
-      rgba(26, 79, 255, 0.5) 50%,
-      rgba(26, 79, 255, 0.2) 75%,
-      transparent 100%);
-  background-size: 200% 100%;
-  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
-  opacity: 0.6;
-}
-
-.about-content-wrapper {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 32px;
-  width: 100%;
-  position: relative;
-  z-index: 1;
-}
-
-.about-left, .about-right {
-  flex: 1;
-}
-
-@media only screen and (max-width: 992px) {
-  .about-content-wrapper {
-    flex-direction: column;
-  }
-}
-
-.about-me {
-  padding-bottom: 0;
-}
-
-/* ── Inline flowing text ── */
-.about-inline-text {
-  font-family: "Geist", sans-serif;
-  font-size: clamp(16px, 2vw, 24px);
-  font-weight: 500;
-  line-height: 1.5;
-  letter-spacing: 0.01em;
-  color: rgba(255, 255, 255, 0.5);
-  margin: 0 0 36px 0;
-}
-
-.about-white {
-  color: #ffffff;
-}
-
-.about-inline-text strong {
-  color: #ffffff;
-  font-weight: 700;
-}
-
-/* Inline profile photo pill */
-.about-inline-pill {
-  display: inline-block;
-  width: 1.8em;
-  height: 1.3em;
-  border-radius: 999px;
-  overflow: hidden;
-  vertical-align: middle;
-  position: relative;
-  background: #333;
-  margin: 0 2px;
-}
-
-.about-inline-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 15%;
+  object-position: center 18%;
+  z-index: 0;
 }
 
-/* Year badge pill */
-.about-year-pill {
-  display: inline-block;
-  vertical-align: middle;
-  border: 1.5px solid rgba(255, 255, 255, 0.75);
-  border-radius: 999px;
-  padding: 2px 16px;
-  font-size: 20px;
-  font-weight: 600;
+/* Card 4: LOCATION CARD */
+.bento-card-location {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 24px;
+  border-radius: 20px;
+}
+
+.bento-card-location .bento-card-tag {
+  font-size: 10px;
+  margin-bottom: 8px;
+}
+
+.location-card-body {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.location-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.location-city-name {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-size: clamp(16.5px, 1.35vw, 19px);
+  font-weight: 700;
   color: #ffffff;
-  letter-spacing: 0.02em;
-  margin: 0 4px;
+  line-height: 1.25;
+  margin: 0;
 }
 
-/* Emoji styling */
-.about-emoji {
-  display: inline-block;
-  font-size: 0.88em;
-  line-height: 1;
-  vertical-align: middle;
-  opacity: 1 !important;
+.location-subtext {
+  font-family: "Geist", sans-serif;
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  margin: 0;
+}
+
+.location-radar-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  position: relative;
+}
+
+.location-dot-pulse {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #22c55e;
+  position: relative;
+}
+
+.location-dot-pulse::after {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 2px solid rgba(34, 197, 94, 0.4);
+  animation: radarBeacon 2s infinite ease-out;
+}
+
+@keyframes radarBeacon {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.5);
+    opacity: 0.25;
+  }
+
+  100% {
+    transform: scale(0.8);
+    opacity: 0.9;
+  }
+}
+
+/* ════════════════════ ROW 2 (BOTTOM) ════════════════════ */
+.bento-row-bottom {
+  display: grid;
+  grid-template-columns: 0.85fr 0.95fr 1.5fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+/* Cards 4 & 5: EXPERIENCE & EDUCATION */
+.bento-card-experience,
+.bento-card-education {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.bottom-card-body {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 20px;
+}
+
+.bottom-card-title {
+  font-family: "Bricolage Grotesque", -apple-system, BlinkMacSystemFont, sans-serif;
+  font-size: clamp(17px, 1.4vw, 20px);
+  font-weight: 700;
   color: #ffffff;
+  line-height: 1.3;
+  margin: 0;
+  letter-spacing: -0.01em;
 }
 
-.about-btn {
-  margin-top: 8px;
+.bottom-card-subtitle {
+  font-family: "Geist", sans-serif;
+  font-size: 13.5px;
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.45;
+  margin: 0;
 }
 
-@media only screen and (max-width: 768px) {
+.bottom-card-footer {
+  margin-top: auto;
+}
+
+.bento-date-pill {
+  font-size: 12px;
+  padding: 5px 14px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* Card 6: TOOLKIT (Auto-scrolling marquee) */
+.bento-card-toolkit {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  position: relative;
+  padding: 24px;
+}
+
+.toolkit-marquee-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  margin: auto 0;
+  padding: 4px 0;
+  -webkit-mask-image: linear-gradient(90deg,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%);
+  mask-image: linear-gradient(90deg,
+      transparent 0%,
+      #000 12%,
+      #000 88%,
+      transparent 100%);
+}
+
+.toolkit-row {
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  user-select: none;
+}
+
+.toolkit-track {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: max-content;
+  will-change: transform;
+}
+
+.track-left {
+  animation: toolkitScrollLeft 20s linear infinite;
+}
+
+.track-right {
+  animation: toolkitScrollRight 20s linear infinite;
+}
+
+@keyframes toolkitScrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes toolkitScrollRight {
+  0% {
+    transform: translateX(-50%);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.toolkit-pill {
+  padding: 6px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ════════════════════ RESPONSIVE BREAKPOINTS ════════════════════ */
+
+/* Laptop / Small Desktop (1025px - 1200px): 3-column Bento Grid */
+@media screen and (max-width: 1200px) {
+  .bento-row-top {
+    grid-template-columns: 1.25fr 0.85fr 0.9fr;
+    gap: 16px;
+  }
+
+  .bento-row-bottom {
+    grid-template-columns: 0.85fr 0.95fr 1.4fr;
+    gap: 16px;
+  }
+
+  .bento-card {
+    padding: 16px;
+  }
+
+  .bento-card-photo {
+    min-height: 320px;
+  }
+}
+
+/* Tablets & Medium Screens (641px - 1024px): 2-column Bento Grid */
+@media screen and (max-width: 1024px) {
   .about-section {
     padding: 40px 0;
   }
 
-  .about-box {
-    padding: 24px 16px;
+  .about-bento-grid {
+    gap: 16px;
   }
 
-  .about-inline-text {
-    font-size: 16px;
-    line-height: 1.6;
+  .bento-row-top {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 
-  .about-year-pill {
-    font-size: 12px;
-    padding: 2px 10px;
-    border-width: 1px;
+  /* WHO I AM spans across top 2 columns as a wide hero card */
+  .bento-card-whoiam {
+    grid-column: span 2;
+  }
+
+  .whoiam-headline {
+    font-size: clamp(20px, 2.5vw, 24px);
+  }
+
+  /* Photo card takes left column */
+  .bento-card-photo {
+    min-height: 320px;
+  }
+
+  /* 3+ Experience & Location take right column */
+  .bento-col-right-top {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .bento-card-stat-exp,
+  .bento-card-location {
+    flex: 1;
+    min-height: 145px;
+  }
+
+  /* Bottom Row 2-column Bento */
+  .bento-row-bottom {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .bento-card-experience {
+    grid-column: span 1;
+  }
+
+  .bento-card-education {
+    grid-column: span 1;
+  }
+
+  /* Skills card spans across bottom 2 columns */
+  .bento-card-toolkit {
+    grid-column: span 2;
   }
 }
 
-@media only screen and (max-width: 480px) {
-  .about-inline-text {
-    font-size: 16px;
+/* Mobile View ONLY (<= 400px): 1-by-1 Single Column Stack */
+@media screen and (max-width: 400px) {
+  .about-section {
+    padding: 40px 0 60px;
+  }
+
+  .about-bento-grid {
+    gap: 16px;
+  }
+
+  .bento-row-top,
+  .bento-row-bottom {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .bento-card {
+    padding: 20px;
+    border-radius: 20px;
+  }
+
+  .bento-card-whoiam {
+    grid-column: span 1;
+  }
+
+  .whoiam-headline {
+    font-size: clamp(18px, 4.8vw, 21px);
+    line-height: 1.45;
+  }
+
+  .bento-card-photo {
+    min-height: 320px;
+    height: 320px;
+    border-radius: 20px;
+  }
+
+  .bento-col-right-top {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .bento-card-stat-exp,
+  .bento-card-location {
+    padding: 20px;
+    min-height: 130px;
+  }
+
+  .stat-exp-number {
+    font-size: 36px;
+  }
+
+  .bento-card-toolkit {
+    grid-column: span 1;
+    padding: 20px 14px;
   }
 }

@@ -24,10 +24,13 @@ const Career = () => {
             </div>
             <div className="experience-desc">
               <ul>
-                <li>Led end-to-end UI/UX design for 3+ web and mobile products, improving task completion and user satisfaction across key flows.</li>
-                <li>Identified and resolved 10+ UX friction points through research and testing, reducing user drop-offs in critical journeys.</li>
-                <li>Collaborated with developers & stakeholders in agile sprints, ensuring timely delivery.</li>
-                <li>Leveraged AI tools to optimize design workflows, improving efficiency in ideation, documentation, and iteration.</li>
+                <li>Designed UX/UI for web and mobile products, from requirements and user flows to high-fidelity Figma designs and developer handoff.</li>
+                <li>Simplified complex user flows and restructured outdated experiences so they’re easier to understand and use.</li>
+                <li>Turned complex requirements into clear interfaces and interactive Figma prototypes, gathering early stakeholder feedback to reduce rework.</li>
+                <li>Redesigned and modernized UI across web and mobile, keeping it consistent and responsive across screens.</li>
+                <li>Built reusable Figma components to keep the UI consistent and speed up design work.</li>
+                <li>Collaborated with developers and stakeholders in Agile sprints to deliver user-centered, developer-ready designs.</li>
+                <li>Used AI tools to speed up ideation, documentation, and design iteration, checking outputs against user needs.</li>
               </ul>
               <div className="experience-tags">
                 <span className="experience-tag">UI Design</span>
