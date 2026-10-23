@@ -158,6 +158,29 @@ const HeroChatbox = ({ onClose }: HeroChatboxProps = {}) => {
           {/* Header */}
           <div className="chatbox-header">
             <div className="chatbox-header-left">
+              {onClose && (
+                <button
+                  type="button"
+                  className="chatbox-back-btn"
+                  onClick={onClose}
+                  aria-label="Back to home"
+                  title="Back to home"
+                >
+                  <svg
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2.5"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <line x1="19" y1="12" x2="5" y2="12"></line>
+                    <polyline points="12 19 5 12 12 5"></polyline>
+                  </svg>
+                </button>
+              )}
               <div className="chatbox-avatar-ring">
                 <img
                   src="/images/ai-girl-avatar.jpg"
@@ -171,29 +194,6 @@ const HeroChatbox = ({ onClose }: HeroChatboxProps = {}) => {
                 <span className="chatbox-header-status">Online</span>
               </div>
             </div>
-            {onClose && (
-              <button
-                type="button"
-                className="chatbox-back-home-btn"
-                onClick={onClose}
-                aria-label="Back to home"
-              >
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.5"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <line x1="19" y1="12" x2="5" y2="12"></line>
-                  <polyline points="12 19 5 12 12 5"></polyline>
-                </svg>
-                <span>Back to home</span>
-              </button>
-            )}
           </div>
 
           {/* Messages Area */}

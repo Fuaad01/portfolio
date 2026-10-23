@@ -61,52 +61,19 @@ const Landing = () => {
       {/* Blended Background Image */}
       <div className="hero-bg-image"></div>
 
-      {/* Left-side Floating Social Bar ("FIND ME ON") */}
-      <aside className="hero-social-rail" aria-label="Social Links">
-        <div className="hero-social-line" aria-hidden="true"></div>
-        <span className="hero-social-label">FIND ME ON</span>
-        <div className="hero-social-icons">
-          <a
-            href="https://www.linkedin.com/in/fuaaduddin/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-social-circle"
-            aria-label="LinkedIn"
-          >
-            <FaLinkedinIn />
-          </a>
-          <a
-            href="https://www.instagram.com/fuaad_uddin"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero-social-circle"
-            aria-label="Instagram"
-          >
-            <FaInstagram />
-          </a>
-          <a
-            href="mailto:fuaaduddin15@gmail.com"
-            className="hero-social-circle"
-            aria-label="Email"
-          >
-            <FaRegEnvelope />
-          </a>
-        </div>
-      </aside>
-
       {/* Main Centered Hero Viewport */}
       <div className="landing-container section-container hero-stage-container">
         {/* Profile Content View (Centered) */}
         <div className={`hero-view-content ${isChatOpen ? "view-hidden" : "view-active"}`}>
           <h1 className="hero-title">
             <span className="hero-title-row">
-              <span><span className="text-grey">Hi </span>I'm Fuaad</span>{" "}
-              <span className="hero-pill profile-pill">
-                <img src="/images/my-profile-1.png" alt="Fuaad" />
-              </span>
+              <span>Hi, I'm Fuaad</span>
             </span>
             <span className="hero-title-row">
-              <span><span className="text-grey">a </span>UX/UI<span className="text-grey"> Designer</span></span>
+              <span><span className="text-grey">a </span>UX/UI &amp; Product</span>
+            </span>
+            <span className="hero-title-row">
+              <span>Designer</span>
             </span>
           </h1>
 
@@ -131,28 +98,22 @@ const Landing = () => {
                 <polyline points="12 5 19 12 12 19" />
               </svg>
             </a>
-            <a
-              href="/resume/Fuaaduddin_UXUI_Designer_Resume.pdf?v=20261022"
-              download="Fuaaduddin_UXUI_Designer_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-hero-secondary"
+            <button
+              type="button"
+              className="btn-hero-secondary btn-hero-chat"
+              onClick={handleOpenChat}
+              aria-label="Chat with my AI"
             >
-              <svg
-                className="btn-icon-download"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <line x1="12" y1="3" x2="12" y2="15" />
-                <polyline points="7 10 12 15 17 10" />
-                <path d="M5 20h14" />
-              </svg>
-              <span>Download Resume</span>
-            </a>
+              <span className="btn-chat-avatar-wrapper">
+                <img
+                  src="/images/ai-girl-avatar.jpg"
+                  alt="AI Assistant"
+                  className="btn-chat-avatar"
+                />
+                <span className="btn-chat-online-dot"></span>
+              </span>
+              <span>Ask AI</span>
+            </button>
           </div>
         </div>
 
@@ -165,31 +126,91 @@ const Landing = () => {
         </div>
       </div>
 
-      {/* Bottom Right Floating Chat Trigger Pill */}
+      {/* Hero Footer Bar: Aligned Left Social Icons and Right Rotating Circular Resume */}
       {!isChatOpen && (
-        <button
-          type="button"
-          className="hero-chat-trigger-pill"
-          onClick={handleOpenChat}
-          aria-label="Chat with my AI"
-        >
-          <span className="pill-liquid-bg" aria-hidden="true">
-            <span className="liquid-fluid-wave-1"></span>
-            <span className="liquid-fluid-wave-2"></span>
-            <span className="liquid-fluid-sheen"></span>
-            <span className="liquid-fluid-blob blob-1"></span>
-            <span className="liquid-fluid-blob blob-2"></span>
-          </span>
-          <span className="trigger-pill-avatar-wrapper">
-            <img
-              src="/images/ai-girl-avatar.jpg"
-              alt="AI Assistant"
-              className="trigger-pill-avatar"
-            />
-            <span className="trigger-pill-online-dot"></span>
-          </span>
-          <span className="trigger-pill-text">Chat with my AI</span>
-        </button>
+        <div className="hero-footer">
+          {/* Left: Social Icons (Only Icons) */}
+          <div className="hero-socials-wrapper">
+            <div className="hero-socials">
+              <a
+                href="https://www.linkedin.com/in/fuaaduddin/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-social-circle"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedinIn />
+              </a>
+              <a
+                href="https://www.instagram.com/fuaad_uddin"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero-social-circle"
+                aria-label="Instagram"
+              >
+                <FaInstagram />
+              </a>
+              <a
+                href="mailto:fuaaduddin15@gmail.com"
+                className="hero-social-circle"
+                aria-label="Email"
+              >
+                <FaRegEnvelope />
+              </a>
+            </div>
+          </div>
+
+          {/* Right: Circular Rotating Resume */}
+          <div className="hero-resume-circular">
+            <a
+              href="/resume/Fuaaduddin_UXUI_Designer_Resume.pdf?v=20261022"
+              download="Fuaaduddin_UXUI_Designer_Resume.pdf"
+              className="circular-resume-link"
+              aria-label="Download Resume"
+            >
+              <svg viewBox="0 0 100 100" className="rotating-text-svg">
+                <defs>
+                  <path id="resumeArc" d="M 13, 50 a 37,37 0 0,1 74,0" />
+                </defs>
+                <g className="rotating-text-group">
+                  <text className="rotating-text" fill="currentColor">
+                    <textPath href="#resumeArc" startOffset="50%" textAnchor="middle">
+                      RESUME
+                    </textPath>
+                    <textPath href="#resumeArc" startOffset="83.33%" textAnchor="middle">
+                      •
+                    </textPath>
+                  </text>
+                  <g transform="rotate(120 50 50)">
+                    <text className="rotating-text" fill="currentColor">
+                      <textPath href="#resumeArc" startOffset="50%" textAnchor="middle">
+                        RESUME
+                      </textPath>
+                      <textPath href="#resumeArc" startOffset="83.33%" textAnchor="middle">
+                        •
+                      </textPath>
+                    </text>
+                  </g>
+                  <g transform="rotate(240 50 50)">
+                    <text className="rotating-text" fill="currentColor">
+                      <textPath href="#resumeArc" startOffset="50%" textAnchor="middle">
+                        RESUME
+                      </textPath>
+                      <textPath href="#resumeArc" startOffset="83.33%" textAnchor="middle">
+                        •
+                      </textPath>
+                    </text>
+                  </g>
+                </g>
+              </svg>
+              <div className="resume-icon-center">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M7 13l5 5 5-5M12 6v12" />
+                </svg>
+              </div>
+            </a>
+          </div>
+        </div>
       )}
     </div>
   );

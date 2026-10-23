@@ -121,28 +121,33 @@
   padding: 6px 0;
 }
 
-.chatbox-back-home-btn {
+.chatbox-back-btn {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
-  padding: 8px 18px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  border-radius: 9999px;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 50%;
   color: #ffffff;
-  font-family: "Geist", sans-serif;
-  font-size: 13.5px;
-  font-weight: 500;
   cursor: pointer;
-  transition: all 0.25s ease;
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   backdrop-filter: blur(8px);
+  flex-shrink: 0;
+  padding: 0;
 }
 
-.chatbox-back-home-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.35);
-  transform: translateY(-1px);
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+.chatbox-back-btn:hover {
+  background: rgba(37, 99, 235, 0.25);
+  border-color: rgba(56, 189, 248, 0.5);
+  color: #38bdf8;
+  transform: translateX(-3px);
+  box-shadow: 0 0 16px rgba(37, 99, 235, 0.4);
+}
+
+.chatbox-back-btn:active {
+  transform: translateX(-1px) scale(0.96);
 }
 
 /* AI Message row with avatar */
@@ -564,8 +569,13 @@
     padding: 6px 12px;
     font-size: 11.5px;
   }
-}
+  .chatbox-back-btn {
+    width: 34px;
+    height: 34px;
+  }
 
-font-size: 11.5px;
-}
+  .chatbox-back-btn svg {
+    width: 16px;
+    height: 16px;
+  }
 }
