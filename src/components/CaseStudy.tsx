@@ -10,7 +10,6 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { ScrollSmoother } from "gsap/ScrollSmoother";
 import "./styles/CaseStudy.css";
-import BackgroundGlows from "./utils/BackgroundGlows";
 
 gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
@@ -248,8 +247,6 @@ const CaseStudy = () => {
 
   return (
     <div className="cs-page">
-      <BackgroundGlows />
-      <div className="page-stripes"></div>
       <Navbar />
 
       <div id="smooth-wrapper">
@@ -282,7 +279,12 @@ const CaseStudy = () => {
                     <span key={tag} className="cs-tag">{tag}</span>
                   ))}
                 </div>
-                <h1 className="cs-title">{project.title}</h1>
+                <div className="cs-title-wrap">
+                  <h1 className="cs-title">{project.title}</h1>
+                  {project.subtitle && (
+                    <p className="cs-project-type-subtitle">{project.subtitle}</p>
+                  )}
+                </div>
                 <p className="cs-subtitle">{project.description}</p>
 
               </header>

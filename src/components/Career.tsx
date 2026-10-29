@@ -1,11 +1,15 @@
 import "./styles/Career.css";
 import { FaBriefcase } from "react-icons/fa";
+import SectionHeader from "./SectionHeader";
 
 const Career = () => {
   return (
     <div className="experience-section section-container" id="experience">
       <div className="experience-container">
-        <h2 className="section-title">EXPERIENCE</h2>
+        <SectionHeader
+          tag="CAREER"
+          title="Experience"
+        />
         <div className="experience-list">
           <div className="experience-item">
             <div className="experience-header">

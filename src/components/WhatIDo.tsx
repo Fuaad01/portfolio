@@ -1,4 +1,5 @@
 import "./styles/WhatIDo.css";
+import SectionHeader from "./SectionHeader";
 
 interface ServiceCard {
   id: string;
@@ -62,11 +63,10 @@ const WhatIDo = () => {
   return (
     <section className="whatIDO section-container" id="what-i-do">
       <div className="what-box">
-        <div className="what-header">
-          <h2 className="section-title">
-            WHAT I DO
-          </h2>
-        </div>
+        <SectionHeader
+          tag="SERVICES"
+          title="What I do"
+        />
 
         <div className="what-box-in what-cards-grid">
           {/* Card 1: User research & strategy (Live User Journey & Strategy Canvas) */}
@@ -88,18 +88,18 @@ const WhatIDo = () => {
                   height="18"
                   patternUnits="userSpaceOnUse"
                 >
-                  <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.05)" />
+                  <circle cx="2" cy="2" r="1" fill="rgba(31, 91, 255, 0.12)" />
                 </pattern>
                 <rect width="100%" height="100%" fill="url(#grid-dots-1)" />
 
                 {/* Vertical Phase Guides */}
-                <line x1="50" y1="42" x2="50" y2="140" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
-                <line x1="130" y1="42" x2="130" y2="140" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
-                <line x1="215" y1="42" x2="215" y2="140" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
-                <line x1="290" y1="42" x2="290" y2="140" stroke="rgba(255,255,255,0.05)" strokeDasharray="3 3" />
+                <line x1="50" y1="42" x2="50" y2="140" stroke="rgba(15, 23, 42, 0.07)" strokeDasharray="3 3" />
+                <line x1="130" y1="42" x2="130" y2="140" stroke="rgba(15, 23, 42, 0.07)" strokeDasharray="3 3" />
+                <line x1="215" y1="42" x2="215" y2="140" stroke="rgba(15, 23, 42, 0.07)" strokeDasharray="3 3" />
+                <line x1="290" y1="42" x2="290" y2="140" stroke="rgba(15, 23, 42, 0.07)" strokeDasharray="3 3" />
 
                 {/* Baseline Axis */}
-                <line x1="26" y1="140" x2="314" y2="140" stroke="rgba(255,255,255,0.08)" strokeDasharray="4 4" />
+                <line x1="26" y1="140" x2="314" y2="140" stroke="rgba(15, 23, 42, 0.12)" strokeDasharray="4 4" />
 
                 {/* Translucent Area Gradient */}
                 <path
@@ -109,13 +109,13 @@ const WhatIDo = () => {
                 />
                 <defs>
                   <linearGradient id="journey-area-grad" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#818cf8" stopOpacity="0.32" />
-                    <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#1f5bff" stopOpacity="0.18" />
+                    <stop offset="100%" stopColor="#1f5bff" stopOpacity="0" />
                   </linearGradient>
                   <linearGradient id="journey-spline-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                    <stop offset="0%" stopColor="#818cf8" />
-                    <stop offset="45%" stopColor="#c084fc" />
-                    <stop offset="100%" stopColor="#38bdf8" />
+                    <stop offset="0%" stopColor="#1f5bff" />
+                    <stop offset="50%" stopColor="#8b5cf6" />
+                    <stop offset="100%" stopColor="#0284c7" />
                   </linearGradient>
                 </defs>
 
@@ -129,7 +129,7 @@ const WhatIDo = () => {
                 />
 
                 {/* Traveling Signal Dot */}
-                <circle r="4.5" fill="#38bdf8" className="wid-travel-dot">
+                <circle r="4.5" fill="#0284c7" className="wid-travel-dot">
                   <animateMotion
                     path="M 50 120 C 85 120, 105 48, 130 48 C 165 48, 185 118, 215 118 C 248 118, 265 42, 290 42"
                     dur="4s"
@@ -140,35 +140,35 @@ const WhatIDo = () => {
                 {/* Milestone Radar Nodes */}
                 {/* Node 1: Discover */}
                 <circle cx="50" cy="120" r="9" className="wid-node-ring wid-ring-1" />
-                <circle cx="50" cy="120" r="8" fill="#0b1120" stroke="#818cf8" strokeWidth="2.5" />
-                <circle cx="50" cy="120" r="3.5" fill="#818cf8" />
+                <circle cx="50" cy="120" r="8" fill="#ffffff" stroke="#1f5bff" strokeWidth="2.5" />
+                <circle cx="50" cy="120" r="3.5" fill="#1f5bff" />
 
                 {/* Node 2: Explore */}
                 <circle cx="130" cy="48" r="10" className="wid-node-ring wid-ring-2" />
-                <circle cx="130" cy="48" r="8.5" fill="#0b1120" stroke="#c084fc" strokeWidth="2.5" />
-                <circle cx="130" cy="48" r="4" fill="#e9d5ff" />
+                <circle cx="130" cy="48" r="8.5" fill="#ffffff" stroke="#8b5cf6" strokeWidth="2.5" />
+                <circle cx="130" cy="48" r="4" fill="#8b5cf6" />
 
                 {/* Node 3: Decide */}
                 <circle cx="215" cy="118" r="9" className="wid-node-ring wid-ring-3" />
-                <circle cx="215" cy="118" r="8" fill="#0b1120" stroke="#818cf8" strokeWidth="2.5" />
-                <circle cx="215" cy="118" r="3.5" fill="#818cf8" />
+                <circle cx="215" cy="118" r="8" fill="#ffffff" stroke="#1f5bff" strokeWidth="2.5" />
+                <circle cx="215" cy="118" r="3.5" fill="#1f5bff" />
 
                 {/* Node 4: Convert */}
                 <circle cx="290" cy="42" r="10" className="wid-node-ring wid-ring-4" />
-                <circle cx="290" cy="42" r="8.5" fill="#0b1120" stroke="#38bdf8" strokeWidth="2.5" />
-                <circle cx="290" cy="42" r="4" fill="#bae6fd" />
+                <circle cx="290" cy="42" r="8.5" fill="#ffffff" stroke="#0284c7" strokeWidth="2.5" />
+                <circle cx="290" cy="42" r="4" fill="#0284c7" />
 
                 {/* Phase Step Labels */}
-                <text x="50" y="156" textAnchor="middle" fill="rgba(255,255,255,0.45)" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="500">
+                <text x="50" y="156" textAnchor="middle" fill="#475569" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
                   01 Discover
                 </text>
-                <text x="130" y="156" textAnchor="middle" fill="rgba(255,255,255,0.45)" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="500">
+                <text x="130" y="156" textAnchor="middle" fill="#475569" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
                   02 Explore
                 </text>
-                <text x="215" y="156" textAnchor="middle" fill="rgba(255,255,255,0.45)" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="500">
+                <text x="215" y="156" textAnchor="middle" fill="#475569" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
                   03 Decide
                 </text>
-                <text x="290" y="156" textAnchor="middle" fill="rgba(255,255,255,0.45)" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="500">
+                <text x="290" y="156" textAnchor="middle" fill="#475569" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
                   04 Convert
                 </text>
               </svg>
@@ -208,24 +208,24 @@ const WhatIDo = () => {
                     width="106"
                     height="150"
                     rx="16"
-                    fill="rgba(15, 23, 42, 0.75)"
-                    stroke="rgba(148, 163, 184, 0.4)"
+                    fill="#ffffff"
+                    stroke="rgba(100, 116, 139, 0.35)"
                     strokeWidth="1.2"
                     strokeDasharray="4 3"
                     className="wid-wireframe-border"
                   />
                   {/* Dynamic Island / Notch */}
-                  <rect x="68" y="22" width="30" height="6" rx="3" fill="rgba(255,255,255,0.15)" />
+                  <rect x="68" y="22" width="30" height="6" rx="3" fill="#e2e8f0" />
 
                   {/* Wireframe Hero Media Box with classic UX Cross ☒ */}
-                  <rect x="42" y="36" width="82" height="42" rx="6" fill="#1e293b" />
-                  <line x1="42" y1="36" x2="124" y2="78" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
-                  <line x1="124" y1="36" x2="42" y2="78" stroke="rgba(255,255,255,0.12)" strokeWidth="1" />
+                  <rect x="42" y="36" width="82" height="42" rx="6" fill="#f1f5f9" />
+                  <line x1="42" y1="36" x2="124" y2="78" stroke="rgba(100, 116, 139, 0.25)" strokeWidth="1" />
+                  <line x1="124" y1="36" x2="42" y2="78" stroke="rgba(100, 116, 139, 0.25)" strokeWidth="1" />
 
                   {/* Skeleton Text Lines */}
-                  <rect x="42" y="86" width="60" height="6" rx="3" fill="#334155" />
-                  <rect x="42" y="98" width="82" height="5" rx="2.5" fill="#334155" />
-                  <rect x="42" y="108" width="50" height="5" rx="2.5" fill="#1e293b" />
+                  <rect x="42" y="86" width="60" height="6" rx="3" fill="#cbd5e1" />
+                  <rect x="42" y="98" width="82" height="5" rx="2.5" fill="#e2e8f0" />
+                  <rect x="42" y="108" width="50" height="5" rx="2.5" fill="#f1f5f9" />
 
                   {/* Wireframe Outline Button */}
                   <rect
@@ -234,12 +234,12 @@ const WhatIDo = () => {
                     width="82"
                     height="24"
                     rx="12"
-                    fill="transparent"
-                    stroke="rgba(148, 163, 184, 0.5)"
+                    fill="#f8fafc"
+                    stroke="rgba(100, 116, 139, 0.4)"
                     strokeWidth="1"
                     strokeDasharray="3 3"
                   />
-                  <text x="83" y="141" textAnchor="middle" fill="rgba(148,163,184,0.6)" fontSize="8.5" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="500">
+                  <text x="83" y="141" textAnchor="middle" fill="#64748b" fontSize="8.5" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
                     Low-Fi Wireframe
                   </text>
                 </g>
@@ -251,7 +251,7 @@ const WhatIDo = () => {
                     y1="90"
                     x2="190"
                     y2="90"
-                    stroke="#fb7185"
+                    stroke="#f43f5e"
                     strokeWidth="2.5"
                     strokeDasharray="5 4"
                     strokeLinecap="round"
@@ -259,7 +259,7 @@ const WhatIDo = () => {
                   />
                   <polygon
                     points="189,84 200,90 189,96"
-                    fill="#fb7185"
+                    fill="#f43f5e"
                     className="wid-arrow-head"
                   />
                   {/* Flow Pill */}
@@ -269,15 +269,15 @@ const WhatIDo = () => {
                     width="44"
                     height="16"
                     rx="8"
-                    fill="rgba(251, 113, 133, 0.15)"
-                    stroke="rgba(251, 113, 133, 0.4)"
+                    fill="rgba(244, 63, 94, 0.08)"
+                    stroke="rgba(244, 63, 94, 0.3)"
                     strokeWidth="0.8"
                   />
                   <text
                     x="172"
                     y="77"
                     textAnchor="middle"
-                    fill="#fca5a5"
+                    fill="#e11d48"
                     fontSize="8.5"
                     fontFamily="system-ui, -apple-system, sans-serif"
                     fontWeight="600"
@@ -295,14 +295,14 @@ const WhatIDo = () => {
                     width="106"
                     height="150"
                     rx="16"
-                    fill="#0a0f1d"
-                    stroke="rgba(99, 102, 241, 0.5)"
+                    fill="#ffffff"
+                    stroke="rgba(31, 91, 255, 0.35)"
                     strokeWidth="1.2"
-                    filter="drop-shadow(0 10px 24px rgba(0, 0, 0, 0.6))"
+                    filter="drop-shadow(0 8px 20px rgba(15, 23, 42, 0.08))"
                     className="wid-prototype-border"
                   />
                   {/* Dynamic Island */}
-                  <rect x="242" y="22" width="30" height="6" rx="3" fill="#1e293b" />
+                  <rect x="242" y="22" width="30" height="6" rx="3" fill="#e2e8f0" />
 
                   {/* Gradient Media Card */}
                   <rect
@@ -320,14 +320,14 @@ const WhatIDo = () => {
                     </linearGradient>
                   </defs>
                   {/* Mini Card Content */}
-                  <circle cx="232" cy="57" r="8" fill="rgba(255,255,255,0.25)" />
+                  <circle cx="232" cy="57" r="8" fill="rgba(255,255,255,0.3)" />
                   <rect x="246" y="52" width="42" height="5" rx="2.5" fill="#ffffff" />
-                  <rect x="246" y="60" width="28" height="4" rx="2" fill="rgba(255,255,255,0.7)" />
+                  <rect x="246" y="60" width="28" height="4" rx="2" fill="rgba(255,255,255,0.85)" />
 
                   {/* High-Fi Typography Lines */}
-                  <rect x="216" y="86" width="64" height="6" rx="3" fill="#ffffff" opacity="0.9" />
-                  <rect x="216" y="98" width="82" height="5" rx="2.5" fill="rgba(255,255,255,0.4)" />
-                  <rect x="216" y="108" width="46" height="5" rx="2.5" fill="rgba(255,255,255,0.2)" />
+                  <rect x="216" y="86" width="64" height="6" rx="3" fill="#1e293b" opacity="0.85" />
+                  <rect x="216" y="98" width="82" height="5" rx="2.5" fill="#64748b" opacity="0.45" />
+                  <rect x="216" y="108" width="46" height="5" rx="2.5" fill="#94a3b8" opacity="0.35" />
 
                   {/* Interactive Primary CTA Button */}
                   <rect
@@ -336,7 +336,7 @@ const WhatIDo = () => {
                     width="82"
                     height="24"
                     rx="12"
-                    fill="#2563eb"
+                    fill="#1f5bff"
                     className="wid-proto-btn"
                   />
                   <text
@@ -356,7 +356,7 @@ const WhatIDo = () => {
 
                   {/* Tester Finger/Cursor */}
                   <g className="wid-proto-cursor">
-                    <circle cx="282" cy="138" r="4" fill="#ffffff" opacity="0.8" />
+                    <circle cx="282" cy="138" r="4" fill="#ffffff" stroke="#1f5bff" strokeWidth="1.5" />
                   </g>
                 </g>
               </svg>
@@ -391,35 +391,35 @@ const WhatIDo = () => {
                 <g className="wid-palette-col">
                   {/* Palette Swatch 1: Coral Rose */}
                   <g className="wid-swatch-chip wid-swatch-1">
-                    <rect x="20" y="24" width="68" height="26" rx="13" fill="rgba(15, 23, 42, 0.85)" stroke="rgba(244, 63, 94, 0.4)" strokeWidth="1" />
+                    <rect x="20" y="24" width="68" height="26" rx="13" fill="#ffffff" stroke="rgba(244, 63, 94, 0.3)" strokeWidth="1" filter="drop-shadow(0 2px 5px rgba(15, 23, 42, 0.05))" />
                     <circle cx="33" cy="37" r="7" fill="#f43f5e" />
-                    <text x="46" y="40" fill="#fecdd3" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
+                    <text x="46" y="40" fill="#334155" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
                       Accent
                     </text>
                   </g>
 
                   {/* Palette Swatch 2: Electric Indigo */}
                   <g className="wid-swatch-chip wid-swatch-2">
-                    <rect x="20" y="58" width="68" height="26" rx="13" fill="rgba(15, 23, 42, 0.85)" stroke="rgba(129, 140, 248, 0.4)" strokeWidth="1" />
-                    <circle cx="33" cy="71" r="7" fill="#6366f1" />
-                    <text x="46" y="74" fill="#c7d2fe" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
+                    <rect x="20" y="58" width="68" height="26" rx="13" fill="#ffffff" stroke="rgba(31, 91, 255, 0.3)" strokeWidth="1" filter="drop-shadow(0 2px 5px rgba(15, 23, 42, 0.05))" />
+                    <circle cx="33" cy="71" r="7" fill="#1f5bff" />
+                    <text x="46" y="74" fill="#334155" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
                       Brand
                     </text>
                   </g>
 
                   {/* Palette Swatch 3: Gold Amber */}
                   <g className="wid-swatch-chip wid-swatch-3">
-                    <rect x="20" y="92" width="68" height="26" rx="13" fill="rgba(15, 23, 42, 0.85)" stroke="rgba(251, 191, 36, 0.4)" strokeWidth="1" />
-                    <circle cx="33" cy="105" r="7" fill="#fbbf24" />
-                    <text x="46" y="108" fill="#fde68a" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
+                    <rect x="20" y="92" width="68" height="26" rx="13" fill="#ffffff" stroke="rgba(245, 158, 11, 0.3)" strokeWidth="1" filter="drop-shadow(0 2px 5px rgba(15, 23, 42, 0.05))" />
+                    <circle cx="33" cy="105" r="7" fill="#f59e0b" />
+                    <text x="46" y="108" fill="#334155" fontSize="9" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="600">
                       Warm
                     </text>
                   </g>
 
                   {/* Contrast Score Pill */}
                   <g className="wid-contrast-pill">
-                    <rect x="20" y="128" width="68" height="18" rx="9" fill="rgba(16, 185, 129, 0.15)" stroke="rgba(52, 211, 153, 0.4)" strokeWidth="0.8" />
-                    <text x="54" y="140" textAnchor="middle" fill="#6ee7b7" fontSize="8" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700">
+                    <rect x="20" y="128" width="68" height="18" rx="9" fill="rgba(16, 185, 129, 0.1)" stroke="rgba(16, 185, 129, 0.3)" strokeWidth="0.8" />
+                    <text x="54" y="140" textAnchor="middle" fill="#059669" fontSize="8" fontFamily="system-ui, -apple-system, sans-serif" fontWeight="700">
                       AAA 14:1
                     </text>
                   </g>
@@ -435,9 +435,9 @@ const WhatIDo = () => {
                     height="152"
                     rx="18"
                     fill="url(#teal-card-grad)"
-                    stroke="rgba(255, 255, 255, 0.2)"
+                    stroke="rgba(255, 255, 255, 0.35)"
                     strokeWidth="1.2"
-                    filter="drop-shadow(0 16px 32px rgba(13, 148, 136, 0.4))"
+                    filter="drop-shadow(0 12px 24px rgba(13, 148, 136, 0.25))"
                     className="wid-teal-card-base"
                   />
                   <defs>
@@ -451,7 +451,7 @@ const WhatIDo = () => {
                   {/* Glass Sheen Top Arc */}
                   <path
                     d="M 0 18 Q 109 4 218 18 L 218 0 L 0 0 Z"
-                    fill="rgba(255, 255, 255, 0.1)"
+                    fill="rgba(255, 255, 255, 0.12)"
                   />
 
                   {/* Avatar with Golden Aura */}
@@ -595,24 +595,24 @@ const WhatIDo = () => {
                   height="18"
                   patternUnits="userSpaceOnUse"
                 >
-                  <circle cx="2" cy="2" r="1" fill="rgba(255,255,255,0.05)" />
+                  <circle cx="2" cy="2" r="1" fill="rgba(31, 91, 255, 0.12)" />
                 </pattern>
                 <rect width="100%" height="100%" fill="url(#ds-dots)" />
 
                 {/* Ambient glow behind window */}
-                <circle cx="170" cy="90" r="70" fill="url(#ds-ambient-glow)" opacity="0.6" />
+                <circle cx="170" cy="90" r="70" fill="url(#ds-ambient-glow)" opacity="0.4" />
                 <defs>
                   <radialGradient id="ds-ambient-glow" cx="50%" cy="50%" r="50%">
-                    <stop offset="0%" stopColor="#6366f1" stopOpacity="0.35" />
-                    <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+                    <stop offset="0%" stopColor="#1f5bff" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="#1f5bff" stopOpacity="0" />
                   </radialGradient>
                   <linearGradient id="btn-grad-ds" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#6366f1" />
-                    <stop offset="100%" stopColor="#4338ca" />
+                    <stop offset="0%" stopColor="#1f5bff" />
+                    <stop offset="100%" stopColor="#1646cc" />
                   </linearGradient>
                   <linearGradient id="ds-window-bg" x1="0%" y1="0%" x2="0%" y2="100%">
-                    <stop offset="0%" stopColor="#0f172a" stopOpacity="0.95" />
-                    <stop offset="100%" stopColor="#090d16" stopOpacity="0.98" />
+                    <stop offset="0%" stopColor="#ffffff" stopOpacity="0.98" />
+                    <stop offset="100%" stopColor="#f8fafc" stopOpacity="0.99" />
                   </linearGradient>
                 </defs>
 
@@ -626,9 +626,9 @@ const WhatIDo = () => {
                     height="152"
                     rx="16"
                     fill="url(#ds-window-bg)"
-                    stroke="rgba(129, 140, 248, 0.25)"
+                    stroke="rgba(15, 23, 42, 0.12)"
                     strokeWidth="1.2"
-                    filter="drop-shadow(0 14px 30px rgba(0, 0, 0, 0.6))"
+                    filter="drop-shadow(0 10px 24px rgba(15, 23, 42, 0.08))"
                   />
 
                   {/* Window Top Titlebar */}
@@ -637,24 +637,24 @@ const WhatIDo = () => {
                     y1="38"
                     x2="320"
                     y2="38"
-                    stroke="rgba(255, 255, 255, 0.08)"
+                    stroke="rgba(15, 23, 42, 0.08)"
                     strokeWidth="1"
                   />
 
                   {/* 3 macOS / Figma Control Dots */}
-                  <circle cx="36" cy="26" r="3.5" fill="#f43f5e" opacity="0.85" />
-                  <circle cx="48" cy="26" r="3.5" fill="#fbbf24" opacity="0.85" />
-                  <circle cx="60" cy="26" r="3.5" fill="#34d399" opacity="0.85" />
+                  <circle cx="36" cy="26" r="3.5" fill="#f43f5e" opacity="0.9" />
+                  <circle cx="48" cy="26" r="3.5" fill="#fbbf24" opacity="0.9" />
+                  <circle cx="60" cy="26" r="3.5" fill="#10b981" opacity="0.9" />
 
                   {/* Window File Name */}
                   <text
                     x="170"
                     y="29"
                     textAnchor="middle"
-                    fill="rgba(255, 255, 255, 0.45)"
+                    fill="#475569"
                     fontSize="10"
                     fontFamily="system-ui, -apple-system, sans-serif"
-                    fontWeight="500"
+                    fontWeight="600"
                     letterSpacing="0.3"
                   >
                     ❖ design-system.fig · master
@@ -667,18 +667,18 @@ const WhatIDo = () => {
                     width="44"
                     height="14"
                     rx="7"
-                    fill="rgba(99, 102, 241, 0.18)"
-                    stroke="rgba(129, 140, 248, 0.35)"
+                    fill="rgba(31, 91, 255, 0.08)"
+                    stroke="rgba(31, 91, 255, 0.25)"
                     strokeWidth="0.8"
                   />
                   <text
                     x="286"
                     y="30"
                     textAnchor="middle"
-                    fill="#a5b4fc"
+                    fill="#1f5bff"
                     fontSize="8.5"
                     fontFamily="system-ui, -apple-system, sans-serif"
-                    fontWeight="600"
+                    fontWeight="700"
                   >
                     v2.4
                   </text>
@@ -693,7 +693,7 @@ const WhatIDo = () => {
                       height="32"
                       rx="16"
                       fill="url(#btn-grad-ds)"
-                      stroke="rgba(165, 180, 252, 0.4)"
+                      stroke="rgba(31, 91, 255, 0.3)"
                       strokeWidth="1"
                       className="wid-ds-main-btn"
                     />
@@ -719,8 +719,8 @@ const WhatIDo = () => {
                       width="124"
                       height="28"
                       rx="8"
-                      fill="rgba(255, 255, 255, 0.04)"
-                      stroke="rgba(129, 140, 248, 0.25)"
+                      fill="#f8fafc"
+                      stroke="rgba(15, 23, 42, 0.12)"
                       strokeWidth="1"
                       className="wid-ds-input-box"
                     />
@@ -730,7 +730,7 @@ const WhatIDo = () => {
                       cy="108"
                       r="4"
                       fill="none"
-                      stroke="rgba(255, 255, 255, 0.4)"
+                      stroke="#64748b"
                       strokeWidth="1.2"
                     />
                     <line
@@ -738,14 +738,14 @@ const WhatIDo = () => {
                       y1="111"
                       x2="55"
                       y2="115"
-                      stroke="rgba(255, 255, 255, 0.4)"
+                      stroke="#64748b"
                       strokeWidth="1.2"
                       strokeLinecap="round"
                     />
                     <text
                       x="62"
                       y="112"
-                      fill="rgba(255, 255, 255, 0.4)"
+                      fill="#64748b"
                       fontSize="9.5"
                       fontFamily="system-ui, -apple-system, sans-serif"
                     >
@@ -757,7 +757,7 @@ const WhatIDo = () => {
                       y1="102"
                       x2="138"
                       y2="114"
-                      stroke="#38bdf8"
+                      stroke="#1f5bff"
                       strokeWidth="1.5"
                       className="wid-ds-blink-cursor"
                     />
@@ -771,7 +771,7 @@ const WhatIDo = () => {
                       y1="138"
                       x2="160"
                       y2="138"
-                      stroke="rgba(255, 255, 255, 0.12)"
+                      stroke="#e2e8f0"
                       strokeWidth="4"
                       strokeLinecap="round"
                     />
@@ -781,7 +781,7 @@ const WhatIDo = () => {
                       y1="138"
                       x2="55"
                       y2="138"
-                      stroke="#6366f1"
+                      stroke="#1f5bff"
                       strokeWidth="4"
                       strokeLinecap="round"
                     >
@@ -801,7 +801,7 @@ const WhatIDo = () => {
                       cy="138"
                       r="6"
                       fill="#ffffff"
-                      stroke="#6366f1"
+                      stroke="#1f5bff"
                       strokeWidth="2.5"
                     >
                       <animate
@@ -825,6 +825,7 @@ const WhatIDo = () => {
                       width="52"
                       height="30"
                       rx="15"
+                      fill="#1f5bff"
                       className="wid-ds-toggle-track"
                     />
                     <g className="wid-ds-toggle-thumb-wrap">
@@ -833,17 +834,17 @@ const WhatIDo = () => {
                         cy="67"
                         r="10.5"
                         fill="#ffffff"
-                        filter="drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4))"
+                        filter="drop-shadow(0 2px 4px rgba(15, 23, 42, 0.15))"
                         className="wid-ds-toggle-thumb"
                       />
                     </g>
                     <text
                       x="238"
                       y="71"
-                      fill="rgba(255, 255, 255, 0.75)"
+                      fill="#475569"
                       fontSize="10"
                       fontFamily="system-ui, -apple-system, sans-serif"
-                      fontWeight="500"
+                      fontWeight="600"
                     >
                       Active
                     </text>
@@ -857,8 +858,8 @@ const WhatIDo = () => {
                       width="128"
                       height="26"
                       rx="13"
-                      fill="rgba(255, 255, 255, 0.04)"
-                      stroke="rgba(255, 255, 255, 0.08)"
+                      fill="#f1f5f9"
+                      stroke="rgba(15, 23, 42, 0.08)"
                       strokeWidth="1"
                     />
                     {/* Active Tab Pill */}
@@ -869,7 +870,7 @@ const WhatIDo = () => {
                         width="60"
                         height="22"
                         rx="11"
-                        fill="#4f46e5"
+                        fill="#1f5bff"
                         className="wid-ds-segment-pill"
                       />
                     </g>
@@ -888,7 +889,7 @@ const WhatIDo = () => {
                       x="268"
                       y="110"
                       textAnchor="middle"
-                      fill="rgba(255, 255, 255, 0.45)"
+                      fill="#64748b"
                       fontSize="9.5"
                       fontFamily="system-ui, -apple-system, sans-serif"
                       fontWeight="500"
@@ -899,8 +900,8 @@ const WhatIDo = () => {
 
                   {/* Living Color Tokens Row */}
                   <g className="wid-ds-tokens-shelf">
-                    {/* Token 1: Indigo */}
-                    <circle cx="188" cy="138" r="7" fill="#6366f1" className="wid-gem-1" />
+                    {/* Token 1: Blue */}
+                    <circle cx="188" cy="138" r="7" fill="#1f5bff" className="wid-gem-1" />
                     {/* Token 2: Rose */}
                     <circle cx="212" cy="138" r="7" fill="#f43f5e" className="wid-gem-2" />
                     {/* Token 3: Emerald */}

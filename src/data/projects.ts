@@ -1,6 +1,7 @@
 export interface Project {
   id: string;
   title: string;
+  subtitle?: string;
   description: string;
   longDescription: string;
   tags: string[];
@@ -90,7 +91,8 @@ export interface Project {
 const projects: Project[] = [
   {
     id: "mdoc-redesign",
-    title: "Mdoc Mobile App Redesign Case Study",
+    title: "Reimagining the Healthcare Experience",
+    subtitle: "Mobile App Design — mDoc",
     description: "mDoc is a healthcare platform that allows users to book doctor appointments from home with ease. It reduces time, travel, and cost, especially for patients in rural areas facing accessibility challenges. With a simple 4-step process, it makes healthcare access faster, convenient, and user-friendly.",
     longDescription:
       "mDoc is a healthcare platform that allows users to book doctor appointments from home with ease. It reduces time, travel, and cost, especially for patients in rural areas facing accessibility challenges. With a simple 4-step process, it makes healthcare access faster, convenient, and user-friendly.",
@@ -235,7 +237,7 @@ const projects: Project[] = [
       ]
     },
     competitorAnalysis: {
-      title: "Competetive Analysis",
+      title: "Competitive Analysis",
       headers: ["Criteria", "mDoc (Redesign)", "Practo", "MediBuddy"],
       rows: [
         { criteria: "Clean Home Screen", values: ["yes", "no", "partial"] },
@@ -413,7 +415,8 @@ const projects: Project[] = [
   },
   {
     id: "lingscar-redesign",
-    title: "LINGsCARS Website Redesign Casestudy",
+    title: "Improving Car Discovery Through Better Browsing",
+    subtitle: "Website Design — LINGsCARS",
     description: "LINGsCARS is a UK-based car leasing broker offering thousands of personal and business vehicle lease deals. Despite its strong market presence, the website experience creates usability friction due to visual clutter and lack of structured navigation. This project focuses on redesigning the Homepage and Browse Deals experience to improve clarity, discovery, and conversion.",
     longDescription:
       "A comprehensive UX and UI redesign of the LINGsCARS website â€” one of the UK's most distinctive car leasing platforms. The goal was to modernise the visual language while improving usability, information hierarchy, and conversion on the Homepage and Browse Deals page.",

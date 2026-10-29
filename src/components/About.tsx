@@ -1,4 +1,5 @@
 import "./styles/About.css";
+import SectionHeader from "./SectionHeader";
 
 const toolkitRow1 = [
   "Figma",
@@ -29,6 +30,10 @@ const About = () => {
   return (
     <section className="about-section section-container" id="about">
       <div className="about-box">
+        <SectionHeader
+          tag="ABOUT"
+          title="A little about me"
+        />
         <div className="about-bento-grid">
           {/* ════════════════════ ROW 1 (TOP) ════════════════════ */}
           <div className="bento-row bento-row-top">
@@ -71,14 +76,13 @@ const About = () => {
                   <div className="location-info">
                     <h4 className="location-city-name">Bidar, Karnataka</h4>
                     <p className="location-subtext">
-                      India • Open to relocation &amp; remote
+                      Open to relocation &amp; remote
                     </p>
                   </div>
                   <div
                     className="location-radar-indicator"
                     title="Active in Bidar, Karnataka"
                   >
-                    <span className="location-dot-pulse"></span>
                   </div>
                 </div>
               </div>

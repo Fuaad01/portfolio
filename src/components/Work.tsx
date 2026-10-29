@@ -1,141 +1,348 @@
-import { useState, useCallback, useRef } from "react";
+import { useState, useCallback, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./styles/Work.css";
+import SectionHeader from "./SectionHeader";
 import projects from "../data/projects";
 
 const allSlides = projects;
 
+interface TransitionState {
+  from: number;
+  to: number;
+  dir: "next" | "prev";
+}
+
 const Work = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState<"next" | "prev">("next");
-  const [isAnimating, setIsAnimating] = useState(false);
-  const dragStartX = useRef<number>(0);
-  const dragStartY = useRef<number>(0);
-  const isDragging = useRef(false);
-  const [dragOffset, setDragOffset] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [transitionState, setTransitionState] = useState<TransitionState | null>(null);
 
-  const goTo = useCallback(
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const textRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const dragStartRef = useRef({ x: 0, y: 0, time: 0 });
+  const isDraggingRef = useRef(false);
+  const hasMovedRef = useRef(false);
+  const isAnimatingRef = useRef(false);
+  const rafIdRef = useRef<number | null>(null);
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const resetTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Clean up timers and RAF on unmount
+  useEffect(() => {
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+      if (resetTimerRef.current) clearTimeout(resetTimerRef.current);
+      if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    };
+  }, []);
+
+  // Helper to clear any inline styles applied during direct drag or transition handoff
+  const clearDragInlineStyles = () => {
+    cardRefs.current.forEach((el) => {
+      if (el) {
+        el.removeAttribute("style");
+      }
+    });
+    textRefs.current.forEach((el) => {
+      if (el) {
+        el.removeAttribute("style");
+      }
+    });
+  };
+
+  // Trigger smooth class-driven swipe transition
+  const executeSwipe = useCallback(
     (dir: "next" | "prev") => {
-      if (isAnimating) return;
-      setDirection(dir);
-      setIsAnimating(true);
-      setCurrentIndex((prev) =>
+      if (isAnimatingRef.current) return;
+      isAnimatingRef.current = true;
+
+      // Ensure any direct drag inline styles are cleared so CSS classes control the motion
+      clearDragInlineStyles();
+
+      const fromIdx = currentIndex;
+      const toIdx =
         dir === "next"
-          ? prev === allSlides.length - 1
-            ? 0
-            : prev + 1
-          : prev === 0
-          ? allSlides.length - 1
-          : prev - 1
-      );
-      setTimeout(() => setIsAnimating(false), 500);
+          ? (currentIndex + 1) % allSlides.length
+          : (currentIndex - 1 + allSlides.length) % allSlides.length;
+
+      // Begin CSS class animation
+      setTransitionState({
+        from: fromIdx,
+        to: toIdx,
+        dir,
+      });
+
+      if (timerRef.current) clearTimeout(timerRef.current);
+      timerRef.current = setTimeout(() => {
+        // Disable transition on the exited element so it snaps to the back slot without flying back across
+        const exitedEl = cardRefs.current[fromIdx];
+        if (exitedEl) {
+          exitedEl.style.transition = "none";
+        }
+
+        setCurrentIndex(toIdx);
+        setTransitionState(null);
+        isAnimatingRef.current = false;
+
+        // Clean up inline styles on the next frame so CSS classes fully govern the stack
+        requestAnimationFrame(() => {
+          clearDragInlineStyles();
+        });
+      }, 350);
     },
-    [isAnimating]
+    [currentIndex]
   );
 
-  // Drag / touch handlers
-  const handleDragStart = (e: React.PointerEvent) => {
-    dragStartX.current = e.clientX;
-    dragStartY.current = e.clientY;
-    isDragging.current = true;
-    setDragOffset(0);
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-  };
+  // Pointer drag start
+  const handlePointerDown = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (isAnimatingRef.current) return;
+    dragStartRef.current = { x: e.clientX, y: e.clientY, time: Date.now() };
+    isDraggingRef.current = true;
+    hasMovedRef.current = false;
+    setIsDragging(true);
 
-  const handleDragMove = (e: React.PointerEvent) => {
-    if (!isDragging.current) return;
-    const deltaX = e.clientX - dragStartX.current;
-    const deltaY = e.clientY - dragStartY.current;
-    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > 5) {
-      isDragging.current = false;
-      setDragOffset(0);
-      return;
+    try {
+      e.currentTarget.setPointerCapture(e.pointerId);
+    } catch {
+      // Safe ignore
     }
-    setDragOffset(deltaX);
   };
 
-  const handleDragEnd = (e: React.PointerEvent) => {
-    if (!isDragging.current) return;
-    isDragging.current = false;
-    const delta = e.clientX - dragStartX.current;
-    setDragOffset(0);
-    if (delta < -50) goTo("next");
-    else if (delta > 50) goTo("prev");
+  // Pointer drag move - 120 FPS direct GPU transforms with real-time bottom card & text interpolation
+  const handlePointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current || isAnimatingRef.current) return;
+
+    const rawDx = e.clientX - dragStartRef.current.x;
+    const dy = e.clientY - dragStartRef.current.y;
+
+    // Detect vertical scroll intent early (only activate drag when pulling left)
+    if (!hasMovedRef.current) {
+      if (Math.abs(dy) > Math.abs(rawDx) && Math.abs(dy) > 10) {
+        isDraggingRef.current = false;
+        setIsDragging(false);
+        clearDragInlineStyles();
+        return;
+      }
+      if (rawDx < -4) {
+        hasMovedRef.current = true;
+      }
+    }
+
+    if (!hasMovedRef.current) return;
+
+    // Restrict drag on the right side: only allow dragging to the left (dx <= 0)
+    const dx = Math.min(0, rawDx);
+
+    if (rafIdRef.current) cancelAnimationFrame(rafIdRef.current);
+    rafIdRef.current = requestAnimationFrame(() => {
+      const frontEl = cardRefs.current[currentIndex];
+      const backIdx = (currentIndex + 1) % allSlides.length;
+      const backEl = cardRefs.current[backIdx];
+
+      if (!frontEl || !backEl) return;
+
+      // 1:1 top card physics - only leftward drag, completely solid (opacity 1)
+      const rot = dx * 0.045;
+      frontEl.style.transition = "none";
+      frontEl.style.transform = `translate3d(${dx}px, ${dy * 0.22}px, 0) rotate(${rot}deg) scale(1)`;
+      frontEl.style.zIndex = "2";
+      frontEl.style.opacity = "1";
+
+      // Real-time bottom card elevation as top card is pulled away
+      const progress = Math.min(Math.abs(dx) / 200, 1);
+      const curX = 18 * (1 - progress);
+      const curY = 12 * (1 - progress);
+      const curRot = 4 * (1 - progress);
+      const curScale = 0.96 + 0.04 * progress;
+
+      backEl.style.transition = "none";
+      backEl.style.transform = `translate3d(${curX.toFixed(2)}px, ${curY.toFixed(2)}px, 0) rotate(${curRot.toFixed(2)}deg) scale(${curScale.toFixed(3)})`;
+      backEl.style.zIndex = "1";
+      backEl.style.opacity = "1";
+    });
   };
 
-  const current = allSlides[currentIndex];
-  const nextIndex = (currentIndex + 1) % allSlides.length;
-  const next = allSlides[nextIndex];
+  // Pointer drag release
+  const handlePointerUp = (e: React.PointerEvent<HTMLDivElement>) => {
+    if (!isDraggingRef.current) return;
+    isDraggingRef.current = false;
+    setIsDragging(false);
+
+    try {
+      e.currentTarget.releasePointerCapture(e.pointerId);
+    } catch {
+      // Safe ignore
+    }
+
+    if (rafIdRef.current) {
+      cancelAnimationFrame(rafIdRef.current);
+      rafIdRef.current = null;
+    }
+
+    const rawDx = e.clientX - dragStartRef.current.x;
+    const elapsed = Date.now() - dragStartRef.current.time;
+    const velocity = Math.abs(rawDx) / Math.max(elapsed, 1);
+
+    const isFlick = velocity > 0.35 && Math.abs(rawDx) > 22;
+    const isPastThreshold = Math.abs(rawDx) > 55;
+
+    // Only allow leftward swipe to advance to next card
+    if (rawDx < 0 && (isFlick || isPastThreshold)) {
+      executeSwipe("next");
+    } else {
+      // Release without swipe: clear drag inline styles so CSS classes spring everything back smoothly
+      clearDragInlineStyles();
+    }
+  };
+
+  // Determine card CSS class based on active index and transition state
+  const getCardClass = (index: number) => {
+    if (transitionState) {
+      if (index === transitionState.from) {
+        return transitionState.dir === "next"
+          ? "work-stack-card is-exiting-left"
+          : "work-stack-card is-exiting-right";
+      }
+      if (index === transitionState.to) {
+        return "work-stack-card is-entering-front";
+      }
+    }
+
+    const isCurrent = index === currentIndex;
+    const isIncoming = index === (currentIndex + 1) % allSlides.length;
+
+    if (isCurrent) return "work-stack-card is-front";
+    if (isIncoming) return "work-stack-card is-back";
+    return "work-stack-card is-hidden";
+  };
+
+  // Determine text slide CSS class based on active index and transition state
+  const getTextClass = (index: number) => {
+    if (transitionState) {
+      if (index === transitionState.from) {
+        return transitionState.dir === "next"
+          ? "work-stack-text-slide is-exiting-up"
+          : "work-stack-text-slide is-exiting-down";
+      }
+      if (index === transitionState.to) {
+        return transitionState.dir === "next"
+          ? "work-stack-text-slide is-entering-up"
+          : "work-stack-text-slide is-entering-down";
+      }
+    }
+
+    if (index === currentIndex) return "work-stack-text-slide is-active";
+    return "work-stack-text-slide";
+  };
+
+  const isAnimating = !!transitionState;
+  const targetCounterIndex = transitionState ? transitionState.to : currentIndex;
 
   return (
     <div className="work-section" id="work">
       <div className="work-container section-container">
-        <h2 className="section-title">MY WORK</h2>
+        <SectionHeader tag="SELECTED PROJECTS" title="My work" />
 
         <div className="work-stack-layout">
-          {/* ── Stacked Card Area ── */}
+          {/* ── Persistent Stacked Cards ── */}
           <div
-            className="work-stack-cards"
-            onPointerDown={handleDragStart}
-            onPointerMove={handleDragMove}
-            onPointerUp={handleDragEnd}
-            onPointerCancel={handleDragEnd}
-            onPointerLeave={handleDragEnd}
-            style={{
-              transform: dragOffset ? `translateX(${dragOffset * 0.08}px)` : undefined,
-            }}
+            className={`work-stack-cards ${isDragging ? "is-dragging" : ""} ${isAnimating ? "is-animating" : ""}`}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerCancel={handlePointerUp}
           >
-            {/* Back card (peek) */}
-            <div
-              className={`work-stack-card work-stack-card--back ${isAnimating ? `animating-${direction}` : ""}`}
-            >
-              <div className="work-card-image">
-                {next.video ? (
-                  <video src={next.video} autoPlay loop muted playsInline draggable={false} style={{ pointerEvents: 'none' }} />
-                ) : (
-                  <img src={next.image} alt={next.title} draggable={false} style={{ pointerEvents: 'none' }} />
-                )}
-              </div>
-            </div>
-
-            {/* Front card (active) */}
-            <div
-              className={`work-stack-card work-stack-card--front ${isAnimating ? `animating-${direction}` : ""}`}
-            >
-              <div className="work-card-image">
-                {current.video ? (
-                  <video src={current.video} autoPlay loop muted playsInline draggable={false} style={{ pointerEvents: 'none' }} />
-                ) : (
-                  <img src={current.image} alt={current.title} draggable={false} style={{ pointerEvents: 'none' }} />
-                )}
-              </div>
-            </div>
+            {allSlides.map((project, index) => {
+              return (
+                <div
+                  key={project.id}
+                  ref={(el) => {
+                    cardRefs.current[index] = el;
+                  }}
+                  className={getCardClass(index)}
+                >
+                  <div className="work-card-image">
+                    {project.video ? (
+                      <video
+                        src={project.video}
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                        draggable={false}
+                        style={{ pointerEvents: "none" }}
+                      />
+                    ) : (
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        draggable={false}
+                        style={{ pointerEvents: "none" }}
+                      />
+                    )}
+                  </div>
+                </div>
+              );
+            })}
           </div>
 
-          {/* ── Info Panel ── */}
+          {/* ── Info Panel with Synchronized Transitions ── */}
           <div className="work-stack-info">
+            {/* Rolling Counter Ticker */}
             <div className="work-stack-counter">
-              <span className="counter-current">{String(currentIndex + 1).padStart(1, "0")}</span>
+              <div className="counter-ticker-wrapper">
+                <div
+                  className="counter-ticker-track"
+                  style={{
+                    transform: `translateY(-${targetCounterIndex * 28}px)`,
+                  }}
+                >
+                  {allSlides.map((_, i) => (
+                    <span key={i} className="counter-current">
+                      {i + 1}
+                    </span>
+                  ))}
+                </div>
+              </div>
               <span className="counter-sep"> / </span>
               <span className="counter-total">{allSlides.length}</span>
             </div>
 
-            <div className={`work-stack-text ${isAnimating ? "fading" : ""}`}>
-              <h3 className="work-stack-title">{current.title}</h3>
-              <p className="work-stack-desc">{current.description}</p>
-              <Link
-                to={`/casestudy/${current.id}`}
-                className="work-stack-link"
-              >
-                View Case Study →
-              </Link>
+            {/* Overlapping Text Slides (Zero Layout Shift) */}
+            <div className="work-stack-text-container">
+              {allSlides.map((project, index) => {
+                return (
+                  <div
+                    key={project.id}
+                    ref={(el) => {
+                      textRefs.current[index] = el;
+                    }}
+                    className={getTextClass(index)}
+                  >
+                    <div className="work-stack-title-wrap">
+                      <h3 className="work-stack-title">{project.title}</h3>
+                      {project.subtitle && (
+                        <p className="work-stack-subtitle">{project.subtitle}</p>
+                      )}
+                    </div>
+                    <p className="work-stack-desc">{project.description}</p>
+                    <Link
+                      to={`/casestudy/${project.id}`}
+                      className="work-stack-link"
+                    >
+                      View Case Study →
+                    </Link>
+                  </div>
+                );
+              })}
             </div>
 
-            {/* Arrow Buttons */}
+            {/* Arrow Navigation */}
             <div className="work-stack-nav">
               <button
                 className="work-nav-btn"
-                onClick={() => goTo("prev")}
+                onClick={() => executeSwipe("prev")}
                 aria-label="Previous project"
                 disabled={isAnimating}
               >
@@ -143,7 +350,7 @@ const Work = () => {
               </button>
               <button
                 className="work-nav-btn"
-                onClick={() => goTo("next")}
+                onClick={() => executeSwipe("next")}
                 aria-label="Next project"
                 disabled={isAnimating}
               >

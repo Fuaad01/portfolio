@@ -4,218 +4,198 @@
   margin: auto;
   position: relative;
   min-height: 100vh;
+  min-height: 100svh;
+  min-height: 100dvh;
   height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #f7f9fd;
+  z-index: 2;
+  overflow: hidden;
+}
+
+/* ── Blueprint Canvas Background with Soft Ambient Blue Radial Glow ── */
+.hero-figma-canvas-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+  background: #f7f9fd;
+}
+
+.canvas-grid-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(31, 91, 255, 0.07) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(31, 91, 255, 0.07) 1px, transparent 1px);
+  background-size: 56px 56px;
+  background-position: center center;
+}
+
+/* Smooth Gradient Blur Overlay to gracefully dissolve the grid pattern into the plain section below */
+.canvas-grid-bottom-blur {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 72px;
+  background: linear-gradient(to bottom,
+      rgba(247, 249, 253, 0) 0%,
+      rgba(247, 249, 253, 0.6) 45%,
+      var(--page-bg, #f7f9fd) 100%);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 60%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 60%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.canvas-radial-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.canvas-glow-left {
+  width: 780px;
+  height: 620px;
+  bottom: 0%;
+  left: -8%;
+  background: radial-gradient(circle, rgba(147, 197, 253, 0.55) 0%, rgba(191, 219, 254, 0.3) 38%, transparent 70%);
+  filter: blur(60px);
+}
+
+.canvas-glow-center {
+  width: 720px;
+  height: 480px;
+  bottom: -6%;
+  left: 28%;
+  background: radial-gradient(circle, rgba(191, 219, 254, 0.45) 0%, rgba(219, 234, 254, 0.2) 45%, transparent 68%);
+  filter: blur(70px);
+}
+
+/* ── Full-Width Figma Guide Lines ── */
+.figma-guideline-h {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: #0d99ff;
+  opacity: 0.85;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.figma-guideline-top {
+  top: 112px;
+}
+
+.figma-guideline-bottom {
+  bottom: 79px;
+}
+
+.figma-guideline-v {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: rgba(13, 153, 255, 0.45);
+  z-index: 3;
+  pointer-events: none;
+}
+
+.figma-guideline-v-left {
+  left: max(32px, calc(50% - 588px));
+}
+
+.figma-guideline-v-right {
+  right: max(32px, calc(50% - 588px));
+}
+
+/* Figma Guide Badges (y 207, y 689) */
+.figma-badge-guide {
+  position: absolute;
+  background: #0d99ff;
+  color: #ffffff;
+  font-family: "Inter", "Geist", -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  line-height: 1.3;
+  box-shadow: 0 2px 6px rgba(13, 153, 255, 0.35);
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.figma-badge-y207 {
+  left: 27px;
+  top: -24px;
+}
+
+.figma-badge-y689 {
+  right: 6px;
+  top: 6px;
+}
+
+/* ── Figma Artboard Frame ── */
+.figma-artboard-frame {
+  position: relative;
+  width: 100%;
+  max-width: 1176px;
+  margin: 0 auto;
+  /* padding: 34px 32px 20px; */
+  box-sizing: border-box;
   background: transparent;
 }
 
-
-/* Animated Resonance Background */
-.hero-animated-bg {
+.figma-badge-frame-label {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 0;
-  pointer-events: none;
-  background-position: center top;
-  opacity: 0.85;
-
-  /* Radial glow and strict non-stretching 120px wide resonance bars together */
-  background-image:
-    radial-gradient(circle at 50% 50%, rgba(26, 79, 255, 0.22) 0%, rgba(10, 16, 36, 0.7) 45%, transparent 75%),
-    repeating-linear-gradient(90deg,
-      rgba(26, 79, 255, 0) 0px,
-      rgba(26, 79, 255, 0.01) 80px,
-      rgba(26, 79, 255, 0.04) 119px,
-      rgba(26, 79, 255, 0.12) 120px);
-
-  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 95%);
-  mask-image: linear-gradient(to bottom, #000 45%, transparent 95%);
-}
-
-/* Sweeping glowing effect from left top to right bottom */
-.hero-animated-bg::before {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(ellipse at 50% 50%,
-      var(--accentColor) 0%,
-      transparent 50%);
-  opacity: 0;
-  animation: dissolve-sweep 8s infinite ease-in-out;
-  filter: blur(30px);
-}
-
-@keyframes dissolve-sweep {
-  0% {
-    transform: translate(-30%, -30%) scale(0.9);
-    opacity: 0;
-  }
-
-  20% {
-    opacity: 0.4;
-  }
-
-  80% {
-    opacity: 0.4;
-  }
-
-  100% {
-    transform: translate(30%, 30%) scale(1.1);
-    opacity: 0;
-  }
-}
-
-/* Hero Blended Portrait/Image */
-.hero-bg-image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-  background-image: url("/images/bg.png");
-  background-size: contain;
-  background-position: center bottom;
-  background-repeat: no-repeat;
-  opacity: 0.4;
-  -webkit-mask-image: linear-gradient(to bottom, #000 45%, transparent 95%);
-  mask-image: linear-gradient(to bottom, #000 45%, transparent 95%);
-}
-
-/* ── Hero Footer Bar (Bottom Left Social Icons & Bottom Right Rotating Resume) ── */
-.hero-footer {
-  position: absolute;
-  bottom: 4vh;
-  left: 0;
-  right: 0;
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 4vw;
-  z-index: 20;
-  box-sizing: border-box;
-  pointer-events: none;
-}
-
-.hero-socials-wrapper {
-  pointer-events: auto;
-}
-
-.hero-socials {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 12px;
-  pointer-events: auto;
-}
-
-.hero-social-circle {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: rgba(15, 23, 42, 0.65);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 16px;
-  text-decoration: none;
-  backdrop-filter: blur(10px);
-  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
-  pointer-events: auto;
-}
-
-.hero-social-circle:hover {
+  top: 136px;
+  left: max(16px, calc(50% - 582px));
+  transform: translateY(-100%);
+  background: #0d99ff;
   color: #ffffff;
-  border-color: #3b82f6;
-  background: rgba(37, 99, 235, 0.3);
-  transform: scale(1.12) translateY(-2px);
-  box-shadow: 0 0 16px rgba(37, 99, 235, 0.5);
+  font-family: "Inter", "Geist", -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+  line-height: 1.3;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(13, 153, 255, 0.35);
+  white-space: nowrap;
+  z-index: 6;
 }
 
-/* ── Circular Rotating Resume ── */
-.hero-resume-circular {
-  pointer-events: auto;
-}
-
-.circular-resume-link {
-  position: relative;
-  width: 120px;
-  height: 120px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  color: #fff;
-  transition: transform 0.3s ease;
-  pointer-events: auto;
-}
-
-.circular-resume-link:hover {
-  transform: scale(1.06);
-}
-
-.rotating-text-svg {
-  width: 100%;
-  height: 100%;
-  animation: rotateText 14s linear infinite;
-  overflow: visible;
-}
-
-.rotating-text {
-  font-family: inherit;
-  font-size: 11.5px;
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 1.8px;
-  fill: #ffffff;
-}
-
-.resume-icon-center {
+.figma-badge-autolayout {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 44px;
-  height: 44px;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(10px);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #38bdf8;
-  transition: all 0.3s ease;
-}
-
-.circular-resume-link:hover .resume-icon-center {
-  background: rgba(37, 99, 235, 0.3);
-  border-color: #38bdf8;
-  box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+  bottom: 105px;
+  right: max(16px, calc(50% - 582px));
+  transform: translateY(100%);
+  background: #0d99ff;
   color: #ffffff;
-}
-
-.resume-icon-center svg {
-  width: 20px;
-  height: 20px;
+  font-family: "Inter", "Geist", -apple-system, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  line-height: 1.2;
+  pointer-events: none;
+  box-shadow: 0 2px 6px rgba(13, 153, 255, 0.3);
+  white-space: nowrap;
+  z-index: 6;
 }
 
 @keyframes rotateText {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
@@ -224,7 +204,7 @@
 /* ── Main Stage Container ── */
 .landing-container {
   width: 90%;
-  max-width: 1200px;
+  max-width: 1240px;
   margin: auto;
   position: relative;
   z-index: 10;
@@ -235,7 +215,9 @@
   align-items: center;
   justify-content: center;
   min-height: 100vh;
-  padding: 110px 0 60px;
+  min-height: 100svh;
+  min-height: 100dvh;
+  padding: 96px 0 44px;
   box-sizing: border-box;
   position: relative;
 }
@@ -273,7 +255,7 @@
 /* Chatbox view container */
 .hero-view-chatbox {
   width: 100%;
-  max-width: 1140px;
+  max-width: 1176px;
   margin: 0 auto;
   transition: opacity 0.4s cubic-bezier(0.16, 1, 0.3, 1),
     transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
@@ -325,9 +307,15 @@ body.chat-mode-active #smooth-content>*:not(#landingDiv) {
   display: none !important;
 }
 
-/* Hide navbar and hero footer */
+/* Hide navbar, hero footer, and Figma guidelines/badges when chat is active */
 body.chat-mode-active .header,
-body.chat-mode-active .hero-footer {
+body.chat-mode-active .hero-footer,
+body.chat-mode-active .figma-guideline-h,
+body.chat-mode-active .figma-guideline-v,
+body.chat-mode-active .figma-badge-frame-label,
+body.chat-mode-active .figma-badge-autolayout,
+body.chat-mode-active .figma-badge-y207,
+body.chat-mode-active .figma-badge-y689 {
   display: none !important;
 }
 
@@ -351,19 +339,26 @@ body.chat-mode-active .hero-stage-container {
   justify-content: center !important;
   width: 92% !important;
   max-width: 1240px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box !important;
 }
 
 body.chat-mode-active .hero-view-chatbox {
   width: 100% !important;
-  max-width: 1180px !important;
+  max-width: 1176px !important;
+  margin: 0 auto !important;
   height: calc(100vh - 48px) !important;
-  max-height: 720px !important;
+  max-height: 728px !important;
   display: flex !important;
   flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
 }
 
 body.chat-mode-active .full-hero-chatbox {
   width: 100% !important;
+  max-width: 1176px !important;
+  margin: 0 auto !important;
   height: 100% !important;
   display: flex !important;
   flex-direction: column !important;
@@ -372,6 +367,7 @@ body.chat-mode-active .full-hero-chatbox {
 body.chat-mode-active .full-hero-chatbox .chatbox-outer-card {
   width: 100% !important;
   height: 100% !important;
+  margin: 0 auto !important;
   display: flex !important;
   flex-direction: column !important;
 }
@@ -407,195 +403,736 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
   }
 
   body.chat-mode-active .full-hero-chatbox .chatbox-inner {
-    padding: 18px 16px !important;
+    padding: 18px 16px 24px !important;
   }
 }
 
-/* ── Hero Typography (Centered) ── */
-.hero-title {
+/* ═════════════════════════════════════════════════/* ── Top Pill Badge ("Hi, I'm Fuaad, a") ── */
+.hero-top-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  background: #ffffff;
+  border: 1.5px solid rgba(15, 23, 42, 0.16);
+  box-shadow: 0 6px 20px rgba(15, 23, 42, 0.08), 0 2px 4px rgba(0, 0, 0, 0.03);
+  color: #0f172a;
+  font-family: "Geist", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 9px 26px;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+  position: relative;
+  z-index: 5;
+}
+
+/* ── Main Figma Giant Headline ── */
+.hero-figma-title {
   font-family: "Bricolage Grotesque", sans-serif;
-  font-size: clamp(38px, 5.2vw, 76px);
   font-weight: 800;
-  line-height: 1.08;
-  margin: 0;
-  letter-spacing: -0.035em;
-  background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 55%, #cbd5e1 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  font-stretch: 75%;
+  font-variation-settings: "wdth" 75, "wght" 800;
+  color: #11141a;
+  font-size: clamp(56px, 7.5vw, 98px);
+  line-height: 1.06;
+  letter-spacing: 1px;
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
+  margin: 0 0 34px 0;
 }
 
-.hero-title-row {
+.hero-title-line {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.28em;
-  white-space: nowrap;
-}
-
-.hero-title .text-grey {
-  background: none;
-  -webkit-text-fill-color: #94a3b8;
-  color: #94a3b8;
-  font-weight: 700;
-}
-
-.profile-pill {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.7em;
-  height: 1.38em;
-  border-radius: 9999px;
-  overflow: hidden;
+  flex-wrap: nowrap;
+  gap: 0.12em;
   position: relative;
-  background-color: #1a2234;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.7);
-  border: 1.5px solid rgba(255, 255, 255, 0.18);
-  vertical-align: middle;
-  -webkit-text-fill-color: initial;
 }
 
-.profile-pill img {
+.hero-text-glyph {
+  color: #11141a;
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+  position: relative;
+}
+
+/* ── Interactive Title Letters with Smooth Tilt & Color on Hover ── */
+.hero-letter {
+  display: inline-block;
+  cursor: pointer;
+  position: relative;
+  color: inherit;
+  letter-spacing: 1px;
+  transform-origin: 50% 85%;
+  transition:
+    transform 0.32s cubic-bezier(0.34, 1.56, 0.64, 1),
+    color 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, color;
+  user-select: none;
+}
+
+.hero-letter-space {
+  display: inline-block;
+  width: 0.25em;
+  user-select: none;
+}
+
+/* Hover state: changes color to vibrant accent blue and tilts smoothly */
+.hero-letter:hover,
+.hero-letter.is-hovered {
+  color: var(--accentColor, #1f5bff) !important;
+  transform: translateY(-4px) rotate(var(--tilt, -6.5deg)) scale(1.06);
+  z-index: 5;
+}
+
+/* ── 3+ Years Designing Flows Capsule Pill (Straight & Larger) ── */
+.hero-systems-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: #141416;
+  border: 1.5px solid rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+  padding: 5px 22px 5px 5px;
+  box-shadow: 0 12px 28px -4px rgba(0, 0, 0, 0.38);
+  margin: 0;
+  vertical-align: middle;
+  transform: translateY(0);
+  transform-origin: center center;
+  transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.3s ease;
+}
+
+.hero-systems-capsule:hover {
+  transform: scale(1.04) translateY(0);
+  box-shadow: 0 16px 36px -4px rgba(0, 0, 0, 0.48);
+}
+
+.systems-capsule-badge {
+  width: 48px;
+  height: 48px;
+  background: var(--accentColor, #1f5bff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: "Geist", sans-serif;
+  font-size: 24px;
+  letter-spacing: 1px;
+  font-weight: 800;
+  flex-shrink: 0;
+  box-shadow: 0 4px 12px var(--accentGlow, rgba(31, 91, 255, 0.4));
+}
+
+.systems-capsule-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  color: #ffffff;
+  font-family: "Geist", sans-serif;
+  line-height: 1.2;
+}
+
+.capsule-text-top {
+  color: rgba(255, 255, 255, 0.95);
+  white-space: nowrap;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.capsule-ticker-box {
+  position: relative;
+  display: block;
+  height: 20px;
+  overflow: hidden;
+  line-height: 20px;
+  min-width: 115px;
+  text-align: left;
+}
+
+.capsule-ticker-track {
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.capsule-ticker-item {
+  height: 20px;
+  line-height: 20px;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 18px;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  display: block;
+}
+
+.capsule-text-bottom {
+  color: #ffffff;
+  font-weight: 800;
+  font-size: 16px;
+  letter-spacing: -0.01em;
+}
+
+/* ── Ampersand & ── */
+.hero-ampersand-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 0.1em;
+}
+
+.hero-ampersand {
+  font-size: 0.96em;
+}
+
+/* ── Product text wrapper with Figma Multiplayer Cursor Badge ── */
+.hero-product-wrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* Floating animation for cursor arrow */
+@keyframes floatCursorArrow {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(3px, -6px);
+  }
+}
+
+@keyframes floatCursorArrowAlt {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(-3px, -5px);
+  }
+}
+
+.figma-cursor-badge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  pointer-events: none;
+  z-index: 10;
+  will-change: transform;
+}
+
+.figma-cursor-fuaad {
+  top: -34px;
+  right: -66px;
+  animation: floatCursorArrow 3.2s ease-in-out infinite;
+}
+
+.figma-cursor-user {
+  top: 115px;
+  left: -82px;
+  animation: floatCursorArrowAlt 3.8s ease-in-out 0.6s infinite;
+}
+
+.figma-cursor-arrow {
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.2));
+}
+
+.figma-cursor-tag {
+  background: var(--accentColor, #1f5bff);
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  font-size: 13.5px;
+  font-weight: 600;
+  padding: 4px 10px;
+  border-radius: 6px;
+  box-shadow: 0 4px 14px var(--accentGlow, rgba(31, 91, 255, 0.4));
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+/* ── Circular Rotating Resume Badge (Placed Inline next to Product Designer) ── */
+.hero-inline-resume-wrapper {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 0.22em;
+  vertical-align: middle;
+}
+
+.hero-inline-resume-btn {
+  position: relative;
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #141416;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28);
+  text-decoration: none;
+  color: #ffffff;
+  transition: transform 0.25s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.25s ease;
+  cursor: pointer;
+}
+
+.hero-inline-resume-btn:hover {
+  transform: scale(1.08);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+}
+
+.inline-resume-svg {
   width: 100%;
   height: 100%;
-  object-fit: cover;
-  object-position: center 25%;
+  animation: rotateText 14s linear infinite;
+  overflow: visible;
 }
 
-.hero-desc {
-  font-family: "Geist", sans-serif;
-  font-size: 18px;
-  line-height: 1.58;
-  color: #94a3b8;
-  max-width: 580px;
-  margin: 22px auto 0;
-  text-align: center;
-  font-weight: 400;
-  letter-spacing: 0.1px;
+.inline-resume-text {
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  fill: #ffffff;
 }
 
-/* ── Hero CTA Buttons ── */
-.hero-buttons {
+/* Floating animation for center arrow */
+@keyframes floatResumeArrow {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%);
+  }
+
+  50% {
+    transform: translate(-50%, -40%);
+  }
+}
+
+.inline-resume-arrow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatResumeArrow 2.5s ease-in-out infinite;
+}
+
+.inline-resume-arrow svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* ── Action Buttons Row (Auto Layout · 16) ── */
+.hero-cta-buttons {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  margin-top: 36px;
-  flex-wrap: wrap;
+  margin-bottom: 24px;
 }
 
-.btn-hero-primary {
+.btn-projects-figma {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
+  gap: 8px;
   padding: 14px 28px;
-  background: #2563eb;
-  color: #ffffff;
+  background: var(--accentColor, #1f5bff);
+  color: #ffffff !important;
   border-radius: 9999px;
   font-family: "Geist", sans-serif;
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 600;
   text-decoration: none;
-  box-sizing: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
   box-shadow:
-    0 10px 25px -4px rgba(37, 99, 235, 0.6),
-    inset 0 1px 1px rgba(255, 255, 255, 0.25);
-  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+    0 12px 28px -4px var(--accentGlowStrong, rgba(31, 91, 255, 0.52)),
+    0 4px 10px var(--accentBorder, rgba(31, 91, 255, 0.25));
   cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), background 0.2s ease, box-shadow 0.2s ease;
 }
 
-.btn-hero-primary:hover {
-  background: #1d4ed8;
+.btn-projects-figma:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 30px -4px rgba(37, 99, 235, 0.75);
-  color: #ffffff;
+  background: var(--accentColorHover, #1646cc);
+  box-shadow: 0 16px 32px -4px var(--accentGlowStrong, rgba(31, 91, 255, 0.65));
 }
 
-.btn-icon-arrow {
-  width: 16px;
-  height: 16px;
-  transition: transform 0.2s ease;
+@keyframes floatDiagonalArrow {
+
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(2.5px, -3px);
+  }
 }
 
-.btn-hero-primary:hover .btn-icon-arrow {
-  transform: translateX(3px);
-}
-
-.btn-hero-secondary {
+.btn-ask-ai-figma {
   display: inline-flex;
   align-items: center;
-  gap: 9px;
-  padding: 14px 28px;
-  background: rgba(10, 16, 36, 0.7);
+  gap: 10px;
+  padding: 12px 26px 12px 20px;
+  background: #18181b;
   color: #ffffff;
   border-radius: 9999px;
   font-family: "Geist", sans-serif;
-  font-size: 15px;
+  font-size: 15.5px;
   font-weight: 600;
   text-decoration: none;
-  box-sizing: border-box;
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(12px);
-  box-shadow: 0 8px 22px -6px rgba(0, 0, 0, 0.65);
-  transition: all 0.25s cubic-bezier(0.23, 1, 0.32, 1);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 10px 25px -4px rgba(0, 0, 0, 0.35);
   cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
-.btn-hero-secondary:hover {
-  background: rgba(22, 33, 62, 0.85);
-  border-color: rgba(59, 130, 246, 0.5);
+.btn-ask-ai-figma:hover {
   transform: translateY(-2px);
-  color: #ffffff;
+  box-shadow: 0 14px 28px -4px rgba(0, 0, 0, 0.45);
+  border-color: rgba(255, 255, 255, 0.25);
 }
 
-.btn-hero-chat {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
-  cursor: pointer;
-  padding: 10px 24px 10px 16px;
-}
-
-.btn-chat-avatar-wrapper {
+/* AI Assistant Avatar Icon inside Ask AI button */
+.btn-ai-avatar-wrapper {
   position: relative;
-  width: 29px;
-  height: 29px;
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.btn-chat-avatar {
-  width: 100%;
-  height: 100%;
+.btn-ai-avatar-img {
+  width: 26px;
+  height: 26px;
   border-radius: 50%;
   object-fit: cover;
-  box-shadow: 0 0 8px rgba(37, 99, 235, 0.35);
+  object-position: center 15%;
+  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  display: block;
 }
 
-.btn-chat-online-dot {
+.btn-ai-avatar-dot {
   position: absolute;
-  bottom: 0px;
-  right: 0px;
-  width: 8.5px;
-  height: 8.5px;
-  border-radius: 50%;
+  bottom: -1px;
+  right: -1px;
+  width: 8px;
+  height: 8px;
   background: #22c55e;
-  border: 1.5px solid #070c1e;
-  box-shadow: 0 0 5px rgba(34, 197, 94, 0.8);
+  border: 1.5px solid #18181b;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #22c55e;
 }
 
-.btn-icon-download {
-  width: 16px;
-  height: 16px;
+/* ── Centered Social Icons Row Directly Below Buttons ── */
+.hero-social-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 4px;
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 10;
+}
+
+.hero-social-btn {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 1.5px solid rgba(15, 23, 42, 0.14);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.08), 0 2px 5px rgba(0, 0, 0, 0.03);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  font-size: 20px;
+  text-decoration: none;
+  transition: all 0.22s cubic-bezier(0.23, 1, 0.32, 1);
+  position: relative;
+  z-index: 10;
+}
+
+.hero-social-btn:hover {
+  transform: translateY(-3px) scale(1.08);
+  background: #1b68ff;
+  color: #ffffff;
+  border-color: #1b68ff;
+  box-shadow: 0 12px 24px rgba(27, 104, 255, 0.42);
+}
+
+/* ── Responsive Rules for Figma Hero ── */
+@media screen and (max-width: 900px) {
+  .hero-figma-title {
+    font-size: clamp(44px, 6.8vw, 74px);
+    letter-spacing: 1px;
+    margin-bottom: 26px;
+  }
+
+  .systems-capsule-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+
+  .capsule-text-top {
+    font-size: 11px;
+  }
+
+  .capsule-text-bottom {
+    font-size: 13.5px;
+  }
+
+  .capsule-ticker-box {
+    height: 18px;
+    line-height: 18px;
+    min-width: 80px;
+  }
+
+  .capsule-ticker-item {
+    height: 18px;
+    line-height: 18px;
+    font-size: 14px;
+  }
+
+  .hero-inline-resume-btn {
+    width: 66px;
+    height: 66px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+
+  /* Guideline positions on mobile */
+  .figma-guideline-v-left {
+    left: 16px;
+  }
+
+  .figma-guideline-v-right {
+    right: 16px;
+  }
+
+  .hero-stage-container {
+    padding: 95px 0 35px;
+  }
+
+  .hero-top-pill {
+    font-size: 15px;
+    padding: 8px 20px;
+    margin-bottom: 14px;
+  }
+
+  .hero-figma-title {
+    font-size: clamp(34px, 9vw, 52px);
+    gap: 12px;
+    margin-bottom: 24px;
+    letter-spacing: 1px;
+    width: 100%;
+    max-width: calc(100vw - 32px);
+  }
+
+  .hero-title-line {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .hero-systems-capsule {
+    padding: 4px 12px 4px 4px;
+    gap: 8px;
+    margin: 0 4px;
+    border-radius: 100px;
+  }
+
+  .systems-capsule-badge {
+    width: 34px;
+    height: 34px;
+    font-size: 14.5px !important;
+  }
+
+  .capsule-text-top {
+    font-size: 10.5px !important;
+  }
+
+  .capsule-ticker-box {
+    height: 19px;
+    line-height: 19px;
+    min-width: 74px;
+  }
+
+  .capsule-ticker-item {
+    height: 19px;
+    line-height: 19px;
+    font-size: 14px !important;
+  }
+
+  .figma-cursor-badge {
+    gap: 4px;
+  }
+
+  .figma-cursor-fuaad {
+    top: -24px;
+    right: -10px;
+    left: auto;
+  }
+
+  .figma-cursor-user {
+    top: -26px;
+    left: -12px;
+    right: auto;
+  }
+
+  .figma-cursor-arrow {
+    width: 20px;
+    height: 20px;
+  }
+
+  .figma-cursor-tag {
+    font-size: 11px;
+    padding: 2.5px 7px;
+  }
+
+  .hero-inline-resume-btn {
+    width: 56px;
+    height: 56px;
+    flex-shrink: 0;
+  }
+
+  .inline-resume-text {
+    font-size: 9.5px;
+    letter-spacing: 1.3px;
+  }
+
+  .inline-resume-arrow svg {
+    width: 14px;
+    height: 14px;
+  }
+
+  .hero-cta-buttons {
+    flex-direction: row;
+    gap: 12px;
+    margin-bottom: 22px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .btn-projects-figma,
+  .btn-ask-ai-figma {
+    padding: 12px 22px;
+    font-size: 15px;
+    flex: 1;
+    max-width: 175px;
+    justify-content: center;
+  }
+
+  .hero-social-row {
+    margin-top: 2px;
+    margin-bottom: 4px;
+    gap: 14px;
+  }
+
+  .hero-social-btn {
+    width: 46px;
+    height: 46px;
+    font-size: 18px;
+  }
+}
+
+/* Below 460px: stack CTA buttons one by one (vertically) */
+@media screen and (max-width: 460px) {
+  .hero-cta-buttons {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 12px !important;
+    width: 100% !important;
+    margin-bottom: 22px !important;
+  }
+
+  .btn-projects-figma,
+  .btn-ask-ai-figma {
+    width: 100% !important;
+    max-width: 275px !important;
+    padding: 13px 26px !important;
+    font-size: 15px !important;
+    flex: none !important;
+    justify-content: center !important;
+  }
+}
+
+@media screen and (max-width: 380px) {
+  .hero-figma-title {
+    font-size: clamp(28px, 7.8vw, 34px);
+    letter-spacing: 1px;
+    gap: 8px;
+  }
+
+  .systems-capsule-badge {
+    width: 30px;
+    height: 30px;
+    font-size: 13px !important;
+  }
+
+  .capsule-text-top {
+    font-size: 9.5px !important;
+  }
+
+  .capsule-ticker-box {
+    min-width: 64px;
+    height: 17px;
+    line-height: 17px;
+  }
+
+  .capsule-ticker-item {
+    font-size: 12px !important;
+    height: 17px;
+    line-height: 17px;
+  }
+
+  .hero-inline-resume-btn {
+    width: 48px;
+    height: 48px;
+  }
+
+  .btn-projects-figma,
+  .btn-ask-ai-figma {
+    max-width: 250px;
+    padding: 12px 20px;
+    font-size: 14px;
+  }
 }
 
 /* ── Bottom Right Floating Chat Trigger Pill (High-Luminance Electric Blue Fluid) ── */
@@ -607,7 +1144,8 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
   align-items: center;
   gap: 12px;
   padding: 10px 24px 10px 10px;
-  background: #0055ff; /* High-Luminance Electric Blue */
+  background: #0055ff;
+  /* High-Luminance Electric Blue */
   border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 9999px;
   color: #ffffff;
@@ -651,16 +1189,14 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
   inset: -50%;
   width: 200%;
   height: 200%;
-  background: linear-gradient(
-    115deg,
-    #0044ff 0%,
-    #0066ff 22%,
-    #2575fc 40%,
-    #0055ff 55%,
-    #003de6 72%,
-    #0066ff 88%,
-    #0044ff 100%
-  );
+  background: linear-gradient(115deg,
+      #0044ff 0%,
+      #0066ff 22%,
+      #2575fc 40%,
+      #0055ff 55%,
+      #003de6 72%,
+      #0066ff 88%,
+      #0044ff 100%);
   background-size: 200% 200%;
   animation: fluidWaveFlow 4s ease-in-out infinite;
   opacity: 1;
@@ -671,10 +1207,12 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
     transform: rotate(0deg) scale(1);
     background-position: 0% 50%;
   }
+
   50% {
     transform: rotate(4deg) scale(1.08);
     background-position: 100% 50%;
   }
+
   100% {
     transform: rotate(0deg) scale(1);
     background-position: 0% 50%;
@@ -685,15 +1223,13 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
 .liquid-fluid-wave-2 {
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(
-    108deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0) 15%,
-    rgba(255, 255, 255, 0.18) 28%,
-    rgba(255, 255, 255, 0.35) 35%,
-    rgba(255, 255, 255, 0.18) 42%,
-    transparent 55%
-  );
+  background: repeating-linear-gradient(108deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0) 15%,
+      rgba(255, 255, 255, 0.18) 28%,
+      rgba(255, 255, 255, 0.35) 35%,
+      rgba(255, 255, 255, 0.18) 42%,
+      transparent 55%);
   background-size: 250% 100%;
   animation: fluidRippleGlide 3.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
   mix-blend-mode: overlay;
@@ -703,6 +1239,7 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
   0% {
     background-position: -120% 0;
   }
+
   100% {
     background-position: 130% 0;
   }
@@ -712,11 +1249,9 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
 .liquid-fluid-sheen {
   position: absolute;
   inset: 0;
-  background: radial-gradient(
-    ellipse 85% 65% at 50% 40%,
-    rgba(255, 255, 255, 0.25) 0%,
-    transparent 65%
-  );
+  background: radial-gradient(ellipse 85% 65% at 50% 40%,
+      rgba(255, 255, 255, 0.25) 0%,
+      transparent 65%);
   animation: fluidSheenPulse 3.5s ease-in-out infinite alternate;
   mix-blend-mode: screen;
 }
@@ -726,10 +1261,12 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
     transform: translate(-20%, -15%) scale(0.9);
     opacity: 0.5;
   }
+
   50% {
     transform: translate(20%, 15%) scale(1.2);
     opacity: 0.85;
   }
+
   100% {
     transform: translate(-10%, 20%) scale(1);
     opacity: 0.6;
@@ -755,9 +1292,17 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
 }
 
 @keyframes fluidBlobMove1 {
-  0% { transform: translate(-50%, -50%) scale(0.9); }
-  50% { transform: translate(30%, -70%) scale(1.3); }
-  100% { transform: translate(-50%, -50%) scale(0.9); }
+  0% {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
+
+  50% {
+    transform: translate(30%, -70%) scale(1.3);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(0.9);
+  }
 }
 
 .liquid-fluid-blob.blob-2 {
@@ -771,9 +1316,17 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
 }
 
 @keyframes fluidBlobMove2 {
-  0% { transform: translate(-50%, -50%) scale(1.1); }
-  50% { transform: translate(-70%, -20%) scale(0.85); }
-  100% { transform: translate(-50%, -50%) scale(1.1); }
+  0% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+
+  50% {
+    transform: translate(-70%, -20%) scale(0.85);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1.1);
+  }
 }
 
 .trigger-pill-avatar-wrapper {
@@ -813,11 +1366,13 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
 }
 
 @keyframes pulseDot {
+
   0%,
   100% {
     transform: scale(1);
     opacity: 1;
   }
+
   50% {
     transform: scale(1.25);
     opacity: 0.85;
@@ -903,15 +1458,54 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
   }
 }
 
-@media screen and (max-width: 520px) {
-  .hero-stage-container {
-    padding: 80px 0 36px;
+@media screen and (max-width: 600px) {
+  .landing-section {
+    min-height: 100vh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    height: 100svh;
+    height: 100dvh;
+    box-sizing: border-box;
   }
 
-  /* Increased title size on mobile screens */
+  .landing-section.chat-transformed {
+    height: auto;
+    min-height: 100svh;
+    min-height: 100dvh;
+  }
+
+  /* Compact top spacing and reserved bottom clearance so title sits naturally between navbar and footer */
+  .hero-stage-container {
+    height: 100%;
+    min-height: 100%;
+    padding-top: max(72px, 9.5vh);
+    padding-bottom: max(100px, 13.5vh);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+  }
+
+  .landing-section.chat-transformed .hero-stage-container {
+    height: 100svh;
+    height: 100dvh;
+    min-height: 100svh;
+    min-height: 100dvh;
+    max-height: 100dvh;
+    padding-top: calc(64px + env(safe-area-inset-top, 0px));
+    padding-bottom: calc(10px + env(safe-area-inset-bottom, 0px));
+    padding-left: 14px;
+    padding-right: 14px;
+    justify-content: flex-start;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Well-proportioned mobile title */
   .hero-title {
-    font-size: clamp(36px, 10.5vw, 50px);
-    line-height: 1.12;
+    font-size: clamp(33px, 9.2vw, 46px);
+    line-height: 1.13;
     letter-spacing: -0.03em;
   }
 
@@ -924,16 +1518,16 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    margin-top: 24px;
-    gap: 12px;
+    margin-top: 20px;
+    gap: 10px;
     padding: 0 12px;
     box-sizing: border-box;
   }
 
   .btn-hero-primary,
   .btn-hero-secondary {
-    padding: 12px 20px;
-    font-size: 14px;
+    padding: 11px 18px;
+    font-size: 13.5px;
   }
 
   .btn-hero-chat {
@@ -946,24 +1540,30 @@ body.chat-mode-active .full-hero-chatbox .chatbox-messages {
     height: 26px;
   }
 
+  /* Keep footer safely pinned inside the visible dynamic viewport above any browser chrome */
   .hero-footer {
-    bottom: 2.5vh;
-    padding: 0 20px;
+    position: absolute;
+    bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+    left: 0;
+    right: 0;
+    width: 100%;
+    padding: 0 18px;
+    box-sizing: border-box;
   }
 
   .circular-resume-link {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
   }
 
   .resume-icon-center {
-    width: 38px;
-    height: 38px;
+    width: 35px;
+    height: 35px;
   }
 
   .resume-icon-center svg {
-    width: 17px;
-    height: 17px;
+    width: 16px;
+    height: 16px;
   }
 
   .rotating-text {

@@ -11,20 +11,38 @@ gsap.registerPlugin(ScrollSmoother, ScrollTrigger);
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
+    const updateScrolled = () => {
+      const scrollPos =
+        (smoother ? smoother.scrollTop() : 0) ||
+        window.scrollY ||
+        document.documentElement.scrollTop ||
+        0;
+      setScrolled(scrollPos > 30);
+    };
+
+    window.addEventListener("scroll", updateScrolled, { passive: true });
+
     const smootherInstance = ScrollSmoother.create({
       wrapper: "#smooth-wrapper",
       content: "#smooth-content",
-      smooth: 1.7,
-      speed: 1.7,
+      smooth: 1.2,
       effects: true,
       autoResize: true,
       ignoreMobileResize: true,
     });
     setSmoother(smootherInstance);
+
+    const st = ScrollTrigger.create({
+      start: "top top",
+      onUpdate: (self) => {
+        setScrolled(self.scroll() > 30);
+      },
+    });
 
     smoother.scrollTop(0);
     // Only pause if loading screen is active
@@ -37,6 +55,7 @@ const Navbar = () => {
 
     const handleResize = () => {
       ScrollSmoother.refresh(true);
+      updateScrolled();
     };
     window.addEventListener("resize", handleResize);
 
@@ -90,15 +109,17 @@ const Navbar = () => {
       elem.addEventListener("click", handleLinkClick);
     });
 
-
+    updateScrolled();
 
     return () => {
+      st.kill();
       if (smootherInstance) {
         smootherInstance.kill();
       }
       if (smoothContent) {
         resizeObserver.unobserve(smoothContent);
       }
+      window.removeEventListener("scroll", updateScrolled);
       window.removeEventListener("resize", handleResize);
       links.forEach((link) => {
         link.removeEventListener("click", handleLinkClick);
@@ -108,9 +129,13 @@ const Navbar = () => {
 
   return (
     <>
-      <div className={`header ${menuOpen ? "menu-open" : ""}`}>
+      <div className={`header ${scrolled ? "header-scrolled" : ""} ${menuOpen ? "menu-open" : ""}`}>
         <Link to="/" className="navbar-logo">
-          <img src="/images/logo-white.png" alt="Fuaad Studio" className="logo-img" />
+          <img
+            src="/images/logo-black.png"
+            alt="Fuaad Studio"
+            className="logo-img"
+          />
         </Link>
 
         {/* Desktop nav links */}
